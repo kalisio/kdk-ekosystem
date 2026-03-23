@@ -1,0 +1,79 @@
+{
+  "name": "kdk-ekosystem",
+  "description": "The Kalisio Development Kit Packages Ecosystem",
+  "type": "module",
+  "packageManager": "pnpm@10.1.0",
+  "lint-staged": {
+    "*.{js,cjs,mjs}": [
+      "pnpm lint"
+    ]
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "build:core-api": "pnpm --filter @kalisio/core-api build",
+    "build:core-common": "pnpm --filter @kalisio/core-common build",
+    "build:core-ui": "pnpm --filter @kalisio/core-ui build",
+    "changeset": "changeset",
+    "changeset:release": "pnpm build && changeset publish",
+    "changeset:status": "changeset status",
+    "changeset:version": "changeset version",
+    "docs:build": "vitepress build docs",
+    "docs:dev": "vitepress dev docs",
+    "lint": "pnpm -r lint --fix",
+    "lint:core-api": "pnpm --filter @kalisio/core-api lint --fix",
+    "lint:core-common": "pnpm --filter @kalisio/core-common lint --fix",
+    "lint:core-ui": "pnpm --filter @kalisio/core-ui lint --fix",
+    "posttest": "pnpm lcov-result-merger --prepend-source-files 'packages/*/coverage/lcov.info' coverage/lcov.info",
+    "prepare": "husky",
+    "pretest": "mkdir -p coverage",
+    "test": "pnpm -r test --coverage",
+    "test:core-api": "pnpm --filter @kalisio/core-api test --coverage",
+    "test:core-common": "pnpm --filter @kalisio/core-common test --coverage",
+    "test:core-ui": "pnpm --filter @kalisio/core-ui test --coverage"
+  },
+  "keywords": [
+    "kalisio"
+  ],
+  "author": {
+    "name": "KALISIO <contact@kalisio.com>",
+    "url": "https://github.com/kalisio"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kalisio/kdk-ekosystem.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kalisio/kdk-ekosystem/issues"
+  },
+  "homepage": "git://github.com/kalisio/kdk-ekosystem#readme",
+  "dependencies": {
+    "keycloak-js": "catalog:",
+    "lodash": "catalog:",
+    "moment": "catalog:",
+    "quasar": "catalog:"
+  },
+  "devDependencies": {
+    "@changesets/cli": "catalog:",
+    "@kalisio/meta-ekosystem": "github:kalisio/meta-ekosystem",
+    "@vitest/coverage-v8": "catalog:",
+    "cross-env": "catalog:",
+    "husky": "catalog:",
+    "lcov-result-merger": "catalog:",
+    "lint-staged": "catalog:",
+    "mermaid": "catalog:",
+    "standard": "catalog:",
+    "vite": "catalog:",
+    "vite-bundle-visualizer": "catalog:",
+    "vitepress": "catalog:",
+    "vitepress-plugin-mermaid": "catalog:",
+    "vitepress-theme-kalisio": "catalog:",
+    "vitest": "catalog:"
+  },
+  "pnpm": {
+    "overrides": {
+      "@kalisio/meta-ekosystem": "link:../meta-ekosystem"
+    }
+  }
+}
