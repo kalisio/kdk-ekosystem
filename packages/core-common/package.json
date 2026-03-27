@@ -18,8 +18,11 @@
       "describe",
       "it",
       "expect",
+      "beforeAll",
+      "afterAll",
       "beforeEach",
-      "afterEach"
+      "afterEach",
+      "vi"
     ],
     "ignore": [
       "dist/**"
@@ -50,6 +53,17 @@
     "url": "https://github.com/kalisio/kdk-ekosystem/issues"
   },
   "homepage": "https://github.com/kalisio/kdk-ekosystem/tree/main/packages/core-common",
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "@casl/ability": "catalog:",
+    "@casl/mongoose": "catalog:",
+    "ajv": "catalog:",
+    "ajv-formats": "catalog:",
+    "ajv-keywords": "catalog:",
+    "debug": "catalog:",
+    "lodash": "catalog:"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "catalog:",
+    "vitest": "catalog:"
+  }
 }

@@ -18,8 +18,11 @@
       "describe",
       "it",
       "expect",
+      "beforeAll",
+      "afterAll",
       "beforeEach",
-      "afterEach"
+      "afterEach",
+      "vi"
     ],
     "ignore": [
       "dist/**"

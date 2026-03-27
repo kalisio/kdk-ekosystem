@@ -18,8 +18,11 @@
       "describe",
       "it",
       "expect",
+      "beforeAll",
+      "afterAll",
       "beforeEach",
-      "afterEach"
+      "afterEach",
+      "vi"
     ],
     "ignore": [
       "dist/**"
@@ -50,6 +53,53 @@
     "url": "https://github.com/kalisio/kdk-ekosystem/issues"
   },
   "homepage": "https://github.com/kalisio/kdk-ekosystem/tree/main/packages/core-api",
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "@casl/ability": "catalog:",
+    "@casl/mongoose": "catalog:",
+    "@feathersjs/authentication": "catalog:",
+    "@feathersjs/authentication-local": "catalog:",
+    "@feathersjs/authentication-oauth": "catalog:",
+    "@feathersjs/configuration": "catalog:",
+    "@feathersjs/errors": "catalog:",
+    "@feathersjs/express": "catalog:",
+    "@feathersjs/schema": "catalog:",
+    "@feathersjs/feathers": "catalog:",
+    "@feathersjs/socketio": "catalog:",
+    "@kalisio/core-common": "workspace:^",
+    "@kalisio/feathers-import-export": "catalog:",
+    "@kalisio/feathers-s3": "catalog:",
+    "@kalisio/feathers-webpush": "catalog:",
+    "compression": "catalog:",
+    "cors": "catalog:",
+    "debug": "catalog:",
+    "email-templates": "catalog:",
+    "express-rate-limit": "catalog:",
+    "feathers-authentication-management": "catalog:",
+    "feathers-hooks-common": "catalog:",
+    "feathers-mailer": "catalog:",
+    "feathers-mongodb-fuzzy-search": "catalog:",
+    "feathers-mongodb-management": "catalog:",
+    "fs-extra": "catalog:",
+    "helmet": "catalog:",
+    "limiter": "catalog:",
+    "lodash": "catalog:",
+    "lru-cache": "catalog:",
+    "moment": "catalog:",
+    "mongodb": "catalog:",
+    "nodemailer": "catalog:",
+    "password-generator": "catalog:",
+    "password-validator": "catalog:",
+    "qs": "catalog:",
+    "sift": "catalog:",
+    "winston": "catalog:",
+    "winston-daily-rotate-file": "catalog:"
+  },
+  "devDependencies": {
+    "@feathersjs/memory": "catalog:",
+    "@kalisio/feathers-webpush": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "config": "catalog:",
+    "superagent": "catalog:",
+    "vitest": "catalog:"
+  }
 }
