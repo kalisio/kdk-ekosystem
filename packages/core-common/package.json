@@ -8,10 +8,12 @@
       "development": "./src/index.js",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
-    }
+    },
+    "./schemas/*": "./src/schemas/*"
   },
   "files": [
-    "dist"
+    "dist",
+    "src/schemas"
   ],
   "standard": {
     "globals": [
