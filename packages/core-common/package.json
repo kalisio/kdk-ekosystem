@@ -16,6 +16,9 @@
     "src/schemas"
   ],
   "standard": {
+    "env": [
+      "browser"
+    ],
     "globals": [
       "describe",
       "it",
@@ -32,8 +35,8 @@
   },
   "scripts": {
     "build": "vite build",
-    "lint": "standard ",
-    "lint:fix": "standard --fix",
+    "lint": "standard src",
+    "lint:fix": "standard --fix src",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage"
   },
