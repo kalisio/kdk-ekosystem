@@ -174,14 +174,16 @@ export function createProxyService (options) {
 
 async function createService (name, app, options = {}) {
   debug(`Creating service ${name}`)
-  const createFeathersService = (await import('feathers-' + app.db.adapter)).default
+  const feathersServiceModule = await import('@feathersjs/' + app.db.adapter)
+  // TODO: For now we only support MongoDB adapter, if required we should change something here to support more adapters
+  const FeathersServiceClass = (app.db.adapter === 'mongodb' ? feathersServiceModule.MongoDBService : feathersServiceModule.default)
 
   const paginate = app.get('paginate')
   const serviceOptions = Object.assign({
     name,
     paginate,
     multi: true,
-    whitelist: [
+    operators: [
       '$exists', '$and', '$or', '$not', '$eq', '$elemMatch', '$distinct', '$groupBy', '$group', '$regex',
       '$text', '$search', '$caseSensitive', '$language', '$diacriticSensitive',
       '$aggregate', '$near', '$nearSphere', '$geoIntersects', '$geoWithin',
@@ -216,7 +218,7 @@ async function createService (name, app, options = {}) {
   // Initialize our service with any options it requires
   let service
   if (dbService) {
-    service = createFeathersService(serviceOptions)
+    service = new FeathersServiceClass(serviceOptions)
     dbService = service
   } else if (serviceOptions.proxy) {
     service = createProxyService(serviceOptions.proxy)
