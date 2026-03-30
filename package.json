@@ -3,6 +3,11 @@
   "description": "The Kalisio Development Kit Packages Ecosystem",
   "type": "module",
   "packageManager": "pnpm@10.1.0",
+  "lint-staged": {
+    "*.{js,cjs,mjs}": [
+      "pnpm lint"
+    ]
+  },
   "scripts": {
     "build": "pnpm -r build",
     "build:core-api": "pnpm --filter @kalisio/core-api build",
