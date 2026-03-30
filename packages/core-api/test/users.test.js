@@ -1,12 +1,8 @@
 import _ from 'lodash'
-import authentication from '@feathersjs/authentication'
-import commonHooks from 'feathers-hooks-common'
+import { authenticate } from '@feathersjs/authentication'
+import { iff, disallow, isProvider, keep, discard } from 'feathers-hooks-common'
 import request from 'superagent'
 import core, { kdk, hooks } from '../src/index.js'
-
-const { authenticate } = authentication.hooks
-const { iff, disallow, isProvider, keep, discard } = commonHooks
-const { isNotMe, onlyMe, preventChanges } = hooks
 
 describe('core:users', () => {
   let app, server, port, baseUrl, userIdAccessToken, emailAccessToken, phoneAccessToken, statelessAccessToken, adminAccessToken,
@@ -40,15 +36,15 @@ describe('core:users', () => {
     userService.hooks({
       before: {
         all: authenticate('jwt'),
-        get: [iff(isNotMe(), disallow('external'))],
-        find: [iff(isProvider('external'), iff(isNotAdministrator, onlyMe()))],
+        get: [iff(hooks.isNotMe(), disallow('external'))],
+        find: [iff(isProvider('external'), iff(isNotAdministrator, hooks.onlyMe()))],
         create: [iff(isProvider('external'), keep('name', 'email', 'profile', 'password'))],
         update: [disallow('external')],
-        patch: [iff(isProvider('external'), iff(isNotAdministrator, onlyMe(), preventChanges(true, ['permissions'])))],
-        remove: [iff(isProvider('external'), iff(isNotAdministrator, onlyMe()))]
+        patch: [iff(isProvider('external'), iff(isNotAdministrator, hooks.onlyMe(), hooks.preventChanges(true, ['permissions'])))],
+        remove: [iff(isProvider('external'), iff(isNotAdministrator, hooks.onlyMe()))]
       },
       after: {
-        all: [iff(isProvider('external'), iff(isNotMe(), iff(isNotAdministrator, discard('permissions'))))]
+        all: [iff(isProvider('external'), iff(hooks.isNotMe(), iff(isNotAdministrator, discard('permissions'))))]
       }
     })
     // Now app is configured launch the server

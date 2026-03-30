@@ -1,4 +1,4 @@
-import common from 'feathers-hooks-common'
+import { iff, when } from 'feathers-hooks-common'
 import request from 'superagent'
 import config from 'config'
 import { assert } from 'vitest'
@@ -9,8 +9,6 @@ import { permissions } from '@kalisio/core-common'
 // Integration testing with real email account shouuld be restricted to apps
 // import { createGmailClient } from './utils.js'
 import { createMailerStub } from './utils.js'
-
-const { iff, when } = common
 
 describe('core:account', () => {
   let app, server, port, baseUrl, token,

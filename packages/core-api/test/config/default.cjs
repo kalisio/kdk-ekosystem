@@ -1,12 +1,11 @@
 const path = require('path')
 const fs = require('fs')
 const winston = require('winston')
-const containerized = require('containerized')()
 
 const API_PREFIX = '/api'
 
 module.exports = {
-  port: process.env.PORT || 8081,
+  port: Math.floor(8500 + Math.random() * 100),
   apiPath: API_PREFIX,
   domain: 'https://kapp.kalisio.xyz',
   host: 'localhost',
@@ -85,7 +84,7 @@ module.exports = {
       prefix: 'import-export'
     },
     allowedServicePaths: 'api/users',
-    workingDir: 'test/api/core/tmp'
+    workingDir: 'test/tmp'
   },
   mailer: {
     service: 'gmail',
@@ -108,7 +107,7 @@ module.exports = {
   },
   db: {
     adapter: 'mongodb',
-    url: (containerized ? 'mongodb://mongodb:27017/kdk-test' : 'mongodb://127.0.0.1:27017/kdk-test')
+    url: 'mongodb://127.0.0.1:27017/kdk-test'
   },
   logs: {
     Console: {

@@ -40,6 +40,8 @@ describe('core:tags', () => {
     expect(tag.data.length > 0).toBe(true)
     const deletedTag = await tagsService.remove(tag.data[0]._id)
     expect(deletedTag._id.toString()).toBe(tag.data[0]._id.toString())
+    // Need to let some time to proceed some async tasks when updating tags
+    await new Promise(resolve => setTimeout(resolve, 2000))
   }, 10000)
 
   // Cleanup
