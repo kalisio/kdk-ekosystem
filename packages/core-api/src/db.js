@@ -1,10 +1,9 @@
 import _ from 'lodash'
 import moment from 'moment'
 import makeDebug from 'debug'
-import mongodb from 'mongodb'
+import { MongoClient, ObjectId } from 'mongodb'
 import errors from '@feathersjs/errors'
 
-const { MongoClient, ObjectID } = mongodb
 const debug = makeDebug('kdk:core:db')
 
 // This ensure moment objects are correctly serialized in MongoDB
@@ -38,7 +37,7 @@ export function createObjectID (id) {
   // Take care that numbers could be a valid object ID
   else if ((typeof id === 'number') || !isValidObjectID(id)) return null
   else {
-    const objectId = new ObjectID(id)
+    const objectId = new ObjectId(id)
     // It appears that ObjectID.isValid is not reliable in some driver versions, see eg https://jira.mongodb.org/browse/NODE-3760
     // So that we use an additional check here
     return (objectId.toString() === id ? objectId : null)
