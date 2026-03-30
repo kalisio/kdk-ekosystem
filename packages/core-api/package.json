@@ -35,8 +35,8 @@
     "build": "vite build",
     "lint": "standard",
     "lint:fix": "standard --fix",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test": "cross-env NODE_CONFIG_DIR=./test/config/ vitest run",
+    "test:coverage": "cross-env NODE_CONFIG_DIR=./test/config/ vitest run --coverage"
   },
   "keywords": [
     "kalisio"
@@ -65,8 +65,9 @@
     "@feathersjs/configuration": "catalog:",
     "@feathersjs/errors": "catalog:",
     "@feathersjs/express": "catalog:",
-    "@feathersjs/schema": "catalog:",
     "@feathersjs/feathers": "catalog:",
+    "@feathersjs/mongodb": "catalog:",
+    "@feathersjs/schema": "catalog:",
     "@feathersjs/socketio": "catalog:",
     "@kalisio/core-common": "workspace:^",
     "@kalisio/feathers-import-export": "catalog:",
@@ -102,6 +103,7 @@
     "@kalisio/feathers-webpush": "catalog:",
     "@vitest/coverage-v8": "catalog:",
     "config": "catalog:",
+    "googleapis": "^21.3.0",
     "superagent": "catalog:",
     "vitest": "catalog:"
   }

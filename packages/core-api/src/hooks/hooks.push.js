@@ -1,4 +1,4 @@
-import emails from 'email-templates'
+import Email from 'email-templates'
 import path from 'path'
 import makeDebug from 'debug'
 import _ from 'lodash'
@@ -49,11 +49,11 @@ export async function sendNewSubscriptionEmail (hook) {
   }
   // Build the subject & link to the app to perform the different actions
   const templateDir = path.join(mailerService.options.templateDir, 'newSubscription')
-  const template = new emails.EmailTemplate(templateDir)
+  const emailTemplate = new Email({ views: { options: { extension: 'ejs' } } })
   // Errors does not seem to be correctly catched by the caller
   // so we catch them here to avoid any problem
   try {
-    const emailContent = await template.render({ email, user: currentUser, subscription: lastSubscription }, currentUser.locale || 'en-us')
+    const emailContent = await emailTemplate.renderAll(templateDir, { email, user: currentUser, subscription: lastSubscription, locale: currentUser.locale || 'en-us' })
     // Update compiled content
     email.html = emailContent.html
     debug('Sending email ', email)

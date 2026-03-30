@@ -1,6 +1,6 @@
 import { AuthenticationManagementService } from 'feathers-authentication-management'
 import errors from '@feathersjs/errors'
-import emails from 'email-templates'
+import Email from 'email-templates'
 import path from 'path'
 import makeDebug from 'debug'
 import _ from 'lodash'
@@ -86,11 +86,11 @@ export default function (name, app, options) {
         break
     }
     const templateDir = path.join(mailerService.options.templateDir, emailTemplateDir)
-    const template = new emails.EmailTemplate(templateDir)
+    const emailTemplate = new Email({ views: { options: { extension: 'ejs' } } })
     // Errors does not seem to be correctly catched by the caller
     // so we catch them here to avoid any problem
     try {
-      const emailContent = await template.render({ email, user }, user.locale || 'en-us')
+      const emailContent = await emailTemplate.renderAll(templateDir, { email, user, locale: user.locale || 'en-us' })
       // Update compiled content
       email.html = emailContent.html
       debug('Sending email ', email)
