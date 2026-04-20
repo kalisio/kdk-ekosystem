@@ -41,6 +41,23 @@
     "url": "https://github.com/kalisio/kdk-ekosystem/issues"
   },
   "homepage": "https://github.com/kalisio/kdk-ekosystem/tree/main/packages/kdk-map-common",
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "@weacast/core": "catalog:",
+    "geotiff": "catalog:",
+    "jsdap": "catalog:",
+    "lodash": "catalog:",
+    "moment": "catalog:",
+    "pmtiles": "catalog:",
+    "xml2js": "catalog:"
+  
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "catalog:",
+    "standard": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  }
+    
+  
+
 }
