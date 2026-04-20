@@ -14,6 +14,19 @@
     "dist"
   ],
   "standard": {
+    "env": [
+      "browser"
+    ],
+    "globals": [
+      "describe",
+      "it",
+      "expect",
+      "beforeAll",
+      "afterAll",
+      "beforeEach",
+      "afterEach",
+      "vi"
+    ],
     "ignore": [
       "dist/**"
     ]
@@ -41,6 +54,23 @@
     "url": "https://github.com/kalisio/kdk-ekosystem/issues"
   },
   "homepage": "https://github.com/kalisio/kdk-ekosystem/tree/main/packages/kdk-map-api",
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "@feathersjs/errors": "catalog:",
+    "@feathersjs/feathers": "catalog:",
+    "debug": "catalog:",
+    "feathers-hooks-common": "catalog:",
+    "feathers-mongodb-fuzzy-search": "catalog:",
+    "fs-extra": "catalog:",
+    "lodash": "catalog:",
+    "moment": "catalog:",
+    "sift": "catalog:",
+    "superagent": "catalog:"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "catalog:",
+    "cross-env": "catalog:",
+    "standard": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  }
 }
