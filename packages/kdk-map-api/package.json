@@ -1,0 +1,46 @@
+{
+  "name": "@kalisio/kdk-map-api",
+  "description": "The Kalisio Development Kit Map API Package",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "development": "./src/index.js",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "standard": {
+    "ignore": [
+      "dist/**"
+    ]
+  },
+  "scripts": {
+    "build": "vite build",
+    "lint": "standard --fix",
+    "test": "vitest run --coverage"
+  },
+  "keywords": [
+    "kalisio"
+  ],
+  "author": {
+    "name": "KALISIO <contact@kalisio.com>",
+    "url": "https://github.com/kalisio"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kalisio/kdk-ekosystem.git",
+    "directory": "packages/kdk-map-api"
+  },
+  "bugs": {
+    "url": "https://github.com/kalisio/kdk-ekosystem/issues"
+  },
+  "homepage": "https://github.com/kalisio/kdk-ekosystem/tree/main/packages/kdk-map-api",
+  "dependencies": {},
+  "devDependencies": {}
+}
