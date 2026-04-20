@@ -1,0 +1,60 @@
+{
+  "name": "@kalisio/kdk-core-common",
+  "description": "The Kalisio Development Kit Core Common Package",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "development": "./src/index.js",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./schemas/*": "./src/schemas/*"
+  },
+  "files": [
+    "dist",
+    "src/schemas"
+  ],
+  "standard": {
+    "ignore": [
+      "dist/**"
+    ]
+  },
+  "scripts": {
+    "build": "vite build",
+    "lint": "standard --fix",
+    "test": "vitest run --coverage"
+  },
+  "keywords": [
+    "kdk",
+    "kalisio"
+  ],
+  "author": {
+    "name": "KALISIO <contact@kalisio.com>",
+    "url": "https://github.com/kalisio"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kalisio/kdk-ekosystem.git",
+    "directory": "packages/kdk-core-common"
+  },
+  "bugs": {
+    "url": "https://github.com/kalisio/kdk-ekosystem/issues"
+  },
+  "homepage": "https://github.com/kalisio/kdk-ekosystem/tree/main/packages/kdk-core-common",
+  "dependencies": {
+    "@casl/ability": "catalog:",
+    "@casl/mongoose": "catalog:",
+    "ajv": "catalog:",
+    "ajv-formats": "catalog:",
+    "ajv-keywords": "catalog:",
+    "debug": "catalog:",
+    "lodash": "catalog:"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "catalog:",
+    "vitest": "catalog:"
+  }
+}

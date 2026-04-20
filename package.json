@@ -3,16 +3,11 @@
   "description": "The Kalisio Development Kit Packages Ecosystem",
   "type": "module",
   "packageManager": "pnpm@10.1.0",
-  "lint-staged": {
-    "*.{js,cjs,mjs}": [
-      "pnpm lint"
-    ]
-  },
   "scripts": {
     "build": "pnpm -r build",
-    "build:core-api": "pnpm --filter @kalisio/core-api build",
-    "build:core-common": "pnpm --filter @kalisio/core-common build",
-    "build:core-ui": "pnpm --filter @kalisio/core-ui build",
+    "build:kdk-core-api": "pnpm --filter @kalisio/kdk-core-api build",
+    "build:kdk-core-common": "pnpm --filter @kalisio/kdk-core-common build",
+    "build:kdk-core-ui": "pnpm --filter @kalisio/kdk-core-ui build",
     "build:kdk-map-api": "pnpm --filter @kalisio/kdk-map-api build",
     "build:kdk-map-common": "pnpm --filter @kalisio/kdk-map-common build",
     "changeset": "changeset",
@@ -21,21 +16,21 @@
     "changeset:version": "changeset version",
     "docs:build": "vitepress build docs",
     "docs:dev": "vitepress dev docs",
-    "lint": "pnpm -r lint --fix",
-    "lint:core-api": "pnpm --filter @kalisio/core-api lint --fix",
-    "lint:core-common": "pnpm --filter @kalisio/core-common lint --fix",
-    "lint:core-ui": "pnpm --filter @kalisio/core-ui lint --fix",
+    "lint": "pnpm -r lint",
+    "lint:kdk-core-api": "pnpm --filter @kalisio/kdk-core-api lint",
+    "lint:kdk-core-common": "pnpm --filter @kalisio/kdk-core-common lint",
+    "lint:kdk-core-ui": "pnpm --filter @kalisio/kdk-core-ui lint",
     "lint:kdk-map-api": "pnpm --filter @kalisio/kdk-map-api lint",
     "lint:kdk-map-common": "pnpm --filter @kalisio/kdk-map-common lint",
     "posttest": "pnpm lcov-result-merger --prepend-source-files 'packages/*/coverage/lcov.info' coverage/lcov.info",
     "prepare": "husky",
     "pretest": "mkdir -p coverage",
-    "test": "pnpm -r test --coverage",
-    "test:core-api": "pnpm --filter @kalisio/core-api test --coverage",
-    "test:core-common": "pnpm --filter @kalisio/core-common test --coverage",
-    "test:core-ui": "pnpm --filter @kalisio/core-ui test --coverage",
-    "test:kdk-map-api": "pnpm --filter @kalisio/kdk-map-api test --coverage",
-    "test:kdk-map-common": "pnpm --filter @kalisio/kdk-map-common test --coverage"
+    "test": "pnpm -r test",
+    "test:kdk-core-api": "pnpm --filter @kalisio/kdk-core-api test",
+    "test:kdk-core-common": "pnpm --filter @kalisio/kdk-core-common test",
+    "test:kdk-core-ui": "pnpm --filter @kalisio/kdk-core-ui test",
+    "test:kdk-map-api": "pnpm --filter @kalisio/kdk-map-api test",
+    "test:kdk-map-common": "pnpm --filter @kalisio/kdk-map-common test"
   },
   "keywords": [
     "kalisio"
@@ -82,5 +77,8 @@
       "@kalisio/meta-ekosystem": "link:../meta-ekosystem"
     }
   },
-  "metaCatalog": "0.7.0"
+  "metaCatalog": {
+    "version": "0.7.0",
+    "syncedAt": "2026-04-20T12:39:48.685Z"
+  }
 }

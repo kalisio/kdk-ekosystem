@@ -1,0 +1,75 @@
+import { describe, it, expect, beforeAll, afterAll } from 'vitest'
+import path, { dirname } from 'path'
+import fs from 'fs-extra'
+import { fileURLToPath } from 'url'
+import { memory } from '@feathersjs/memory'
+import core, { kdk, hooks, declareService } from '../src/index.js'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
+describe('core:schemas', () => {
+  let app, server, service
+
+  const schemaPath = path.join(__dirname, 'data', 'schema.json')
+  const schema = fs.readJsonSync(schemaPath)
+  const invalidObjects = fs.readJsonSync(path.join(__dirname, 'data', 'invalid-objects.json'))
+  const validObjects = fs.readJsonSync(path.join(__dirname, 'data', 'valid-objects.json'))
+
+  beforeAll(async () => {
+    app = kdk()
+    // Register log hook
+    app.hooks({ error: { all: hooks.log } })
+    await app.db.connect()
+    await app.db.instance.dropDatabase()
+  })
+
+  it('registers the services', async () => {
+    await app.configure(core)
+    // Create default service to store data
+    service = declareService('service', app, memory({ multi: true, operators: ['$exists'] }))
+    service.hooks({
+      before: {
+        create: (hook) => hooks.validateData(schema)(hook)
+      }
+    })
+  }, 10000)
+
+  it('feed invalid objects', async () => {
+    for (let i = 0; i < invalidObjects.length; i++) {
+      const object = invalidObjects[i]
+      let error
+      try {
+        await service.create(object)
+      } catch (e) {
+        error = e
+        console.log(e.data)
+      }
+      expect(error).toBeDefined()
+      expect(error.name).toBe('BadRequest')
+    }
+    const result = await service.find({ query: {}, paginate: false })
+    expect(result.length === 0).toBe(true)
+  }, 5000)
+
+  it('feed valid objects', async () => {
+    let error
+    try {
+      await service.create(validObjects)
+    } catch (e) {
+      error = e
+      // Log any error to help debug tests
+      // console.log(e.data)
+    }
+    expect(error).toBeUndefined()
+    const result = await service.find({ query: {}, paginate: false })
+    expect(result.length === 2).toBe(true)
+  }, 5000)
+
+  // Cleanup
+  afterAll(async () => {
+    if (server) await server.close()
+    await app.db.instance.dropDatabase()
+    await app.db.disconnect()
+  })
+})
