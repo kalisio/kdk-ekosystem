@@ -49,8 +49,8 @@ export default {
     return results.map(result => Object.assign(result._id, { count: result.count }))
   },
 
-  async formatGeoJSON(data, params) {
-    let { query, sort, type } = data
+  async formatGeoJSON (data, params) {
+    const { query, sort, type } = data
     marshallComparisonFields(query)
     const pipeline = []
     const collection = this.Model
@@ -64,7 +64,7 @@ export default {
           // Match stage: Filter for documents that have a "Point" geometry type, which is required for a LineString.
           {
             $match: {
-              "geometry.type": "Point"
+              'geometry.type': 'Point'
             }
           },
 
@@ -73,7 +73,7 @@ export default {
             $group: {
               _id: null,
               allCoordinates: {
-                $push: "$geometry.coordinates"
+                $push: '$geometry.coordinates'
               }
             }
           },
@@ -82,64 +82,62 @@ export default {
           {
             $project: {
               _id: 0,
-              type: { $literal: "Feature" },
+              type: { $literal: 'Feature' },
               geometry: {
-                type: { $literal: "LineString" },
-                coordinates: "$allCoordinates"
+                type: { $literal: 'LineString' },
+                coordinates: '$allCoordinates'
               },
               properties: {
-                name: "Generated LineString"
+                name: 'Generated LineString'
               }
             }
           }
-        );
-        break;
+        )
+        break
 
       // a feature collection of points and a linestring connecting them
       case 'PointedLineString':
         pipeline.push({
           $match: {
-            "geometry.type": "Point"
+            'geometry.type': 'Point'
           }
         },
-          {
-            // Group stage: Collect all documents of type "Point" into an array and all coordinates for the LineString.
-            $group: {
-              _id: null,
-              features: {
-                $push: "$$ROOT"  // Push entire documents of "Point" features.
-              },
-              allCoordinates: {
-                $push: "$geometry.coordinates"  // Collect coordinates for the LineString.
-              }
+        {
+          // Group stage: Collect all documents of type "Point" into an array and all coordinates for the LineString.
+          $group: {
+            _id: null,
+            features: {
+              $push: '$$ROOT' // Push entire documents of "Point" features.
+            },
+            allCoordinates: {
+              $push: '$geometry.coordinates' // Collect coordinates for the LineString.
             }
-          },
-          {
-            // Project stage: Create a FeatureCollection including both points and a LineString.
-            $project: {
-              _id: 0,
-              type: { "$literal": "FeatureCollection" },
-              features: {
-                $concatArrays: [
-                  "$features",  // Include original Point features.
-                  [
-                    {
-                      type: "Feature",
-                      geometry: {
-                        type: "LineString",
-                        coordinates: "$allCoordinates"  // Use all coordinates to create a LineString.
-                      },
-                      properties: {
-                        name: "Generated LineString"
-                      }
+          }
+        },
+        {
+          // Project stage: Create a FeatureCollection including both points and a LineString.
+          $project: {
+            _id: 0,
+            type: { $literal: 'FeatureCollection' },
+            features: {
+              $concatArrays: [
+                '$features', // Include original Point features.
+                [
+                  {
+                    type: 'Feature',
+                    geometry: {
+                      type: 'LineString',
+                      coordinates: '$allCoordinates' // Use all coordinates to create a LineString.
+                    },
+                    properties: {
+                      name: 'Generated LineString'
                     }
-                  ]
+                  }
                 ]
-              }
+              ]
             }
-          });
-
-
+          }
+        })
 
         break
       default:

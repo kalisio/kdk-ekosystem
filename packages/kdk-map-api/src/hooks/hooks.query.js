@@ -38,18 +38,18 @@ function getQueryForBBox ({ south, north, west, east }) {
   north = _.toNumber(north)
   west = _.toNumber(west)
   east = _.toNumber(east)
-  
+
   // FIXME: MongoDB should allow to support queries with a single-ringed GeoJSON polygon
   // whose area is greater than or equal to a single hemisphere.
   // However, we did not succeeed in making it work as expected, for now on we split large polygon into two halfs.
-  if ((east-west) <= 180) {
+  if ((east - west) <= 180) {
     // BBox as a polygon also requires the closing point.
     const bbox = [[west, south], [east, south], [east, north], [west, north], [west, south]]
     return { geometry: getGeometryQueryForBBox(bbox) }
   } else {
     // BBox as a polygon also requires the closing point.
-    const leftHalfBbox = [[west, south], [0.5*(west+east), south], [0.5*(west+east), north], [west, north], [west, south]]
-    const rightHalfBbox = [[0.5*(west+east), south], [east, south], [east, north], [0.5*(west+east), north], [0.5*(west+east), south]]
+    const leftHalfBbox = [[west, south], [0.5 * (west + east), south], [0.5 * (west + east), north], [west, north], [west, south]]
+    const rightHalfBbox = [[0.5 * (west + east), south], [east, south], [east, north], [0.5 * (west + east), north], [0.5 * (west + east), south]]
     return { $or: [{ geometry: getGeometryQueryForBBox(leftHalfBbox) }, { geometry: getGeometryQueryForBBox(rightHalfBbox) }] }
   }
 }
@@ -256,10 +256,8 @@ export function asGeoJson (options = {}) {
   }
 }
 
-
-
 // Verifies that only authorized accumulation operators are used
-function validateGroupExpression(expression) {
+function validateGroupExpression (expression) {
   // Safe accumulation operators for $group
   const SAFE_GROUP_ACCUMULATORS = new Set([
     '$sum', '$avg', '$first', '$last', '$max', '$min'
@@ -284,16 +282,15 @@ function validateGroupExpression(expression) {
   ])
   // Dangerous operators to reject in $group (arbitrary code execution)
   const DANGEROUS_GROUP_OPERATORS = new Set([
-    '$accumulator',  // Custom JavaScript execution
-    '$function',     // JavaScript function execution
-    '$where'         // JavaScript code execution
+    '$accumulator', // Custom JavaScript execution
+    '$function', // JavaScript function execution
+    '$where' // JavaScript code execution
   ])
 
   if (_.isNil(expression)) {
-    return
+    return expression
   } else if (Array.isArray(expression)) {
-    expression.forEach(validateGroupExpression)
-    return
+    return expression.forEach(validateGroupExpression)
   } else if (typeof expression === 'object') {
     for (const [key, value] of Object.entries(expression)) {
       // Check if it's an operator
@@ -319,7 +316,7 @@ export async function aggregateFeaturesQuery (hook) {
   // Perform aggregation
   if (query.$aggregate) {
     const collection = service.Model
-    const indexes = await collection.indexes()
+    const indexes = await collection.indexes() // eslint-disable-line no-unused-vars
     let featureId = (service.options ? service.options.featureId : [])
     // Support compound ID
     featureId = (Array.isArray(featureId) ? featureId : [featureId])
@@ -424,7 +421,7 @@ export async function aggregateFeaturesQuery (hook) {
       const aggregateElementOptions = Object.assign({}, aggregateOptions)
       debug('Aggregation options', aggregateElementOptions)
       const elementResults = await collection.aggregate(pipeline, aggregateElementOptions).toArray()
-      debug(`Generated ${elementResults.length} feature(s) for ${element} element, picked first two`, elementResults.slice(0,2))
+      debug(`Generated ${elementResults.length} feature(s) for ${element} element, picked first two`, elementResults.slice(0, 2))
       // Rearrange data so that we get ordered arrays indexed by element
       elementResults.forEach(result => {
         result.time = { [element]: result.time }

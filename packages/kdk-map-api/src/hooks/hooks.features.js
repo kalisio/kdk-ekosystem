@@ -100,5 +100,5 @@ export function fuzzySearch (hook) {
   const service = hook.service
   const featureLabel = _.castArray(_.get(service, 'options.featureLabel', []))
   const fields = featureLabel.map((prop) => 'properties.' + prop)
-  return featureLabel.length ? mongodbFuzzySearch({ fields: fields })(hook) : hook
+  return featureLabel.length ? mongodbFuzzySearch({ fields })(hook) : hook
 }

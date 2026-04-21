@@ -8,13 +8,13 @@ const { getItems, replaceItems } = common
 const sift = siftModule.default
 const debug = makeDebug('kdk:map:catalog:hooks')
 
-function isQueryForType(query, type) {
+function isQueryForType (query, type) {
   // Use sift to support MongoDB operators like $in, $nin, etc.
   const filter = [{ type }].filter(sift(_.pick(query, ['type'])))
   return !_.isEmpty(filter)
 }
 
-function addDefaultItems(query, type, items, defaultItems) {
+function addDefaultItems (query, type, items, defaultItems) {
   // Add implicit type as not provided in default items config
   defaultItems = _.map(defaultItems, item => Object.assign(item, { type }))
   // Then filter according to query

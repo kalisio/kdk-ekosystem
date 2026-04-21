@@ -85,7 +85,6 @@ export function removeProjectsService (options = {}) {
   return app.removeService(app.getService('projects', options.context))
 }
 
-
 // Helper to register service and permissions for a layer
 export async function createFeaturesServiceForLayer (layer, context) {
   const app = this
@@ -275,7 +274,6 @@ export default async function () {
   }
   // Add app-specific hooks to required services
 
-  
   const stylesConfig = app.get('styles')
   if (stylesConfig) {
     await createStylesService.call(app, stylesConfig)

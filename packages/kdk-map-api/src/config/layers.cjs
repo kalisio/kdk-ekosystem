@@ -23,15 +23,15 @@ module.exports = function (layerFiles, context) {
   })
   debug(`Found ${layers.length} layer definitions to build catalog from`)
 
-  let allow = [] // Patterns for allowed layers
-  let skip = []  // Patterns for skipped layers
+  const allow = [] // Patterns for allowed layers
+  const skip = [] // Patterns for skipped layers
   // Extract patterns from LAYERS_FILTER env var, patterns starting with '-' are skip patterns
   if (process.env.LAYERS_FILTER) {
     const patterns = process.env.LAYERS_FILTER.includes(',')
-          ? process.env.LAYERS_FILTER.split(',')
-          : process.env.LAYERS_FILTER.split(' ')
+      ? process.env.LAYERS_FILTER.split(',')
+      : process.env.LAYERS_FILTER.split(' ')
     patterns.forEach((pattern) => {
-      if (pattern[0] == '-') {
+      if (pattern[0] === '-') {
         skip.push(pattern.substring(1))
       } else {
         allow.push(pattern)
@@ -41,7 +41,7 @@ module.exports = function (layerFiles, context) {
 
   // Compile patterns
   const allowPattern = new minimatch.Minimatch(`+(${allow.join('|')})`) // Allowing if string matches one or more 'allow' patterns
-  const skipPattern = new minimatch.Minimatch(`+(${skip.join('|')})`)   // Skipping if string matches one or more 'skip' patterns
+  const skipPattern = new minimatch.Minimatch(`+(${skip.join('|')})`) // Skipping if string matches one or more 'skip' patterns
 
   // Now filter layers
   debug('Allowing layers matching', allow)

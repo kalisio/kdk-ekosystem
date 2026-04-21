@@ -20,8 +20,8 @@ export default function (app, options) {
     for (let i = 0; i < languages.length; i++) {
       const language = languages[i]
       const name = `name-type-${language}`
-      
-      let uniqueIndex = _.find(indexes, { name, unique: true })
+
+      const uniqueIndex = _.find(indexes, { name, unique: true })
       if (uniqueIndex) options.Model.dropIndex(name).then(() => createCollationIndex(name, language)).catch(() => {})
       else createCollationIndex(name, language)
     }
