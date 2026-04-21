@@ -57,6 +57,7 @@
   "dependencies": {
     "@feathersjs/errors": "catalog:",
     "@feathersjs/feathers": "catalog:",
+    "@turf/bbox": "catalog:",
     "debug": "catalog:",
     "feathers-hooks-common": "catalog:",
     "feathers-mongodb-fuzzy-search": "catalog:",
