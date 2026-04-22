@@ -145,9 +145,9 @@ describe('map:catalog', () => {
   // Cleanup
   afterAll(async () => {
     if (server) await server.close()
-    await catalogService.Model.drop()
-    await projectService.Model.drop()
-    await userService.Model.drop()
+    if (catalogService && catalogService.Model) await catalogService.Model.drop()
+    if (projectService && projectService.Model) await projectService.Model.drop()
+    if (userService && userService.Model) await userService.Model.drop()
     await app.db.disconnect()
   })
 })

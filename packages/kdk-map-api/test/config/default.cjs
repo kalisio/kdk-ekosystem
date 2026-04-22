@@ -5,7 +5,7 @@ const containerized = require('containerized')()
 const API_PREFIX = '/api'
 
 module.exports = {
-  port: process.env.PORT || 8081,
+  port: process.env.PORT || 0,
 
   apiPath: API_PREFIX,
 
@@ -44,7 +44,7 @@ module.exports = {
   },
   db: {
     adapter: 'mongodb',
-    url: (containerized ? 'mongodb://mongodb:27017/kdk-test' : 'mongodb://127.0.0.1:27017/kdk-test')
+    url: (containerized ? 'mongodb://mongodb:27017/kdk-test' : 'mongodb://127.0.0.1:27017/kdk-test') + (process.env.VITEST_WORKER_ID ? `-${process.env.VITEST_WORKER_ID}` : '')
   },
   storage: {
     s3Client: {
@@ -56,7 +56,7 @@ module.exports = {
       region: process.env.S3_REGION,
       signatureVersion: 'v4'
     },
-    bucket: process.env.S3_BUCKET,
+    bucket: process.env.S3_BUCKET || 'default-bucket',
     getObjectPath: '/storage-objects'
   },
   forecastPath: path.join(__dirname, '../forecast-data'),

@@ -1,9 +1,6 @@
 import _ from 'lodash'
-import commonHooks from 'feathers-hooks-common'
-// import { hooks as schemaHooks, resolve } from '@feathersjs/schema'
+import { setNow, discard, getItems, replaceItems, when } from 'feathers-hooks-common'
 import { hooks as coreHooks } from '../../../../kdk-core-api/src/index.js'
-
-const { setNow, discard, getItems, replaceItems, when } = commonHooks
 
 /* Populate is too much specialized and does not allow to merge input/output
  but we need the service information on the fronted

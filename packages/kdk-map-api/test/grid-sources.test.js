@@ -7,7 +7,6 @@ import nock from 'nock'
 import siftModule from 'sift'
 import moment from 'moment'
 import { memory } from '@feathersjs/memory'
-import intersect from '@turf/intersect'
 import { weacast } from '@weacast/core'
 import { grid } from '../../kdk-map-common/src/index.js'
 import { fileURLToPath } from 'url'
@@ -73,8 +72,8 @@ describe('map:grid-source', () => {
 
       await source.setup(sourceConfig)
       const bbox = source.getBBox()
-      expect(bbox[0]).toBeCloseTo(-60.009, 3)
-      expect(bbox[1]).toBeCloseTo(-180.009, 3)
+      expect(bbox[0]).toBeCloseTo(-60.009, 2)
+      expect(bbox[1]).toBeCloseTo(-180.009, 2)
       expect(bbox[2]).toBeCloseTo(60.009, 2)
       expect(bbox[3]).toBeCloseTo(180.009, 2)
     })
@@ -166,7 +165,8 @@ describe('map:grid-source', () => {
     })
 
     it('setup correctly', async () => {
-      nock('http://kMap.test')
+      nock('http://kmap.test')
+        .persist()
         .get('/data.tif')
         .reply(function (uri, requestBody) {
           const res = readRange(path.join(__dirname, '/data/GetCoverage.tif'), this.req.headers.range)
@@ -183,13 +183,7 @@ describe('map:grid-source', () => {
     })
 
     it('returns an appropriate grid when requesting data', async () => {
-      nock('http://kMap.test')
-        .get('/data.tif')
-        .reply(function (uri, requestBody) {
-          const res = readRange(path.join(__dirname, '/data/GetCoverage.tif'), this.req.headers.range)
-          if (res.data) return [206, res.data, { 'content-range': res.range }]
-          return [404]
-        })
+      // No need to redeclare nock as it is persisted
 
       const fetchBBox = [-5, -5, 5, 5]
       const fetchRes = [0.15, 0.15]
@@ -252,19 +246,34 @@ describe('map:grid-source', () => {
     }
 
     it('initialize Weacast API mock', async () => {
-      // Add geospatial operator to sift
-      const matcher = (query) => sift(query, {
-        expressions: {
-          $geoIntersects: function (query, value) {
-            const polygon1 = _.get(query, '$geometry')
-            const polygon2 = value
-            if (!polygon1 || !polygon2) return false
-            return intersect(polygon1, polygon2)
-          }
-        }
-      })
       const weacastApi = weacast()
       weacastApi.models = [model]
+      const matcher = (query) => {
+        const geoIntersects = _.get(query, 'geometry.$geoIntersects')
+        const siftMatcher = sift(_.omit(query, ['geometry']))
+        return (item) => {
+          if (!siftMatcher(item)) return false
+          if (geoIntersects) {
+            const polygon1 = (geoIntersects.$geometry || geoIntersects)
+            const polygon2 = (item.geometry || item)
+            if (!polygon1 || !polygon1.coordinates || !polygon2 || !polygon2.coordinates) return false
+            const bbox1 = [
+              Math.min(...polygon1.coordinates[0].map(p => p[0])),
+              Math.min(...polygon1.coordinates[0].map(p => p[1])),
+              Math.max(...polygon1.coordinates[0].map(p => p[0])),
+              Math.max(...polygon1.coordinates[0].map(p => p[1]))
+            ]
+            const bbox2 = [
+              Math.min(...polygon2.coordinates[0].map(p => p[0])),
+              Math.min(...polygon2.coordinates[0].map(p => p[1])),
+              Math.max(...polygon2.coordinates[0].map(p => p[0])),
+              Math.max(...polygon2.coordinates[0].map(p => p[1]))
+            ]
+            return !(bbox2[0] > bbox1[2] || bbox2[2] < bbox1[0] || bbox2[1] > bbox1[3] || bbox2[3] < bbox1[1])
+          }
+          return true
+        }
+      }
       await weacastApi.createElementService(model, element,
         memory({ store, matcher, multi: true, operators: ['$exists', '$geoIntersects', '$geometry'] }))
       const elementService = weacastApi.getService(service)

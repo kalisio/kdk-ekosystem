@@ -13,11 +13,11 @@ const servicesPath = path.join(__dirname, '..', 'services')
 
 const debug = makeDebug('kdk:map:services')
 
-export function createFeaturesService (options = {}) {
+export async function createFeaturesService (options = {}) {
   const app = this
 
   debug('Creating features service with options', options)
-  const service = app.createService(options.collection, Object.assign({
+  const service = await app.createService(options.collection, Object.assign({
     modelName: 'features',
     servicesPath,
     modelsPath,
@@ -25,8 +25,15 @@ export function createFeaturesService (options = {}) {
     // FIXME: no real-time events for now since we create big batches,
     // does not seem to be sufficient also require a hook (see https://github.com/feathersjs/feathers/issues/922)
     events: ['features'],
-    methods: ['find', 'get', 'create', 'update', 'patch', 'remove', 'heatmap', 'formatGeoJSON']
+    methods: ['find', 'get', 'create', 'update', 'patch', 'remove', 'heatmap', 'formatGeoJSON'],
+    filters: ['$groupBy', '$group', '$aggregate', '$geoNear', '$near', '$maxDistance', '$search', '$distinct']
   }, options))
+  // For compatibility with core hooks that expect service.Model
+  service.Model = service.options.Model
+  // Ensure the spatial index is ready for tests
+  if (service.Model && typeof service.Model.createIndex === 'function') {
+    await service.Model.createIndex({ geometry: '2dsphere' })
+  }
   // As a features service can be created dynamically register default permissions for it
   permissions.defineAbilities.registerHook((subject, can, cannot) => {
     can('service', options.collection)
@@ -44,7 +51,7 @@ export function removeFeaturesService (options = {}) {
   return app.removeService(app.getService(options.collection, options.context))
 }
 
-export function createCatalogService (options = {}) {
+export async function createCatalogService (options = {}) {
   const app = this
 
   // Read default categories/sublegends config, which can be overriden by options
@@ -53,13 +60,17 @@ export function createCatalogService (options = {}) {
   const sublegends = catalogConfig.sublegends
 
   debug('Creating catalog service with options', options)
-  return app.createService('catalog', Object.assign({
+  const service = await app.createService('catalog', Object.assign({
     servicesPath,
     modelsPath,
     paginate: { default: 1000, max: 1000 },
     categories,
-    sublegends
+    sublegends,
+    featureLabel: ['name', 'label'],
+    filters: ['$groupBy', '$group', '$aggregate', '$geoNear', '$near', '$maxDistance', '$search', '$distinct']
   }, options))
+  service.Model = service.options.Model
+  return service
 }
 
 export function removeCatalogService (options = {}) {
@@ -72,11 +83,13 @@ export async function createProjectsService (options = {}) {
   const app = this
 
   debug('Creating projects service with options', options)
-  await app.createService('projects', Object.assign({
+  const service = await app.createService('projects', Object.assign({
     servicesPath,
     modelsPath,
-    paginate: { default: 20, max: 5000 }
+    paginate: { default: 20, max: 5000 },
+    filters: ['$groupBy', '$group', '$aggregate', '$geoNear', '$near', '$maxDistance', '$search', '$distinct']
   }, options))
+  service.Model = service.options.Model
 }
 
 export function removeProjectsService (options = {}) {
@@ -173,7 +186,7 @@ export async function createDefaultCatalogLayers (options = {}) {
         featuresService = await createFeaturesServiceForLayer.call(app, defaultLayer, options.context)
       }
     } catch (error) {
-      console.error(error)
+      debug(error)
     }
     // And if we need to initialize some data as well
     if ((!isLayerAlreadyCreated || defaultLayer.forceDataUpdate) && featuresService && (defaultLayer.url || defaultLayer.fileName)) {
@@ -231,12 +244,16 @@ export async function createCatalogFeaturesServices (options = {}) {
   }
 }
 
-export function createStylesService (options = {}) {
+export async function createStylesService (options = {}) {
   const app = this
-  return app.createService('styles', Object.assign({
+  const service = await app.createService('styles', Object.assign({
     servicesPath,
-    modelsPath
+    modelsPath,
+    featureLabel: ['name'],
+    filters: ['$groupBy', '$group', '$aggregate', '$geoNear', '$near', '$maxDistance', '$search', '$distinct']
   }, options))
+  service.Model = service.options.Model
+  return service
 }
 
 export function removeStylesService (options = {}) {

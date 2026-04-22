@@ -1,6 +1,6 @@
 import { expect, describe, it, beforeAll, afterAll } from 'vitest'
-import core, { kdk } from '../kdk-core-api/src/index.js'
-import map, { hooks } from '../kdk-map-api/src/index.js'
+import core, { kdk, hooks as coreHooks } from '../kdk-core-api/src/index.js'
+import map from '../kdk-map-api/src/index.js'
 
 describe('map:styles', () => {
   let app, server, port, usersService, stylesService, tagsService
@@ -8,7 +8,7 @@ describe('map:styles', () => {
   beforeAll(async () => {
     app = kdk()
     // Register log hook
-    app.hooks({ error: { all: hooks.log } })
+    app.hooks({ error: { all: coreHooks.log } })
     port = app.get('port')
     await app.db.connect()
   })

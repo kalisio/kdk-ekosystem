@@ -315,8 +315,7 @@ export async function aggregateFeaturesQuery (hook) {
   if (!query) return
   // Perform aggregation
   if (query.$aggregate) {
-    const collection = service.Model
-    const indexes = await collection.indexes() // eslint-disable-line no-unused-vars
+    const collection = service.options.Model || service.Model
     let featureId = (service.options ? service.options.featureId : [])
     // Support compound ID
     featureId = (Array.isArray(featureId) ? featureId : [featureId])

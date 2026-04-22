@@ -110,7 +110,7 @@ describe('map:services', () => {
     zonesService = app.getService(zonesLayer.service)
     expect(zonesService).toBeDefined()
     // Ensure the spatial index
-    const indexes = await zonesService.Model.indexes()
+    const indexes = await zonesService.options.Model.indexes()
     expect(indexes.find(index => index.key.geometry)).toBeDefined()
     // Check for events
     eventsOn(zonesService)
@@ -668,7 +668,7 @@ describe('map:services', () => {
       await catalogService.remove(defaultLayers[i]._id)
     }
     defaultLayers = await catalogService.find()
-    expect(defaultLayers.length === 0).toBe(true)
+    expect(defaultLayers.data.length === 0).toBe(true)
   })
 
   it('removes the test user', async () => {
@@ -683,13 +683,13 @@ describe('map:services', () => {
   // Cleanup
   afterAll(async () => {
     if (server) await server.close()
-    await zonesService.Model.drop()
-    await vigicruesStationsService.Model.drop()
-    await vigicruesObsService.Model.drop()
-    await adsbObsService.Model.drop()
-    await openradiationService.Model.drop()
-    await catalogService.Model.drop()
-    await userService.Model.drop()
+    await zonesService.options.Model.drop()
+    await vigicruesStationsService.options.Model.drop()
+    await vigicruesObsService.options.Model.drop()
+    await adsbObsService.options.Model.drop()
+    await openradiationService.options.Model.drop()
+    await catalogService.options.Model.drop()
+    await userService.options.Model.drop()
     await app.db.disconnect()
   })
 })

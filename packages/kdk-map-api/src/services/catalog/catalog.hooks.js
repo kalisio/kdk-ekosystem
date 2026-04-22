@@ -1,20 +1,18 @@
 import _ from 'lodash'
-import common from 'feathers-hooks-common'
-import fuzzySearch from 'feathers-mongodb-fuzzy-search'
+import { setNow, discard } from 'feathers-hooks-common'
 import { hooks as coreHooks } from '../../../../kdk-core-api/src/index.js'
 import {
   filterLayers, updateLayerReferences, updateProjects,
   getDefaultCategories, getDefaultSublegends,
-  convertFilterQueriesToString, convertFilterQueriesToObject
+  convertFilterQueriesToString, convertFilterQueriesToObject,
+  fuzzySearch
 } from '../../hooks/index.js'
-
-const { setNow, discard, _when } = common // eslint-disable-line no-unused-vars
 
 export default {
   before: {
     all: [coreHooks.marshallHttpQuery],
     find: [
-      fuzzySearch({ fields: ['name', 'label'] }), coreHooks.diacriticSearch(), filterLayers, coreHooks.distinct
+      fuzzySearch, coreHooks.diacriticSearch(), filterLayers, coreHooks.distinct
     ],
     get: [],
     create: [

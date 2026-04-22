@@ -143,7 +143,7 @@ export default {
       default:
         throw new Error('Unknown type : ' + type)
     }
-    console.log('Executing formatGeoJSON pipeline', JSON.stringify(pipeline))
+    debug('Executing formatGeoJSON pipeline', pipeline)
     const results = await collection.aggregate(pipeline).toArray()
     return results
   }

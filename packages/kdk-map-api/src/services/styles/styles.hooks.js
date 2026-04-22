@@ -1,11 +1,11 @@
-import fuzzySearch from 'feathers-mongodb-fuzzy-search'
+import { fuzzySearch } from '../../hooks/index.js'
 import { hooks as kdkCoreHooks } from '../../../../kdk-core-api/src/index.js'
 
 export default {
   before: {
     all: [kdkCoreHooks.marshallHttpQuery],
     find: [
-      fuzzySearch({ fields: ['name'] }),
+      fuzzySearch,
       kdkCoreHooks.diacriticSearch()
     ],
     get: [],
