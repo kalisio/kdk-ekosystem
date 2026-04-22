@@ -1,5 +1,5 @@
 import fuzzySearch from 'feathers-mongodb-fuzzy-search'
-import { hooks as kdkCoreHooks } from '../../../../core/api/index.js'
+import { hooks as kdkCoreHooks } from '../../../../kdk-core-api/src/index.js'
 
 export default {
   before: {

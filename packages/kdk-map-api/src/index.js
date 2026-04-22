@@ -5,7 +5,7 @@ import * as hooks from './hooks/index.js'
 export * from './services/index.js'
 export { hooks }
 export * from './marshall.js'
-export * from '../common/index.js'
+export * from '../../kdk-map-common/src/index.js'
 
 const debug = makeDebug('kdk:map')
 

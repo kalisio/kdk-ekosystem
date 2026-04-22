@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import commonHooks from 'feathers-hooks-common'
 // import { hooks as schemaHooks, resolve } from '@feathersjs/schema'
-import { hooks as coreHooks } from '../../../../core/api/index.js'
+import { hooks as coreHooks } from '../../../../kdk-core-api/src/index.js'
 
 const { setNow, discard, getItems, replaceItems, when } = commonHooks
 

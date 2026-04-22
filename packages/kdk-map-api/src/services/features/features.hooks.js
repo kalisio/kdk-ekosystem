@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import common from 'feathers-hooks-common'
-import { hooks as coreHooks } from '../../../../core/api/index.js'
+import { hooks as coreHooks } from '../../../../kdk-core-api/src/index.js'
 import {
   marshallSpatialQuery, aggregateFeaturesQuery, asGeoJson,
   simplifyResult, simplifyEvents, skipEvents, fuzzySearch

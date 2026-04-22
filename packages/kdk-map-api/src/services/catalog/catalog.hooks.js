@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import common from 'feathers-hooks-common'
 import fuzzySearch from 'feathers-mongodb-fuzzy-search'
-import { hooks as coreHooks } from '../../../../core/api/index.js'
+import { hooks as coreHooks } from '../../../../kdk-core-api/src/index.js'
 import {
   filterLayers, updateLayerReferences, updateProjects,
   getDefaultCategories, getDefaultSublegends,

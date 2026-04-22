@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import makeDebug from 'debug'
-import { marshallComparisonFields } from '../../../../core/api/index.js'
+import { marshallComparisonFields } from '../../../../kdk-core-api/src/index.js'
 
 const debug = makeDebug('kdk:map:features:service')
 
@@ -14,7 +14,7 @@ export default {
     // Default time field
     if (!field) field = 'time'
     marshallComparisonFields(query)
-    const collection = this.Model
+    const collection = this.options.Model || this.Model
     // Filter, e.g.
     // time: {
     //  $gte: xxx,
@@ -53,7 +53,7 @@ export default {
     const { query, sort, type } = data
     marshallComparisonFields(query)
     const pipeline = []
-    const collection = this.Model
+    const collection = this.options.Model || this.Model
 
     if (query) pipeline.push({ $match: query })
     if (sort) pipeline.push({ $sort: sort })
