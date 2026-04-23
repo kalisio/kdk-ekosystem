@@ -77,6 +77,7 @@ describe('map:styles', () => {
   afterAll(async () => {
     if (server) await server.close()
     await app.db.instance.dropDatabase()
+    await new Promise(resolve => setTimeout(resolve, 500))
     await app.db.disconnect()
   })
 })

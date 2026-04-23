@@ -76,6 +76,7 @@
     "standard": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:",
-    "@weacast/core": "catalog:"
+    "@weacast/core": "catalog:",
+    "is-docker": "catalog:"
   }
 }

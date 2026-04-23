@@ -145,9 +145,10 @@ describe('map:catalog', () => {
   // Cleanup
   afterAll(async () => {
     if (server) await server.close()
-    if (catalogService && catalogService.Model) await catalogService.Model.drop()
-    if (projectService && projectService.Model) await projectService.Model.drop()
-    if (userService && userService.Model) await userService.Model.drop()
+    if (catalogService && catalogService.options && catalogService.options.Model) await catalogService.options.Model.drop()
+    if (projectService && projectService.options && projectService.options.Model) await projectService.options.Model.drop()
+    if (userService && userService.options && userService.options.Model) await userService.options.Model.drop()
+    await new Promise(resolve => setTimeout(resolve, 500))
     await app.db.disconnect()
   })
 })

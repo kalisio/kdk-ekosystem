@@ -690,6 +690,7 @@ describe('map:services', () => {
     await openradiationService.options.Model.drop()
     await catalogService.options.Model.drop()
     await userService.options.Model.drop()
+    await new Promise(resolve => setTimeout(resolve, 500))
     await app.db.disconnect()
   })
 })

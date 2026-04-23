@@ -18,6 +18,12 @@ catalogs:
     husky:
       specifier: ~9.1.7
       version: 9.1.7
+    jsdap:
+      specifier: ~8.1.0
+      version: 8.1.0
+    jwt-decode:
+      specifier: ~3.1.2
+      version: 3.1.2
     keycloak-js:
       specifier: ~23.0.4
       version: 23.0.7
@@ -484,6 +490,9 @@ importers:
       cross-env:
         specifier: 'catalog:'
         version: 10.1.0
+      is-docker:
+        specifier: 'catalog:'
+        version: 2.2.1
       nock:
         specifier: 'catalog:'
         version: 14.0.13

@@ -1,6 +1,6 @@
 const path = require('path')
 const winston = require('winston')
-const containerized = require('containerized')()
+const isDocker = require('is-docker')
 
 const API_PREFIX = '/api'
 
@@ -44,7 +44,7 @@ module.exports = {
   },
   db: {
     adapter: 'mongodb',
-    url: (containerized ? 'mongodb://mongodb:27017/kdk-test' : 'mongodb://127.0.0.1:27017/kdk-test') + (process.env.VITEST_WORKER_ID ? `-${process.env.VITEST_WORKER_ID}` : '')
+    url: (isDocker() ? 'mongodb://mongodb:27017/kdk-test' : 'mongodb://127.0.0.1:27017/kdk-test') + (process.env.VITEST_WORKER_ID ? `-${process.env.VITEST_WORKER_ID}` : '')
   },
   storage: {
     s3Client: {
