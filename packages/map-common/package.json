@@ -49,7 +49,7 @@
     "moment": "catalog:",
     "pmtiles": "catalog:",
     "xml2js": "catalog:"
-  
+
   },
   "devDependencies": {
     "@vitest/coverage-v8": "catalog:",
@@ -57,7 +57,7 @@
     "vite": "catalog:",
     "vitest": "catalog:"
   }
-    
-  
+
+
 
 }
