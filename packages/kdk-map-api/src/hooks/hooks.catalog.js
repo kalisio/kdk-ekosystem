@@ -2,8 +2,7 @@ import _ from 'lodash'
 import siftModule from 'sift'
 import { getItems, replaceItems } from 'feathers-hooks-common'
 import makeDebug from 'debug'
-import { toString, toJson } from '@kalisio/kdk-core-api/src/hooks/hooks.model.js'
-
+import { hooks as coreHooks } from '@kalisio/kdk-core-api'
 const sift = siftModule.default
 const debug = makeDebug('kdk:map:catalog:hooks')
 
@@ -138,7 +137,7 @@ export function convertFilterQueriesToString (hook) {
     const filters = _.get(item, 'filters', [])
     nbUpdatedItems += filters.length
     _.forEach(filters, filter => {
-      toString(filter, ['active', 'inactive'])
+      coreHooks.toString(filter, ['active', 'inactive'])
     })
   })
   if (nbUpdatedItems > 0) {
@@ -158,7 +157,7 @@ export function convertFilterQueriesToObject (hook) {
     const filters = _.get(item, 'filters', [])
     nbUpdatedItems += filters.length
     _.forEach(filters, filter => {
-      toJson(filter, ['active', 'inactive'])
+      coreHooks.toJson(filter, ['active', 'inactive'])
     })
   })
   if (nbUpdatedItems > 0) {
