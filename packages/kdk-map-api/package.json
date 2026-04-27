@@ -14,19 +14,6 @@
     "dist"
   ],
   "standard": {
-    "env": [
-      "browser"
-    ],
-    "globals": [
-      "describe",
-      "it",
-      "expect",
-      "beforeAll",
-      "afterAll",
-      "beforeEach",
-      "afterEach",
-      "vi"
-    ],
     "ignore": [
       "dist/**"
     ]
