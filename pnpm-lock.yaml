@@ -6,18 +6,183 @@ settings:
 
 catalogs:
   default:
+    '@casl/ability':
+      specifier: ~6.3.0
+      version: 6.3.4
+    '@casl/mongoose':
+      specifier: ~7.1.0
+      version: 7.1.3
     '@changesets/cli':
       specifier: ~2.30.0
       version: 2.30.0
+    '@feathersjs/authentication':
+      specifier: ~5.0.44
+      version: 5.0.44
+    '@feathersjs/authentication-local':
+      specifier: ~5.0.44
+      version: 5.0.44
+    '@feathersjs/authentication-oauth':
+      specifier: ~5.0.44
+      version: 5.0.44
+    '@feathersjs/client':
+      specifier: ~5.0.44
+      version: 5.0.44
+    '@feathersjs/configuration':
+      specifier: ~5.0.44
+      version: 5.0.44
+    '@feathersjs/errors':
+      specifier: ~5.0.44
+      version: 5.0.44
+    '@feathersjs/express':
+      specifier: ~5.0.44
+      version: 5.0.44
+    '@feathersjs/feathers':
+      specifier: ~5.0.44
+      version: 5.0.44
+    '@feathersjs/memory':
+      specifier: ~5.0.44
+      version: 5.0.44
+    '@feathersjs/mongodb':
+      specifier: ~5.0.44
+      version: 5.0.44
+    '@feathersjs/schema':
+      specifier: ~5.0.44
+      version: 5.0.44
+    '@feathersjs/socketio':
+      specifier: ~5.0.44
+      version: 5.0.44
+    '@kalisio/feathers-automerge':
+      specifier: ~0.3.8
+      version: 0.3.8
+    '@kalisio/feathers-import-export':
+      specifier: ~1.4.1
+      version: 1.4.1
+    '@kalisio/feathers-localforage':
+      specifier: ~1.2.0
+      version: 1.2.0
+    '@kalisio/feathers-s3':
+      specifier: ~1.6.0
+      version: 1.6.0
+    '@kalisio/feathers-webpush':
+      specifier: ~1.0.1
+      version: 1.0.2
+    '@quasar/quasar-app-extension-testing-unit-vitest':
+      specifier: ~1.2.4
+      version: 1.2.4
+    '@thumbmarkjs/thumbmarkjs':
+      specifier: ~1.7.5
+      version: 1.7.6
+    '@turf/bbox':
+      specifier: ~7.3.4
+      version: 7.3.5
+    '@turf/intersect':
+      specifier: ~7.3.5
+      version: 7.3.5
+    '@vitejs/plugin-vue':
+      specifier: ~6.0.4
+      version: 6.0.5
     '@vitest/coverage-v8':
       specifier: ~4.1.4
       version: 4.1.4
+    '@vue/test-utils':
+      specifier: ~2.4.6
+      version: 2.4.6
+    '@weacast/core':
+      specifier: ~2.3.1
+      version: 2.3.1
+    ajv:
+      specifier: ~8.18.0
+      version: 8.18.0
+    ajv-formats:
+      specifier: ~3.0.1
+      version: 3.0.1
+    ajv-i18n:
+      specifier: ~4.2.0
+      version: 4.2.0
+    ajv-keywords:
+      specifier: ~5.1.0
+      version: 5.1.0
+    chart.js:
+      specifier: ~3.7.1
+      version: 3.7.1
+    chartjs-adapter-moment:
+      specifier: ~1.0.0
+      version: 1.0.1
+    chartjs-chart-matrix:
+      specifier: ~1.1.1
+      version: 1.1.1
+    chartjs-plugin-annotation:
+      specifier: ~1.4.0
+      version: 1.4.0
+    chartjs-plugin-datalabels:
+      specifier: ~2.0.0
+      version: 2.0.0
+    chartjs-plugin-zoom:
+      specifier: ~2.0.0
+      version: 2.0.1
+    chroma-js:
+      specifier: ~3.2.0
+      version: 3.2.0
+    compression:
+      specifier: ~1.8.1
+      version: 1.8.1
+    config:
+      specifier: ~4.4.1
+      version: 4.4.1
+    cors:
+      specifier: ~2.8.6
+      version: 2.8.6
     cross-env:
       specifier: ~10.1.0
       version: 10.1.0
+    debug:
+      specifier: ~4.4.3
+      version: 4.4.3
+    email-templates:
+      specifier: ~13.0.1
+      version: 13.0.1
+    email-validator:
+      specifier: ~2.0.4
+      version: 2.0.4
+    express-rate-limit:
+      specifier: ^5.1.0
+      version: 5.5.1
+    feathers-authentication-management:
+      specifier: ^4.0.0
+      version: 4.0.2
+    feathers-hooks-common:
+      specifier: ~8.2.1
+      version: 8.2.1
+    feathers-mailer:
+      specifier: ^3.0.0
+      version: 3.1.0
+    feathers-mongodb-fuzzy-search:
+      specifier: ^2.0.1
+      version: 2.0.1
+    feathers-mongodb-management:
+      specifier: ^2.0.1
+      version: 2.0.1
+    feathers-reactive:
+      specifier: ~0.11.0
+      version: 0.11.0
+    fs-extra:
+      specifier: ~8.1.0
+      version: 8.1.0
+    geotiff:
+      specifier: ~3.0.5
+      version: 3.0.5
+    happy-dom:
+      specifier: ~20.3.1
+      version: 20.3.9
+    helmet:
+      specifier: ~3.5.0
+      version: 3.5.0
     husky:
       specifier: ~9.1.7
       version: 9.1.7
+    is-docker:
+      specifier: ~2.2.1
+      version: 2.2.1
     jsdap:
       specifier: ~8.1.0
       version: 8.1.0
@@ -30,24 +195,81 @@ catalogs:
     lcov-result-merger:
       specifier: ~5.0.1
       version: 5.0.1
+    limiter:
+      specifier: ~1.1.3
+      version: 1.1.5
     lint-staged:
       specifier: ~16.4.0
       version: 16.4.0
+    localforage:
+      specifier: ~1.10.0
+      version: 1.10.0
     lodash:
       specifier: ~4.18.1
       version: 4.18.1
+    loglevel:
+      specifier: ~1.9.2
+      version: 1.9.2
+    lru-cache:
+      specifier: ~10.2.2
+      version: 10.2.2
+    mathjs:
+      specifier: ~15.1.1
+      version: 15.1.1
     mermaid:
       specifier: ~10.8.0
       version: 10.8.0
     moment:
       specifier: ~2.30.1
       version: 2.30.1
+    moment-timezone:
+      specifier: ~0.6.0
+      version: 0.6.1
+    mongodb:
+      specifier: ~6.20.0
+      version: 6.20.0
+    nock:
+      specifier: ~14.0.13
+      version: 14.0.13
+    papaparse:
+      specifier: ~5.5.3
+      version: 5.5.3
+    password-generator:
+      specifier: ~2.3.2
+      version: 2.3.2
+    password-validator:
+      specifier: ~4.0.0
+      version: 4.0.0
+    path-browserify:
+      specifier: ~1.0.1
+      version: 1.0.1
+    pmtiles:
+      specifier: ~4.4.1
+      version: 4.4.1
+    qs:
+      specifier: ~6.15.1
+      version: 6.15.1
     quasar:
       specifier: ~2.18.7
       version: 2.18.7
+    sanitize-html:
+      specifier: ~2.17.1
+      version: 2.17.2
+    showdown:
+      specifier: ~2.1.0
+      version: 2.1.0
+    sift:
+      specifier: ~17.1.3
+      version: 17.1.3
+    socket.io-client:
+      specifier: ~4.8.2
+      version: 4.8.3
     standard:
       specifier: ~17.1.2
       version: 17.1.2
+    superagent:
+      specifier: ~10.3.0
+      version: 10.3.0
     vite:
       specifier: ~7.3.1
       version: 7.3.1
@@ -66,6 +288,24 @@ catalogs:
     vitest:
       specifier: ~4.1.4
       version: 4.1.4
+    vue:
+      specifier: ~3.5.30
+      version: 3.5.30
+    vue-i18n:
+      specifier: ~11.3.0
+      version: 11.3.0
+    vue-router:
+      specifier: ~5.0.3
+      version: 5.0.4
+    winston:
+      specifier: ~3.19.0
+      version: 3.19.0
+    winston-daily-rotate-file:
+      specifier: ~4.7.1
+      version: 4.7.1
+    xml2js:
+      specifier: ~0.6.2
+      version: 0.6.2
 
 overrides:
   '@kalisio/meta-ekosystem': link:../meta-ekosystem
@@ -450,6 +690,12 @@ importers:
       '@feathersjs/memory':
         specifier: 'catalog:'
         version: 5.0.44
+      '@kalisio/kdk-core-api':
+        specifier: workspace:^
+        version: link:../kdk-core-api
+      '@kalisio/kdk-map-common':
+        specifier: workspace:^
+        version: link:../kdk-map-common
       '@turf/bbox':
         specifier: 'catalog:'
         version: 7.3.5
@@ -508,6 +754,9 @@ importers:
 
   packages/kdk-map-common:
     dependencies:
+      '@kalisio/kdk-core-common':
+        specifier: workspace:^
+        version: link:../kdk-core-common
       '@weacast/core':
         specifier: 'catalog:'
         version: 2.3.1(typescript@6.0.2)
@@ -1287,10 +1536,6 @@ packages:
     resolution: {integrity: sha512-r+n31iZ/B5Rl1mLkC9/S20UI445MdkZvE3VBmjupep2t8OuyTYHPkFEgR25HY6khH+RothK1VL3B5eumk9N2QQ==}
     engines: {node: '>= 6.0.0'}
 
-  '@feathersjs/adapter-commons@5.0.43':
-    resolution: {integrity: sha512-WIHucmPpJezssAyeNSHpAUZ6K4W863VdhZN0+0UoMpSqDD0Fw62dH0AxA6xLoxAqFBJerIXCsfqtmURmswPUmQ==}
-    engines: {node: '>= 12'}
-
   '@feathersjs/adapter-commons@5.0.44':
     resolution: {integrity: sha512-m9rho8bJnNw8wJEuwQkUMiWf9N8qeWxUB/4yDD2lEwKIlP7/DKxwrWveN11T5veO4T452Z+5/uv5chBWijYG5w==}
     engines: {node: '>= 12'}
@@ -1298,10 +1543,6 @@ packages:
   '@feathersjs/authentication-client@4.5.19':
     resolution: {integrity: sha512-Ci4b60Ev/IgtMLL4+44pJzWuNlwW7Ef3Yei0+Zt/5XIG6P8Oe++o9axfq2An1dWFRpaKeL88HR6zM+n+HEnKOA==}
     engines: {node: '>= 10'}
-
-  '@feathersjs/authentication-client@5.0.43':
-    resolution: {integrity: sha512-n5ApX75+i+eeJey1mOWqZSZT3vQp0hWv9MafgaP3SoDH7V18lKCI9/AUBUHeju02krryM+P56UNAdQ4akf4kWg==}
-    engines: {node: '>= 12'}
 
   '@feathersjs/authentication-client@5.0.44':
     resolution: {integrity: sha512-VJ+WoEDnAQQK+2VnSxkFzZ2zFZ1lf+CTMmb1VPmUT+sn64tcxAXcHxqGbb9hFJh2WTiDF+jFAgSkuc0+C1d3TA==}
@@ -1311,16 +1552,8 @@ packages:
     resolution: {integrity: sha512-XYdVMYG7uJ6+VJFm4Pb+JVgXK6oTJYCaQNmPx9i2l8h7N5PFrWNJbwA6uo6B/g2+IpuSXiL8qsYXNwp5bhh1MA==}
     engines: {node: '>= 10'}
 
-  '@feathersjs/authentication-local@5.0.43':
-    resolution: {integrity: sha512-FigkwrqTXxzuwKWiqCxtcXC0FoLAmSxHqDCbp6pP5CVavDhhoyFCkbJ3sDn7Aa1NGUigGKzXVnjqVcpP5cRMpg==}
-    engines: {node: '>= 12'}
-
   '@feathersjs/authentication-local@5.0.44':
     resolution: {integrity: sha512-UcDJLxcNj2UOUvnXbEA63/FHBmDlAy+XvrnGfeofN7DCvl547s/a22QLJJ7GCSgAM6gST8At0hfXTCy2x4pGyg==}
-    engines: {node: '>= 12'}
-
-  '@feathersjs/authentication-oauth@5.0.43':
-    resolution: {integrity: sha512-pMWG0qMvrP1DWT0jQ8W+sN9UxBU49xZQLpN3mKJYwRsl5S5oliXTF1vBCuyWpf8iXrIW2Ot2c7915B8v7aH3ig==}
     engines: {node: '>= 12'}
 
   '@feathersjs/authentication-oauth@5.0.44':
@@ -1331,16 +1564,8 @@ packages:
     resolution: {integrity: sha512-epvRvmX3hueMI0cWo5r26F1GACJn1fhl0Y/Z636jNxr9/MFaTh5/t2l/KK7pCBBqtLDQrxdf0c7eZ50GUgcT/A==}
     engines: {node: '>= 10'}
 
-  '@feathersjs/authentication@5.0.43':
-    resolution: {integrity: sha512-xl4dEASPadGLR6qZWFbhkEI6ze/rqiaEg8R1g8S/hYBtsakclkLPkWkoCrGBC75x3Dn2uzDlgpDXbG2OdpjZaw==}
-    engines: {node: '>= 12'}
-
   '@feathersjs/authentication@5.0.44':
     resolution: {integrity: sha512-ZTWYtLI1rOa7jvijhJQNNkNJaB/SGCY2q/qgKafoNxBxvyj+u8lIGYi53aZzTL397XbbDG2d7aeBZaV1pc+eMA==}
-    engines: {node: '>= 12'}
-
-  '@feathersjs/client@5.0.43':
-    resolution: {integrity: sha512-t5+1+IIeADi2ZlXgExlsjUp/A5dU9wqnENU+1A8cXjttFV8fnJ1Ab82hkvclwkYVX2sAv7xMQ8dqak07ySHYug==}
     engines: {node: '>= 12'}
 
   '@feathersjs/client@5.0.44':
@@ -1355,16 +1580,8 @@ packages:
     resolution: {integrity: sha512-ZbwJ74jqGHOzKTPvp88ACDgR6xHxyvpToc8dnf8/EDIjM5hUA4QiSg6SA5tZMRMyjp5x8sfKmpn9xNqPuN2r1A==}
     engines: {node: '>= 10'}
 
-  '@feathersjs/commons@5.0.43':
-    resolution: {integrity: sha512-47LdD2U01vyCZOCEscR5QNhKqAQjjcaHUXGI1fnZYp+r0ufP3pjPSDW0FkY9r5YOg7wq8HL8o3RAEReqWjA+3A==}
-    engines: {node: '>= 12'}
-
   '@feathersjs/commons@5.0.44':
     resolution: {integrity: sha512-PnxCyKqzWLAqv1LSazDsOXNf520KQOlqUasZ/9YRz4lYRPJ0pzzfZXvzmjBFOsNPaohzKmyySS8578E9vlTQrA==}
-    engines: {node: '>= 12'}
-
-  '@feathersjs/configuration@5.0.43':
-    resolution: {integrity: sha512-kRE1rBf7sK43GW4mK6NspVPw8dKztFIvBeyoQBcaEy67RUY86ySiNQ57EqwC8Zk4WwI9f3/vjRmeSurKu3kFmA==}
     engines: {node: '>= 12'}
 
   '@feathersjs/configuration@5.0.44':
@@ -1379,16 +1596,8 @@ packages:
     resolution: {integrity: sha512-9a2oMr+8ed8CHCjDuPrbfck373h1qUUppbzy9wV3HW2xq3RWhEYNwhbnsX7V4CZ1PxooWsRteq9bsIc/7f8fSg==}
     engines: {node: '>= 10'}
 
-  '@feathersjs/errors@5.0.43':
-    resolution: {integrity: sha512-fOTPnKNFoa7kv5SvDZZ7VaSulHKBaV4gbYsaDROMabSXYywmcZus7OrQqKhZuwpdYpSrF0On7FK66OYy35zPDg==}
-    engines: {node: '>= 12'}
-
   '@feathersjs/errors@5.0.44':
     resolution: {integrity: sha512-QcxrUvEFHGBT47VyH02rlhw51M+G0yam3fpDnko1HlkM6C62notLwE2lirEDz34JWITwkn/lwV527h1HwHpOuQ==}
-    engines: {node: '>= 12'}
-
-  '@feathersjs/express@5.0.43':
-    resolution: {integrity: sha512-ymariSTPeMgzYXUVRG1VKm9GIFUBvF+rLFflfmjJJgQ9p34MkLQdZ5RPripRo7nsS9iDLhKN+Kz5y3dagAOspA==}
     engines: {node: '>= 12'}
 
   '@feathersjs/express@5.0.44':
@@ -1407,10 +1616,6 @@ packages:
     resolution: {integrity: sha512-kLfWnuhbC25CPkR1/TDcVs0rSiv0JLNxrpUivLwc7FUnkyeciRi5VOmC1SOzL2SOagcozu3+m4VQiONyzgfY7w==}
     engines: {node: '>= 14'}
 
-  '@feathersjs/koa@5.0.43':
-    resolution: {integrity: sha512-MyKTj9nwbukzN766tbhdSb3NMkSKGOtmtRMkFTi9OdH4kjTw2GRBurBFJedOR2qfyKBfthW00pRAd947T28kYA==}
-    engines: {node: '>= 14'}
-
   '@feathersjs/koa@5.0.44':
     resolution: {integrity: sha512-sRPCXsq4bDBuibSwsU6/RJKJbXCwF12scOmMaDS8mxupWI5/5GGu6wZw+vDfNgRteUYHw7n/6yqRME5SmU8qGw==}
     engines: {node: '>= 14'}
@@ -1425,19 +1630,9 @@ packages:
     peerDependencies:
       mongodb: ^6.19.0
 
-  '@feathersjs/rest-client@5.0.43':
-    resolution: {integrity: sha512-SDquQSBwvF4szNM1i9zQQ/ZT0KMpriZTha3rRczk47UZqjn79WO4U8EZfRTm/MsuzYXhEA0LLBM0kt0NTVb8yA==}
-    engines: {node: '>= 12'}
-
   '@feathersjs/rest-client@5.0.44':
     resolution: {integrity: sha512-3YhMFYjY3sL7IzBz3MATdnA+4hCFTpYEVZB7Fnio5V7ZM7ZvN1vEf4dg1Y/d91oNSzDt0trxQyIU+IbGAzkWOA==}
     engines: {node: '>= 12'}
-
-  '@feathersjs/schema@5.0.43':
-    resolution: {integrity: sha512-ifrcGQo2M+deVUvyaU2kBzMff4XB4ifvTN0aAfG1vHvXXRBdpszU+Msqd3UYE/Nubc90SdtKsnVVJ9wveCSGTQ==}
-    engines: {node: '>= 12'}
-    peerDependencies:
-      typescript: '>=5.9'
 
   '@feathersjs/schema@5.0.44':
     resolution: {integrity: sha512-1xk7+Zs17MQEgfPDipf9ribG4hF+YdYxfO3Dijn1GSk1x285HVqgSH4MQLUpY+z6gfBn5/jE3S7+yDQ4ITmrXw==}
@@ -1445,16 +1640,8 @@ packages:
     peerDependencies:
       typescript: '>=5.0'
 
-  '@feathersjs/socketio-client@5.0.43':
-    resolution: {integrity: sha512-0i61yxlcOpwvSVRScdVzGr2GAts4Js5ttdnit4S8Qct21rH4xA7ZThvWWac8HN2hB+IwofaSw0y6kfGzNPXJyg==}
-    engines: {node: '>= 12'}
-
   '@feathersjs/socketio-client@5.0.44':
     resolution: {integrity: sha512-u2Kou90fF2jPCRXNq+wFiyAsUonaGrORxKWQl26AAVL/J36PybkxgvVR1TNzcPKk2KbHriUhMqYFyaIPBmkfEg==}
-    engines: {node: '>= 12'}
-
-  '@feathersjs/socketio@5.0.43':
-    resolution: {integrity: sha512-fvfgiHLTg4ZTu8xiUJdChdpZyg/wph3mLlBRs+9KtW3cQz1dNSHmbcO5xBlp3+4ghaoLcWEuG75Qii9iaFzzUA==}
     engines: {node: '>= 12'}
 
   '@feathersjs/socketio@5.0.44':
@@ -1464,10 +1651,6 @@ packages:
   '@feathersjs/transport-commons@4.5.19':
     resolution: {integrity: sha512-b3WrEdz2rdzGgG5a8nCOWmluttEZlXDjzh3bwIgLy4vosHGF3sHhAFs0wFmg+k437tj0+BWVeGvU9zqBC8xj0A==}
     engines: {node: '>= 10'}
-
-  '@feathersjs/transport-commons@5.0.43':
-    resolution: {integrity: sha512-HfjU+GykO1sAnqQa+jEHOi8HEjpYeapHqXmfu1pPpk+Ch0abPwHrfSgx9ynrIwMm2RiMiVxL4BCrf93XgbO+CA==}
-    engines: {node: '>= 12'}
 
   '@feathersjs/transport-commons@5.0.44':
     resolution: {integrity: sha512-BxUyGFcbt+o5TWcXKXNVrbh3zrq2iGAzE9uvaVJ7tVQX820LVHOWAp6NL5GxG+InhLUq0cc3CTpQENE0+oXRMw==}
@@ -4905,10 +5088,6 @@ packages:
     resolution: {integrity: sha512-UqyYyH5YEXaJrf9S8E23GoJFQZXkBVJ9zYYMPGz919MSX1KuvAcycIuS0ci150HCoPf4XQVhQ84Qf8xRPWxFaQ==}
     engines: {node: '>= 7.6.0'}
 
-  koa@3.1.2:
-    resolution: {integrity: sha512-2LOQnFKu3m0VxpE+5sb5+BRTSKrXmNxGgxVRiKwD9s5KQB1zID/FRXhtzeV7RT1L2GVpdEEAfVuclFOMGl1ikA==}
-    engines: {node: '>= 18'}
-
   koa@3.2.0:
     resolution: {integrity: sha512-TrM4/tnNY7uJ1aW55sIIa+dqBvc4V14WRIAlGcWat9wV5pRS9Wr5Zk2ZTjQP1jtfIHDoHiSbPuV08P0fUZo2pg==}
     engines: {node: '>= 18'}
@@ -8200,12 +8379,6 @@ snapshots:
 
   '@feathers-plus/batch-loader@0.3.6': {}
 
-  '@feathersjs/adapter-commons@5.0.43':
-    dependencies:
-      '@feathersjs/commons': 5.0.43
-      '@feathersjs/errors': 5.0.44
-      '@feathersjs/feathers': 5.0.44
-
   '@feathersjs/adapter-commons@5.0.44':
     dependencies:
       '@feathersjs/commons': 5.0.44
@@ -8221,15 +8394,6 @@ snapshots:
       debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
-
-  '@feathersjs/authentication-client@5.0.43(typescript@6.0.2)':
-    dependencies:
-      '@feathersjs/authentication': 5.0.43(typescript@6.0.2)
-      '@feathersjs/commons': 5.0.43
-      '@feathersjs/errors': 5.0.44
-      '@feathersjs/feathers': 5.0.44
-    transitivePeerDependencies:
-      - typescript
 
   '@feathersjs/authentication-client@5.0.44(typescript@6.0.2)':
     dependencies:
@@ -8251,17 +8415,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@feathersjs/authentication-local@5.0.43(typescript@6.0.2)':
-    dependencies:
-      '@feathersjs/authentication': 5.0.43(typescript@6.0.2)
-      '@feathersjs/commons': 5.0.43
-      '@feathersjs/errors': 5.0.44
-      '@feathersjs/feathers': 5.0.44
-      bcryptjs: 3.0.3
-      lodash: 4.18.1
-    transitivePeerDependencies:
-      - typescript
-
   '@feathersjs/authentication-local@5.0.44(typescript@6.0.2)':
     dependencies:
       '@feathersjs/authentication': 5.0.44(typescript@6.0.2)
@@ -8271,23 +8424,6 @@ snapshots:
       bcryptjs: 3.0.3
       lodash: 4.18.1
     transitivePeerDependencies:
-      - typescript
-
-  '@feathersjs/authentication-oauth@5.0.43(typescript@6.0.2)':
-    dependencies:
-      '@feathersjs/authentication': 5.0.43(typescript@6.0.2)
-      '@feathersjs/commons': 5.0.43
-      '@feathersjs/errors': 5.0.44
-      '@feathersjs/express': 5.0.43(typescript@6.0.2)
-      '@feathersjs/feathers': 5.0.44
-      '@feathersjs/koa': 5.0.43(typescript@6.0.2)
-      '@feathersjs/schema': 5.0.43(typescript@6.0.2)
-      cookie-session: 2.1.1
-      grant: 5.4.24
-      koa-session: 7.0.2
-      qs: 6.15.1
-    transitivePeerDependencies:
-      - supports-color
       - typescript
 
   '@feathersjs/authentication-oauth@5.0.44(typescript@6.0.2)':
@@ -8321,22 +8457,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@feathersjs/authentication@5.0.43(typescript@6.0.2)':
-    dependencies:
-      '@feathersjs/commons': 5.0.43
-      '@feathersjs/errors': 5.0.44
-      '@feathersjs/feathers': 5.0.44
-      '@feathersjs/hooks': 0.9.0
-      '@feathersjs/schema': 5.0.43(typescript@6.0.2)
-      '@feathersjs/transport-commons': 5.0.43
-      '@types/jsonwebtoken': 9.0.10
-      jsonwebtoken: 9.0.3
-      lodash: 4.18.1
-      long-timeout: 0.1.1
-      uuid: 11.1.0
-    transitivePeerDependencies:
-      - typescript
-
   '@feathersjs/authentication@5.0.44(typescript@6.0.2)':
     dependencies:
       '@feathersjs/commons': 5.0.44
@@ -8350,16 +8470,6 @@ snapshots:
       lodash: 4.18.1
       long-timeout: 0.1.1
       uuid: 11.1.0
-    transitivePeerDependencies:
-      - typescript
-
-  '@feathersjs/client@5.0.43(typescript@6.0.2)':
-    dependencies:
-      '@feathersjs/authentication-client': 5.0.43(typescript@6.0.2)
-      '@feathersjs/errors': 5.0.44
-      '@feathersjs/feathers': 5.0.44
-      '@feathersjs/rest-client': 5.0.43
-      '@feathersjs/socketio-client': 5.0.43
     transitivePeerDependencies:
       - typescript
 
@@ -8377,19 +8487,7 @@ snapshots:
 
   '@feathersjs/commons@4.5.19': {}
 
-  '@feathersjs/commons@5.0.43': {}
-
   '@feathersjs/commons@5.0.44': {}
-
-  '@feathersjs/configuration@5.0.43(typescript@6.0.2)':
-    dependencies:
-      '@feathersjs/commons': 5.0.43
-      '@feathersjs/feathers': 5.0.44
-      '@feathersjs/schema': 5.0.43(typescript@6.0.2)
-      '@types/config': 3.3.5
-      config: 4.4.1
-    transitivePeerDependencies:
-      - typescript
 
   '@feathersjs/configuration@5.0.44(typescript@6.0.2)':
     dependencies:
@@ -8413,27 +8511,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@feathersjs/errors@5.0.43': {}
-
   '@feathersjs/errors@5.0.44': {}
-
-  '@feathersjs/express@5.0.43(typescript@6.0.2)':
-    dependencies:
-      '@feathersjs/authentication': 5.0.43(typescript@6.0.2)
-      '@feathersjs/commons': 5.0.43
-      '@feathersjs/errors': 5.0.44
-      '@feathersjs/feathers': 5.0.44
-      '@feathersjs/transport-commons': 5.0.43
-      '@types/compression': 1.8.1
-      '@types/cors': 2.8.19
-      '@types/express': 4.17.25
-      '@types/express-serve-static-core': 4.19.8
-      compression: 1.8.1
-      cors: 2.8.6
-      express: 4.22.1
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
 
   '@feathersjs/express@5.0.44(typescript@6.0.2)':
     dependencies:
@@ -8470,27 +8548,6 @@ snapshots:
 
   '@feathersjs/hooks@0.9.0': {}
 
-  '@feathersjs/koa@5.0.43(typescript@6.0.2)':
-    dependencies:
-      '@feathersjs/authentication': 5.0.43(typescript@6.0.2)
-      '@feathersjs/commons': 5.0.43
-      '@feathersjs/errors': 5.0.44
-      '@feathersjs/feathers': 5.0.44
-      '@feathersjs/transport-commons': 5.0.43
-      '@koa/cors': 5.0.0
-      '@types/koa': 3.0.2
-      '@types/koa-qs': 2.0.5
-      '@types/koa-static': 4.0.4
-      '@types/koa__cors': 5.0.1
-      koa: 3.1.2
-      koa-body: 7.0.1
-      koa-compose: 4.1.0
-      koa-qs: 3.0.0
-      koa-static: 5.0.0
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
-
   '@feathersjs/koa@5.0.44(typescript@6.0.2)':
     dependencies:
       '@feathersjs/authentication': 5.0.44(typescript@6.0.2)
@@ -8526,14 +8583,6 @@ snapshots:
       '@feathersjs/feathers': 5.0.44
       mongodb: 6.20.0(@aws-sdk/credential-providers@3.1018.0)(socks@2.8.7)
 
-  '@feathersjs/rest-client@5.0.43':
-    dependencies:
-      '@feathersjs/commons': 5.0.43
-      '@feathersjs/errors': 5.0.44
-      '@feathersjs/feathers': 5.0.44
-      '@types/superagent': 8.1.9
-      qs: 6.15.1
-
   '@feathersjs/rest-client@5.0.44':
     dependencies:
       '@feathersjs/commons': 5.0.44
@@ -8541,19 +8590,6 @@ snapshots:
       '@feathersjs/feathers': 5.0.44
       '@types/superagent': 8.1.9
       qs: 6.15.1
-
-  '@feathersjs/schema@5.0.43(typescript@6.0.2)':
-    dependencies:
-      '@feathersjs/adapter-commons': 5.0.43
-      '@feathersjs/commons': 5.0.43
-      '@feathersjs/errors': 5.0.44
-      '@feathersjs/feathers': 5.0.44
-      '@feathersjs/hooks': 0.9.0
-      '@types/json-schema': 7.0.15
-      ajv: 8.18.0
-      ajv-formats: 3.0.1(ajv@8.18.0)
-      json-schema-to-ts: 3.1.1
-      typescript: 6.0.2
 
   '@feathersjs/schema@5.0.44(typescript@6.0.2)':
     dependencies:
@@ -8568,26 +8604,10 @@ snapshots:
       json-schema-to-ts: 3.1.1
       typescript: 6.0.2
 
-  '@feathersjs/socketio-client@5.0.43':
-    dependencies:
-      '@feathersjs/feathers': 5.0.44
-      '@feathersjs/transport-commons': 5.0.43
-
   '@feathersjs/socketio-client@5.0.44':
     dependencies:
       '@feathersjs/feathers': 5.0.44
       '@feathersjs/transport-commons': 5.0.44
-
-  '@feathersjs/socketio@5.0.43':
-    dependencies:
-      '@feathersjs/commons': 5.0.43
-      '@feathersjs/feathers': 5.0.44
-      '@feathersjs/transport-commons': 5.0.43
-      socket.io: 4.8.3
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@feathersjs/socketio@5.0.44':
     dependencies:
@@ -8609,14 +8629,6 @@ snapshots:
       radix-router: 3.0.1
     transitivePeerDependencies:
       - supports-color
-
-  '@feathersjs/transport-commons@5.0.43':
-    dependencies:
-      '@feathersjs/commons': 5.0.43
-      '@feathersjs/errors': 5.0.44
-      '@feathersjs/feathers': 5.0.44
-      encodeurl: 2.0.0
-      lodash: 4.18.1
 
   '@feathersjs/transport-commons@5.0.44':
     dependencies:
@@ -8704,8 +8716,8 @@ snapshots:
       '@automerge/automerge-repo': 2.5.4
       '@automerge/automerge-repo-network-websocket': 2.5.4
       '@automerge/automerge-repo-storage-indexeddb': 2.5.4
-      '@feathersjs/adapter-commons': 5.0.43
-      '@feathersjs/errors': 5.0.43
+      '@feathersjs/adapter-commons': 5.0.44
+      '@feathersjs/errors': 5.0.44
       sift: 17.1.3
     transitivePeerDependencies:
       - bufferutil
@@ -8732,9 +8744,9 @@ snapshots:
 
   '@kalisio/feathers-localforage@1.2.0':
     dependencies:
-      '@feathersjs/adapter-commons': 5.0.43
-      '@feathersjs/commons': 5.0.43
-      '@feathersjs/errors': 5.0.43
+      '@feathersjs/adapter-commons': 5.0.44
+      '@feathersjs/commons': 5.0.44
+      '@feathersjs/errors': 5.0.44
       debug: 4.4.3
       localforage: 1.10.0
       sift: 16.0.1
@@ -8745,7 +8757,7 @@ snapshots:
     dependencies:
       '@aws-sdk/client-s3': 3.1018.0
       '@aws-sdk/s3-request-presigner': 3.1018.0
-      '@feathersjs/commons': 5.0.43
+      '@feathersjs/commons': 5.0.44
       '@feathersjs/errors': 5.0.44
       debug: 4.4.3
       lodash: 4.18.1
@@ -9856,15 +9868,15 @@ snapshots:
 
   '@weacast/core@2.3.1(typescript@6.0.2)':
     dependencies:
-      '@feathersjs/authentication': 5.0.43(typescript@6.0.2)
-      '@feathersjs/authentication-local': 5.0.43(typescript@6.0.2)
-      '@feathersjs/authentication-oauth': 5.0.43(typescript@6.0.2)
-      '@feathersjs/client': 5.0.43(typescript@6.0.2)
-      '@feathersjs/configuration': 5.0.43(typescript@6.0.2)
+      '@feathersjs/authentication': 5.0.44(typescript@6.0.2)
+      '@feathersjs/authentication-local': 5.0.44(typescript@6.0.2)
+      '@feathersjs/authentication-oauth': 5.0.44(typescript@6.0.2)
+      '@feathersjs/client': 5.0.44(typescript@6.0.2)
+      '@feathersjs/configuration': 5.0.44(typescript@6.0.2)
       '@feathersjs/errors': 5.0.44
-      '@feathersjs/express': 5.0.43(typescript@6.0.2)
+      '@feathersjs/express': 5.0.44(typescript@6.0.2)
       '@feathersjs/feathers': 5.0.44
-      '@feathersjs/socketio': 5.0.43
+      '@feathersjs/socketio': 5.0.44
       chroma-js: 2.6.0
       compression: 1.8.1
       cors: 2.8.6
@@ -11716,8 +11728,8 @@ snapshots:
 
   feathers-mongodb-management@2.0.1:
     dependencies:
-      '@feathersjs/adapter-commons': 5.0.43
-      '@feathersjs/commons': 5.0.43
+      '@feathersjs/adapter-commons': 5.0.44
+      '@feathersjs/commons': 5.0.44
       '@feathersjs/errors': 5.0.44
       '@feathersjs/feathers': 5.0.44
       debug: 4.4.3
@@ -11739,8 +11751,8 @@ snapshots:
 
   feathers-reactive@0.11.0:
     dependencies:
-      '@feathersjs/adapter-commons': 5.0.43
-      '@feathersjs/commons': 5.0.43
+      '@feathersjs/adapter-commons': 5.0.44
+      '@feathersjs/commons': 5.0.44
       '@feathersjs/feathers': 5.0.44
       debug: 4.4.3
       json-stable-stringify: 1.3.0
@@ -12754,27 +12766,6 @@ snapshots:
       koa-send: 5.0.1
     transitivePeerDependencies:
       - supports-color
-
-  koa@3.1.2:
-    dependencies:
-      accepts: 1.3.8
-      content-disposition: 1.0.1
-      content-type: 1.0.5
-      cookies: 0.9.1
-      delegates: 1.0.0
-      destroy: 1.2.0
-      encodeurl: 2.0.0
-      escape-html: 1.0.3
-      fresh: 0.5.2
-      http-assert: 1.5.0
-      http-errors: 2.0.1
-      koa-compose: 4.1.0
-      mime-types: 3.0.2
-      on-finished: 2.4.1
-      parseurl: 1.3.3
-      statuses: 2.0.2
-      type-is: 2.0.1
-      vary: 1.1.2
 
   koa@3.2.0:
     dependencies:

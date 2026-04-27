@@ -5,7 +5,7 @@ import zlib from 'zlib'
 import request from 'superagent'
 import makeDebug from 'debug'
 import { fileURLToPath } from 'url'
-import * as permissions from '../../../kdk-core-common/src/permissions.js'
+import * as permissions from '@kalisio/kdk-core-common'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const modelsPath = path.join(__dirname, '..', 'models')

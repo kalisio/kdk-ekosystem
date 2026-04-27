@@ -3,7 +3,7 @@ import _ from 'lodash'
 import path from 'path'
 import fs from 'fs-extra'
 import { fileURLToPath } from 'url'
-import core, { kdk, hooks, permissions } from '../kdk-core-api/src/index.js'
+import core, { kdk, hooks, permissions } from '@kalisio/kdk-core-api/'
 import map, {
   permissions as mapPermissions, createCatalogService, createProjectsService
 } from '../kdk-map-api/src/index.js'

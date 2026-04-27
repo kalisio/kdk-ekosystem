@@ -55,6 +55,8 @@
   },
   "homepage": "https://github.com/kalisio/kdk-ekosystem/tree/main/packages/kdk-map-api",
   "dependencies": {
+    "@kalisio/kdk-core-api": "workspace:^",
+    "@kalisio/kdk-map-common": "workspace:^",
     "@feathersjs/errors": "catalog:",
     "@feathersjs/feathers": "catalog:",
     "@feathersjs/memory": "catalog:",

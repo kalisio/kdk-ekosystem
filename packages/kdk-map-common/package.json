@@ -42,6 +42,7 @@
   },
   "homepage": "https://github.com/kalisio/kdk-ekosystem/tree/main/packages/kdk-map-common",
   "dependencies": {
+    "@kalisio/kdk-core-common": "workspace:^",
     "@weacast/core": "catalog:",
     "geotiff": "catalog:",
     "jsdap": "catalog:",

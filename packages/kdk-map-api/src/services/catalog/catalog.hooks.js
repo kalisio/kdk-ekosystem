@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { setNow, discard } from 'feathers-hooks-common'
-import { hooks as coreHooks } from '../../../../kdk-core-api/src/index.js'
+import { hooks as coreHooks } from '@kalisio/kdk-core-api/'
 import {
   filterLayers, updateLayerReferences, updateProjects,
   getDefaultCategories, getDefaultSublegends,

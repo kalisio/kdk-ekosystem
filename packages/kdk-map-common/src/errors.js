@@ -1,3 +1,3 @@
-import { errors } from '../../kdk-core-common/src/index.js'
+import { errors } from '@kalisio/kdk-core-common/'
 
 export class KGeolocationError extends errors.KError {}

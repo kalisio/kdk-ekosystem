@@ -1,5 +1,5 @@
 import { fuzzySearch } from '../../hooks/index.js'
-import { hooks as kdkCoreHooks } from '../../../../kdk-core-api/src/index.js'
+import { hooks as kdkCoreHooks } from '@kalisio/kdk-core-api/'
 
 export default {
   before: {

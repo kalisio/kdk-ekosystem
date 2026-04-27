@@ -4,7 +4,7 @@ import bbox from '@turf/bbox'
 import makeDebug from 'debug'
 import feathers from '@feathersjs/feathers'
 import mongodbFuzzySearch from 'feathers-mongodb-fuzzy-search'
-import { hooks as coreHooks, unmarshallTime } from '../../../kdk-core-api/src/index.js'
+import { hooks as coreHooks, unmarshallTime } from '@kalisio/kdk-core-api/'
 import { iff, getItems, replaceItems } from 'feathers-hooks-common'
 
 const { defaultEventMap } = feathers
