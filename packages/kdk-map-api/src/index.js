@@ -6,6 +6,7 @@ import kdkMapApiLayersLoader from './config/layers.cjs'
 export * from './services/index.js'
 export { hooks }
 export { kdkMapApiLayersLoader }
+export { kdkMapApiLayersLoader as layersLoader }
 export * from './marshall.js'
 export * from '@kalisio/kdk-map-common'
 
