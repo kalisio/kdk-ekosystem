@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import xml2js from 'xml2js'
-import { buildUrl } from '@kalisio/kdk-core-common/'
+import { buildUrl } from '@kalisio/kdk-core-common'
 
 function fetchAsJson (query, headers = {}) {
   return fetch(query, { redirect: 'follow', headers })

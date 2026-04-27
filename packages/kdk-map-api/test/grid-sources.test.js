@@ -8,7 +8,7 @@ import siftModule from 'sift'
 import moment from 'moment'
 import { memory } from '@feathersjs/memory'
 import { weacast } from '@weacast/core'
-import { grid } from '@kalisio/kdk-map-common/'
+import { grid } from '@kalisio/kdk-map-common'
 import { fileURLToPath } from 'url'
 const { makeGridSource, extractGridSourceConfig } = grid
 

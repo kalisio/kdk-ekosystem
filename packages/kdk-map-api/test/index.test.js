@@ -4,7 +4,7 @@ import moment from 'moment'
 import path from 'path'
 import fs from 'fs-extra'
 import { fileURLToPath } from 'url'
-import core, { kdk, hooks, permissions } from '@kalisio/kdk-core-api/'
+import core, { kdk, hooks, permissions } from '@kalisio/kdk-core-api'
 import map, {
   permissions as mapPermissions, createFeaturesService, createCatalogService
 } from '../kdk-map-api/src/index.js'

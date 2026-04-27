@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import makeDebug from 'debug'
-import { marshallComparisonFields } from '@kalisio/kdk-core-api/'
+import { marshallComparisonFields } from '@kalisio/kdk-core-api'
 
 const debug = makeDebug('kdk:map:features:service')
 

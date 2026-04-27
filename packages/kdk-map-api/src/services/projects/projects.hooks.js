@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { setNow, discard, getItems, replaceItems, when } from 'feathers-hooks-common'
-import { hooks as coreHooks } from '@kalisio/kdk-core-api/'
+import { hooks as coreHooks } from '@kalisio/kdk-core-api'
 
 /* Populate is too much specialized and does not allow to merge input/output
  but we need the service information on the fronted

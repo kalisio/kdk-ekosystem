@@ -1,5 +1,5 @@
 import { expect, describe, it, beforeAll, afterAll } from 'vitest'
-import core, { kdk, hooks as coreHooks } from '@kalisio/kdk-core-api/'
+import core, { kdk, hooks as coreHooks } from '@kalisio/kdk-core-api'
 import map from '../kdk-map-api/src/index.js'
 
 describe('map:styles', () => {

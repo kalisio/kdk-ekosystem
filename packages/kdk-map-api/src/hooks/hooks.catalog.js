@@ -2,7 +2,7 @@ import _ from 'lodash'
 import siftModule from 'sift'
 import { getItems, replaceItems } from 'feathers-hooks-common'
 import makeDebug from 'debug'
-import { toString, toJson } from '@kalisio/kdk-core-api'
+import { toString, toJson } from '@kalisio/kdk-core-api/src/hooks/hooks.model.js'
 
 const sift = siftModule.default
 const debug = makeDebug('kdk:map:catalog:hooks')

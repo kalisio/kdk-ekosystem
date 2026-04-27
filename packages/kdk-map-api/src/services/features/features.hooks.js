@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { getItems, replaceItems } from 'feathers-hooks-common'
-import { hooks as coreHooks } from '@kalisio/kdk-core-api/'
+import { hooks as coreHooks } from '@kalisio/kdk-core-api'
 import {
   marshallSpatialQuery, aggregateFeaturesQuery, asGeoJson,
   simplifyResult, simplifyEvents, skipEvents, fuzzySearch
