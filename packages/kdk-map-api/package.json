@@ -57,6 +57,7 @@
   "dependencies": {
     "@kalisio/kdk-core-api": "workspace:^",
     "@kalisio/kdk-map-common": "workspace:^",
+    "@kalisio/kdk-core-common": "workspace:^",
     "@feathersjs/errors": "catalog:",
     "@feathersjs/feathers": "catalog:",
     "@feathersjs/memory": "catalog:",

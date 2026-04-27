@@ -693,6 +693,9 @@ importers:
       '@kalisio/kdk-core-api':
         specifier: workspace:^
         version: link:../kdk-core-api
+      '@kalisio/kdk-core-common':
+        specifier: workspace:^
+        version: link:../kdk-core-common
       '@kalisio/kdk-map-common':
         specifier: workspace:^
         version: link:../kdk-map-common
