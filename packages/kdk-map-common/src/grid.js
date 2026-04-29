@@ -34,7 +34,7 @@ export const toHalf = (function () {
       bits |= 0x7c00
       /* If exponent was 0xff and one mantissa bit was set, it means NaN,
         * not Inf, so make sure we set one mantissa bit too. */
-      bits |= ((e === 255) ? 0 : 1) && (x & 0x007fffff)
+      bits |= (e === 255 && (x & 0x007fffff)) ? 1 : 0
       return bits
     }
 
@@ -102,7 +102,6 @@ export class BaseGrid {
   getDataBounds () {
     // if already computed, return
     if (this.dataBounds) { return this.dataBounds }
-
     // find initial value (!= nodata)
     let ilat = 0
     let ilon = 0
@@ -114,18 +113,15 @@ export class BaseGrid {
         minVal = maxVal = value
       }
     }
-
     // scan through data set
     for (; ilat < this.dimensions[0]; ++ilat) {
-      for (; ilon < this.dimensions[1]; ++ilon) {
+      for (let ilon = 0; ilon < this.dimensions[1]; ++ilon) {
         const value = this.getValue(ilat, ilon)
-        if (value === this.nodata) { continue }
-
+        if (value === this.nodata) continue
         minVal = Math.min(minVal, value)
         maxVal = Math.max(maxVal, value)
       }
     }
-
     this.dataBounds = [minVal, maxVal]
     return this.dataBounds
   }
@@ -309,7 +305,8 @@ export class GridSource {
 
   off (event, callback) {
     const callbacks = _.get(this.events, event, [])
-    callbacks.splice(0, 0, callback)
+    const index = callbacks.indexOf(callback)
+    if (index !== -1) callbacks.splice(index, 1)
   }
 
   emit (event) {
