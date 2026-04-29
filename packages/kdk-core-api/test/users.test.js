@@ -11,7 +11,7 @@ describe('core:users', () => {
 
   beforeAll(async () => {
     app = kdk()
-    port = app.get('port')
+    port = 3100 + Math.floor(Math.random() * 100)
     baseUrl = `http://localhost:${port}${app.get('apiPath')}`
     await app.db.connect()
     await app.db.instance.dropDatabase()

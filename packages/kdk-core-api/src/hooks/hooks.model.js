@@ -15,7 +15,7 @@ const debug = makeDebug('kdk:core:model:hooks')
 export function processTimes (properties) {
   return function (hook) {
     let items = getItems(hook)
-    const isArray = Array.isArray(items)
+    const isArray = is.array(items)
     items = (isArray ? items : [items])
     items.forEach(item => marshallTimes(item, properties))
     replaceItems(hook, isArray ? items : items[0])
@@ -27,7 +27,7 @@ export function processTimes (properties) {
 export function unprocessTimes (properties) {
   return function (hook) {
     let items = getItems(hook)
-    const isArray = Array.isArray(items)
+    const isArray = is.array(items)
     items = (isArray ? items : [items])
     items.forEach(item => unmarshallTimes(item, properties))
     replaceItems(hook, isArray ? items : items[0])
@@ -44,7 +44,7 @@ export function serialize (rules, options = {}) {
   return function (hook) {
     // Retrieve the items from the hook
     let items = getItems(hook)
-    const isArray = Array.isArray(items)
+    const isArray = is.array(items)
     items = (isArray ? items : [items])
     // Apply the rules for each item
     items.forEach(item => {
@@ -87,7 +87,7 @@ export function processObjectIDs (hook) {
 export function convertObjectIDs (properties) {
   return function (hook) {
     let items = getItems(hook)
-    const isArray = Array.isArray(items)
+    const isArray = is.array(items)
     items = (isArray ? items : [items])
     items.forEach(item => toObjectIDs(item, properties))
     replaceItems(hook, isArray ? items : items[0])
@@ -120,7 +120,7 @@ export function toDates (object, properties, asMoment) {
 export function convertDates (properties, asMoment) {
   return function (hook) {
     let items = getItems(hook)
-    const isArray = Array.isArray(items)
+    const isArray = is.array(items)
     items = (isArray ? items : [items])
     items.forEach(item => toDates(item, properties, asMoment))
     replaceItems(hook, isArray ? items : items[0])
@@ -134,7 +134,7 @@ export function convertDates (properties, asMoment) {
 export function toJson (object, properties) {
   properties.forEach(property => {
     const string = _.get(object, property)
-    if (string && (typeof string === 'string')) {
+    if (is.string(string)) {
       const json = JSON.parse(string)
       _.set(object, property, json)
     }
@@ -145,7 +145,7 @@ export function toJson (object, properties) {
 export function convertToJson (properties) {
   return function (hook) {
     let items = getItems(hook)
-    const isArray = Array.isArray(items)
+    const isArray = is.array(items)
     items = (isArray ? items : [items])
     items.forEach(item => toJson(item, properties))
     replaceItems(hook, isArray ? items : items[0])
@@ -158,7 +158,7 @@ export function convertToJson (properties) {
 export function toString (object, properties) {
   properties.forEach(property => {
     const json = _.get(object, property)
-    if (json && (typeof json === 'object')) _.set(object, property, JSON.stringify(json))
+    if (is.plainObject(json)) _.set(object, property, JSON.stringify(json))
   })
 }
 
@@ -166,7 +166,7 @@ export function toString (object, properties) {
 export function convertToString (properties) {
   return function (hook) {
     let items = getItems(hook)
-    const isArray = Array.isArray(items)
+    const isArray = is.array(items)
     items = (isArray ? items : [items])
     items.forEach(item => toString(item, properties))
     replaceItems(hook, isArray ? items : items[0])
@@ -208,7 +208,7 @@ export function setExpireAfter (delayInSeconds) {
     }
     // Retrieve the items from the hook
     let items = getItems(hook)
-    const isArray = Array.isArray(items)
+    const isArray = is.array(items)
     items = (isArray ? items : [items])
     // Apply the rules for each item
     const date = new Date(Date.now() + 1000 * delayInSeconds)

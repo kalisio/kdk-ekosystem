@@ -3,7 +3,7 @@ import errors from '@feathersjs/errors'
 import makeDebug from 'debug'
 import { marshallComparisonFields, marshallTime, marshallBooleanFields, marshallNumberFields, marshallDateFields } from '../marshall.js'
 import { isValidObjectID, isObjectID } from '../db.js'
-import { makeDiacriticPattern } from '@kalisio/kdk-core-common'
+import { string } from '@kalisio/common-core'
 
 const { Forbidden } = errors
 const debug = makeDebug('kdk:core:query:hooks')
@@ -264,7 +264,7 @@ export function toDiacriticRegex (object) {
       // Check if applicable
       if (value.$regex && !value.$regex.diacritic && value.$regex.source && !value.$diacriticSensitive) {
         // Take care to support as well case sensitivity by keeping flags
-        value.$regex = new RegExp(makeDiacriticPattern(value.$regex.source), value.$regex.flags)
+        value.$regex = new RegExp(string.makeDiacriticPattern(value.$regex.source), value.$regex.flags)
         // Custom internal property to make the hook reentrant
         value.$regex.diacritic = true
       } else {

@@ -8,7 +8,7 @@ describe('core:tags', () => {
     app = kdk()
     // Register log hook
     app.hooks({ error: { all: hooks.log } })
-    port = app.get('port')
+    port = 3100 + Math.floor(Math.random() * 100)
     await app.db.connect()
   })
 

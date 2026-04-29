@@ -47,7 +47,7 @@ describe('core:account', () => {
       before: { all: [hooks.authorise] },
       error: { all: hooks.log }
     })
-    port = app.get('port')
+    port = 3100 + Math.floor(Math.random() * 100)
     baseUrl = `http://localhost:${port}${app.get('apiPath')}`
     await app.db.connect()
     await app.db.instance.dropDatabase()

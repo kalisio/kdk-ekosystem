@@ -28,7 +28,7 @@ describe('map:catalog', () => {
       before: { all: [hooks.authorise] },
       error: { all: hooks.log }
     })
-    port = app.get('port')
+    port = 3100 + Math.floor(Math.random() * 100)
     // baseUrl = `http://localhost:${port}${app.get('apiPath')}`
     return app.db.connect()
   }, 30000)
@@ -125,7 +125,7 @@ describe('map:catalog', () => {
   })
 
   it('clears the catalog and projects', async () => {
-    await catalogService.remove(null, { query: { } })
+    await catalogService.remove(null, { query: {} })
     const layers = await catalogService.find({ query: {}, paginate: false })
     expect(layers.length === 0).toBe(true)
     await projectService.remove(projectObject._id)

@@ -25,7 +25,7 @@ export function isValidObjectID (id) {
 }
 
 export function idToString (id) {
-  return (typeof id === 'object'
+  return (is.object(id)
     ? (isObjectID(id)
         ? id.toString()
         : idToString(id._id))
@@ -36,7 +36,7 @@ export function createObjectID (id) {
   // This ensure it works even if id is already an ObjectID
   if (isObjectID(id)) return id
   // Take care that numbers could be a valid object ID
-  else if ((typeof id === 'number') || !isValidObjectID(id)) return null
+  else if ((is.number(id)) || !isValidObjectID(id)) return null
   else {
     const objectId = new ObjectId(id)
     // It appears that ObjectID.isValid is not reliable in some driver versions, see eg https://jira.mongodb.org/browse/NODE-3760
@@ -55,13 +55,13 @@ export function objectifyIDs (object) {
       // Process current attributes or recurse
       // Take care to nested fields like 'field._id'
       if (key === '_id' || key.endsWith('._id') || key === '$ne') {
-        if (typeof value === 'string') {
+        if (is.string(value)) {
           const id = createObjectID(value)
           if (id) {
             object[key] = id
           }
           debug('Objectify ID ' + key, id)
-        } else if (Array.isArray(value)) {
+        } else if (is.array(value)) {
           debug('Objectify ID array ' + key)
           object[key] = value.map(id => createObjectID(id)).filter(id => id)
         } else objectifyIDs(value)
@@ -73,7 +73,7 @@ export function objectifyIDs (object) {
       } else if ((key === '$or') || (key === '$and')) {
         value.forEach(entry => objectifyIDs(entry))
       } else {
-        if (!Array.isArray(value)) objectifyIDs(value)
+        if (!is.array(value)) objectifyIDs(value)
         else value.forEach(entry => objectifyIDs(entry))
       }
     })
@@ -85,7 +85,7 @@ export function objectifyIDs (object) {
 export function toObjectIDs (object, properties) {
   properties.forEach(property => {
     const value = _.get(object, property)
-    if (Array.isArray(value)) {
+    if (is.array(value)) {
       const ids = value.map(id => createObjectID(id)).filter(id => id)
       if (ids.length > 0) _.set(object, property, ids)
     } else {
