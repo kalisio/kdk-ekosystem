@@ -8,4 +8,4 @@ export { errors }
 export { permissions }
 export * from './permissions.js'
 export * from './schema.js'
-export * from './utils.js'
+export * from './utils.offline.js'
