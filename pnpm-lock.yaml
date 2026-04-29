@@ -252,6 +252,9 @@ catalogs:
     quasar:
       specifier: ~2.18.7
       version: 2.18.7
+    rimraf:
+      specifier: ~6.1.3
+      version: 6.1.3
     sanitize-html:
       specifier: ~2.17.1
       version: 2.17.2
@@ -348,6 +351,9 @@ importers:
       mermaid:
         specifier: 'catalog:'
         version: 10.8.0
+      rimraf:
+        specifier: 'catalog:'
+        version: 6.1.3
       standard:
         specifier: 'catalog:'
         version: 17.1.2
@@ -365,7 +371,7 @@ importers:
         version: 2.0.17(mermaid@10.8.0)(vitepress@1.6.4(@algolia/client-search@5.49.2)(@types/node@25.5.0)(jwt-decode@4.0.0)(postcss@8.5.8)(search-insights@2.17.3)(typescript@6.0.2))
       vitepress-theme-kalisio:
         specifier: 'catalog:'
-        version: https://codeload.github.com/kalisio/vitepress-theme-kalisio/tar.gz/096ffded88d0aabf98d925f24ecc1cfc7bbf6795(vitepress@1.6.4(@algolia/client-search@5.49.2)(@types/node@25.5.0)(jwt-decode@4.0.0)(postcss@8.5.8)(search-insights@2.17.3)(typescript@6.0.2))
+        version: https://codeload.github.com/kalisio/vitepress-theme-kalisio/tar.gz/f9a0af8e766a6cf314b2bd29a1f58a13d3b33086(vitepress@1.6.4(@algolia/client-search@5.49.2)(@types/node@25.5.0)(jwt-decode@4.0.0)(postcss@8.5.8)(search-insights@2.17.3)(typescript@6.0.2))
       vitest:
         specifier: 'catalog:'
         version: 4.1.4(@types/node@25.5.0)(@vitest/coverage-v8@4.1.4)(happy-dom@20.8.9)(vite@7.3.1(@types/node@25.5.0)(yaml@2.8.3))
@@ -408,6 +414,9 @@ importers:
       '@feathersjs/socketio':
         specifier: 'catalog:'
         version: 5.0.44
+      '@kalisio/common-core':
+        specifier: ^0.2.0
+        version: 0.2.0(mathjs@15.1.1)(moment@2.30.1)(sift@17.1.3)
       '@kalisio/feathers-import-export':
         specifier: 'catalog:'
         version: 1.4.1
@@ -1726,6 +1735,23 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
+  '@kalisio/common-core@0.2.0':
+    resolution: {integrity: sha512-iQLP5XcjZ5jeILTEd4tKjRetS6cAhyS4eoG5qu+TMBXccIdFCAbpaJPMoT9Tv6M0p8x2WW0xdNSmressWq170g==}
+    peerDependencies:
+      lodash-es: ~4.18.1
+      mathjs: ~15.1.1
+      moment: ~2.30.1
+      sift: ~17.1.3
+    peerDependenciesMeta:
+      lodash-es:
+        optional: true
+      mathjs:
+        optional: true
+      moment:
+        optional: true
+      sift:
+        optional: true
+
   '@kalisio/feathers-automerge@0.3.8':
     resolution: {integrity: sha512-BD8Lc4mQWrcaCOfhNuACpoa9E2E8ilmAe/5U9lO6Tp/F0JOd9dtWfDDKtUvP2QCyYkZ+7gOMqBQOgfgtDHoLMA==}
 
@@ -2996,6 +3022,10 @@ packages:
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
+  balanced-match@4.0.4:
+    resolution: {integrity: sha512-BLrgEcRTwX2o6gGxGOCNyMvGSp35YofuYzw9h1IMTRmKqttAZZVU67bdb9Pr2vUHA8+j3i2tJfjO6C6+4myGTA==}
+    engines: {node: 18 || 20 || >=22}
+
   bare-events@2.8.2:
     resolution: {integrity: sha512-riJjyv1/mHLIPX4RwiK+oW9/4c3TEUeORHKefKAKnZ5kyslbN+HXowtbaVEqt4IMUB7OXlfixcs6gsFeo/jhiQ==}
     peerDependencies:
@@ -3088,6 +3118,10 @@ packages:
 
   brace-expansion@2.0.3:
     resolution: {integrity: sha512-MCV/fYJEbqx68aE58kv2cA/kiky1G8vux3OR6/jbS+jIMe/6fJWa0DTzJU7dqijOWYwHi1t29FlfYI9uytqlpA==}
+
+  brace-expansion@5.0.5:
+    resolution: {integrity: sha512-VZznLgtwhn+Mact9tfiwx64fA9erHH/MCXEUfB/0bX/6Fz6ny5EGTXYltMocqg4xFAQZtnO3DHWWXi8RiuN7cQ==}
+    engines: {node: 18 || 20 || >=22}
 
   braces@3.0.3:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
@@ -4427,6 +4461,10 @@ packages:
     deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
+  glob@13.0.6:
+    resolution: {integrity: sha512-Wjlyrolmm8uDpm/ogGyXZXb1Z+Ca2B8NbJwqBVg0axK9GbBeoS7yGV6vjXnYdGm6X53iehEuxxbyiKp8QmN4Vw==}
+    engines: {node: 18 || 20 || >=22}
+
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
     deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
@@ -5259,6 +5297,10 @@ packages:
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
+  lru-cache@11.3.5:
+    resolution: {integrity: sha512-NxVFwLAnrd9i7KUBxC4DrUhmgjzOs+1Qm50D3oF1/oL+r1NpZ4gA7xvG0/zJ8evR7zIKn4vLf7qTNduWFtCrRw==}
+    engines: {node: 20 || >=22}
+
   magic-string-ast@1.0.3:
     resolution: {integrity: sha512-CvkkH1i81zl7mmb94DsRiFeG9V2fR2JeuK8yDgS8oiZSFa++wWLEgZ5ufEOyLHbvSbD1gTRKv9NdX69Rnvr9JA==}
     engines: {node: '>=20.19.0'}
@@ -5461,6 +5503,10 @@ packages:
 
   minimalistic-crypto-utils@1.0.1:
     resolution: {integrity: sha512-JIYlbt6g8i5jKfJ3xz7rF0LXmv2TkDxBLUkiBeZ7bAx4GnnNMr8xFpGnOxn6GhTEHx3SjRrZEoU+j04prX1ktg==}
+
+  minimatch@10.2.5:
+    resolution: {integrity: sha512-MULkVLfKGYDFYejP07QOurDLLQpcjk7Fw+7jXS2R2czRQzR56yHRveU5NDJEOviH+hETZKSkIk5c+T23GjFUMg==}
+    engines: {node: 18 || 20 || >=22}
 
   minimatch@3.1.5:
     resolution: {integrity: sha512-VgjWUsnnT6n+NUk6eZq77zeFdpW2LWDzP6zFGrCbHXiYNul5Dzqk2HHQ5uFH2DNW5Xbp8+jVzaeNt94ssEEl4w==}
@@ -5888,6 +5934,10 @@ packages:
     resolution: {integrity: sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==}
     engines: {node: '>=16 || 14 >=14.18'}
 
+  path-scurry@2.0.2:
+    resolution: {integrity: sha512-3O/iVVsJAPsOnpwWIeD+d6z/7PmqApyQePUtCndjatj/9I5LylHvt5qluFaBT3I5h3r1ejfR056c+FCv+NnNXg==}
+    engines: {node: 18 || 20 || >=22}
+
   path-to-regexp@0.1.13:
     resolution: {integrity: sha512-A/AGNMFN3c8bOlvV9RreMdrv7jsmF9XIfDeCd87+I8RNg6s78BhJxMu69NEMHBSJFxKidViTEdruRwEk/WIKqA==}
 
@@ -6202,6 +6252,11 @@ packages:
   rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     deprecated: Rimraf versions prior to v4 are no longer supported
+    hasBin: true
+
+  rimraf@6.1.3:
+    resolution: {integrity: sha512-LKg+Cr2ZF61fkcaK1UdkH2yEBBKnYjTyWzTJT6KNPcSPaiT7HSdhtMXQuN5wkTX0Xu72KQ1l8S42rlmexS2hSA==}
+    engines: {node: 20 || >=22}
     hasBin: true
 
   robust-predicates@3.0.3:
@@ -6999,8 +7054,8 @@ packages:
       mermaid: 10 || 11
       vitepress: ^1.0.0 || ^1.0.0-alpha
 
-  vitepress-theme-kalisio@https://codeload.github.com/kalisio/vitepress-theme-kalisio/tar.gz/096ffded88d0aabf98d925f24ecc1cfc7bbf6795:
-    resolution: {tarball: https://codeload.github.com/kalisio/vitepress-theme-kalisio/tar.gz/096ffded88d0aabf98d925f24ecc1cfc7bbf6795}
+  vitepress-theme-kalisio@https://codeload.github.com/kalisio/vitepress-theme-kalisio/tar.gz/f9a0af8e766a6cf314b2bd29a1f58a13d3b33086:
+    resolution: {tarball: https://codeload.github.com/kalisio/vitepress-theme-kalisio/tar.gz/f9a0af8e766a6cf314b2bd29a1f58a13d3b33086}
     version: 1.0.0
     peerDependencies:
       vitepress: ^1.3.0
@@ -8714,6 +8769,12 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
+  '@kalisio/common-core@0.2.0(mathjs@15.1.1)(moment@2.30.1)(sift@17.1.3)':
+    optionalDependencies:
+      mathjs: 15.1.1
+      moment: 2.30.1
+      sift: 17.1.3
+
   '@kalisio/feathers-automerge@0.3.8':
     dependencies:
       '@automerge/automerge-repo': 2.5.4
@@ -10184,6 +10245,8 @@ snapshots:
 
   balanced-match@1.0.2: {}
 
+  balanced-match@4.0.4: {}
+
   bare-events@2.8.2: {}
 
   bare-fs@4.5.6:
@@ -10274,6 +10337,10 @@ snapshots:
   brace-expansion@2.0.3:
     dependencies:
       balanced-match: 1.0.2
+
+  brace-expansion@5.0.5:
+    dependencies:
+      balanced-match: 4.0.4
 
   braces@3.0.3:
     dependencies:
@@ -11993,6 +12060,12 @@ snapshots:
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
 
+  glob@13.0.6:
+    dependencies:
+      minimatch: 10.2.5
+      minipass: 7.1.3
+      path-scurry: 2.0.2
+
   glob@7.2.3:
     dependencies:
       fs.realpath: 1.0.0
@@ -12978,6 +13051,8 @@ snapshots:
 
   lru-cache@10.4.3: {}
 
+  lru-cache@11.3.5: {}
+
   magic-string-ast@1.0.3:
     dependencies:
       magic-string: 0.30.21
@@ -13296,6 +13371,10 @@ snapshots:
 
   minimalistic-crypto-utils@1.0.1:
     optional: true
+
+  minimatch@10.2.5:
+    dependencies:
+      brace-expansion: 5.0.5
 
   minimatch@3.1.5:
     dependencies:
@@ -13703,6 +13782,11 @@ snapshots:
       lru-cache: 10.4.3
       minipass: 7.1.3
 
+  path-scurry@2.0.2:
+    dependencies:
+      lru-cache: 11.3.5
+      minipass: 7.1.3
+
   path-to-regexp@0.1.13: {}
 
   path-type@4.0.0: {}
@@ -14094,6 +14178,11 @@ snapshots:
   rimraf@3.0.2:
     dependencies:
       glob: 7.2.3
+
+  rimraf@6.1.3:
+    dependencies:
+      glob: 13.0.6
+      package-json-from-dist: 1.0.1
 
   robust-predicates@3.0.3: {}
 
@@ -14975,7 +15064,7 @@ snapshots:
     optionalDependencies:
       '@mermaid-js/mermaid-mindmap': 9.3.0
 
-  vitepress-theme-kalisio@https://codeload.github.com/kalisio/vitepress-theme-kalisio/tar.gz/096ffded88d0aabf98d925f24ecc1cfc7bbf6795(vitepress@1.6.4(@algolia/client-search@5.49.2)(@types/node@25.5.0)(jwt-decode@4.0.0)(postcss@8.5.8)(search-insights@2.17.3)(typescript@6.0.2)):
+  vitepress-theme-kalisio@https://codeload.github.com/kalisio/vitepress-theme-kalisio/tar.gz/f9a0af8e766a6cf314b2bd29a1f58a13d3b33086(vitepress@1.6.4(@algolia/client-search@5.49.2)(@types/node@25.5.0)(jwt-decode@4.0.0)(postcss@8.5.8)(search-insights@2.17.3)(typescript@6.0.2)):
     dependencies:
       vitepress: 1.6.4(@algolia/client-search@5.49.2)(@types/node@25.5.0)(jwt-decode@4.0.0)(postcss@8.5.8)(search-insights@2.17.3)(typescript@6.0.2)
 

@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import { is } from '@kalisio/common-core'
 import moment from 'moment'
 import makeDebug from 'debug'
 import { MongoClient, ObjectId } from 'mongodb'
@@ -49,7 +50,7 @@ export function createObjectID (id) {
 // If you have others properties to be converted use toObjectIDs
 export function objectifyIDs (object) {
   // Avoid destructuring already transformed Date, ObjectID or arrays
-  if (_.isPlainObject(object)) {
+  if (is.plainObject(object)) {
     _.forOwn(object, (value, key) => {
       // Process current attributes or recurse
       // Take care to nested fields like 'field._id'

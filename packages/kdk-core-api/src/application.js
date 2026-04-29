@@ -4,6 +4,7 @@ import fs from 'fs-extra'
 import makeDebug from 'debug'
 import winston from 'winston'
 import _ from 'lodash'
+import { is } from '@kalisio/common-core'
 import sift from 'sift'
 import 'winston-daily-rotate-file'
 import compress from 'compression'
@@ -56,7 +57,7 @@ export function declareService (name, app, service, serviceOptions = {}) {
     if (_.has(serviceOptions, 'middlewares.before')) args = args.concat(_.get(serviceOptions, 'middlewares.before'))
     args.push(service)
     const options = _.pick(serviceOptions, ['methods', 'events'])
-    if (!_.isEmpty(options)) args = args.concat(options)
+    if (!is.empty(options)) args = args.concat(options)
     if (_.has(serviceOptions, 'middlewares.after')) args = args.concat(_.get(serviceOptions, 'middlewares.after'))
     app.use.apply(app, args)
     // Get the Feathers service, ie base service + Feathers' internals

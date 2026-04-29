@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import { is } from '@kalisio/common-core'
 import sift from 'sift'
 import moment from 'moment'
 import errors from '@feathersjs/errors'
@@ -49,7 +50,7 @@ export function serialize (rules, options = {}) {
     items.forEach(item => {
       rules.forEach(rule => {
         let source = _.get(item, rule.source)
-        if (!_.isNil(source)) {
+        if (!is.nil(source)) {
           if (rule.filter) source = source.filter(sift(rule.filter))
           _.set(item, rule.target, source)
           if (rule.delete) {

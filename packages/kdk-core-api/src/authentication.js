@@ -1,5 +1,6 @@
 import makeDebug from 'debug'
 import _ from 'lodash'
+import { is } from '@kalisio/common-core'
 import qs from 'qs'
 import 'winston-daily-rotate-file'
 // import { RateLimiter } from 'limiter'
@@ -60,7 +61,7 @@ export class AuthenticationProviderStrategy extends OAuthStrategy {
   }
 
   async getEntityData (profile, entity) {
-    const createEntity = _.isNil(entity)
+    const createEntity = is.nil(entity)
     // Add provider Id
     entity = { [`${this.name}Id`]: profile.id || profile.sub }
     // When creating a new user extract required information from profile
@@ -219,7 +220,7 @@ export default function auth (app) {
   if (!config) return
   // Having undefined providers causes an issue in feathers but we'd like to be able
   // to set providers undefined in config file based on some conditions (eg env vars)
-  if (config.oauth) config.oauth = _.omitBy(config.oauth, _.isNil)
+  if (config.oauth) config.oauth = _.omitBy(config.oauth, is.nil)
   app.set('authentication', config)
 
   const authentication = new Authentication(app)

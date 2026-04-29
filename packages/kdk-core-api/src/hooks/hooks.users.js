@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import { is } from '@kalisio/common-core'
 import makeDebug from 'debug'
 import generateRandomPassword from 'password-generator'
 import { getItems, replaceItems } from 'feathers-hooks-common'
@@ -37,7 +38,7 @@ export function isNotMe (options = { throwOnMissingUser: false }) {
   return function (context) {
     const userId = _.get(context.params, 'user._id')
     // As no user to compare with can't be me
-    if (_.isNil(userId)) {
+    if (is.nil(userId)) {
       if (options.throwOnMissingUser) throw new Forbidden('This operation is subject to user identify check but none can be found')
       else return true
     }
@@ -82,7 +83,7 @@ export function enforcePasswordPolicy (options = {}) {
         }
       }
 
-      if (!_.isEmpty(result)) {
+      if (!is.empty(result)) {
         throw new BadRequest('The provided password does not comply to the password policy', {
           translation: {
             key: 'WEAK_PASSWORD',
