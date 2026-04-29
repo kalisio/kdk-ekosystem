@@ -1,12 +1,9 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import _ from 'lodash'
 import config from 'config'
-import { addSubscription, removeSubscription } from '@kalisio/feathers-webpush/client.js'
+import { addSubscription, removeSubscription } from '@kalisio/feathers-webpush/client'
 import core, { kdk, hooks } from '../src/index.js'
 import { permissions } from '@kalisio/kdk-core-common'
-// We now rely on mailer stub which is faster
-// Integration testing with real email account shouuld be restricted to apps
-// import { createGmailClient } from './utils.js'
 import { createMailerStub } from './utils.js'
 
 describe('core:push', () => {
@@ -35,7 +32,7 @@ describe('core:push', () => {
   }
 
   beforeAll(async () => {
-    // Register all default hooks for authorisation
+    // Register all default hooks for authorization
     // Default rules for all users
     permissions.defineAbilities.registerHook(permissions.defineUserAbilities)
     // Then rules for notifications
@@ -50,7 +47,7 @@ describe('core:push', () => {
     app = kdk({
       mailer: mailerStub
     })
-    // Register authorisation/log hook
+    // Register authorization/log hook
     app.hooks({
       before: { all: [hooks.authorise] },
       error: { all: hooks.log }
@@ -131,7 +128,7 @@ describe('core:push', () => {
       subscriptionFilter: { _id: user._id }
     })
     expect(operation).toBeDefined()
-    expect(operation.succesful[0].statusCode).toBe(201)
+    expect(operation.succeeded[0].statusCode).toBe(201)
   }, 10000)
 
   it('delete expired subscriptions', async () => {
@@ -151,10 +148,10 @@ describe('core:push', () => {
     expect(users.data.length > 0).toBe(true)
     user = users.data[0]
     // Check that expired subscriptions have been deleted
-    expect(user.subscriptions.length === 1).toBe(true)
+    expect(user.subscriptions.length).toBe(1)
     expect(operation).toBeDefined()
-    expect(operation.succesful.length === 1).toBe(true)
-    expect(operation.succesful[0].statusCode).toBe(201)
+    expect(operation.succeeded.length).toBe(1)
+    expect(operation.succeeded[0].statusCode).toBe(201)
     expect(operation.failed.length === 1).toBe(true)
     expect((operation.failed[0].statusCode === 404) || (operation.failed[0].statusCode === 410)).toBe(true)
     expect(operation.failed[0].endpoint).toBe(expiredSubscription.endpoint)

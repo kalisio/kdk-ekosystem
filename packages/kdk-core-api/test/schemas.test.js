@@ -42,7 +42,6 @@ describe('core:schemas', () => {
         await service.create(object)
       } catch (e) {
         error = e
-        console.log(e.data)
       }
       expect(error).toBeDefined()
       expect(error.name).toBe('BadRequest')
@@ -57,13 +56,9 @@ describe('core:schemas', () => {
       await service.create(validObjects)
     } catch (e) {
       error = e
-      // Log any error to help debug tests
-      // console.log(e.data)
     }
-    console.log(error)
     expect(error).toBeUndefined()
     const result = await service.find({ query: {}, paginate: false })
-    console.log(result)
     expect(result.length === 2).toBe(true)
   }, 5000)
 

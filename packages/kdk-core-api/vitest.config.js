@@ -9,6 +9,7 @@ export default mergeConfig(baseConfig, defineConfig({
   root: __dirname,
   test: {
     name: 'core-api',
-    environment: 'node'
+    environment: 'node',
+    maxWorkers: 1
   }
 }))

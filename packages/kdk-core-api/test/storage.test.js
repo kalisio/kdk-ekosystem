@@ -1,13 +1,13 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
-import path, { dirname } from 'path'
-import fs from 'fs-extra'
+import path from 'node:path'
+import fs from 'node:fs'
 import { fileURLToPath } from 'url'
 import request from 'superagent'
 import { Blob } from 'buffer'
 import core, { kdk, hooks } from '../src/index.js'
 
 const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+const __dirname = path.dirname(__filename)
 
 describe('core:storage', () => {
   let app, server, port, baseUrl, userService, userObject, storageService, storageObject, jwt
@@ -17,7 +17,7 @@ describe('core:storage', () => {
   const file = 'logo.png'
   const fileType = 'image/png'
   const filePath = path.join(__dirname, 'data', file)
-  const fileContent = fs.readFileSync(filePath)
+  const fileContent = fs.readFileSync(filePath, 'utf8')
   const blob = new Blob([fileContent], { type: fileType })
 
   beforeAll(async () => {
