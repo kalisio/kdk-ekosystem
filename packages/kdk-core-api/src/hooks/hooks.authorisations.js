@@ -243,8 +243,8 @@ export async function authorise (hook) {
         }
       }
       debug('Resource access granted')
-    // Some specific services might not expose a get function, in this case we cannot check for authorisation
-    // this has to be implemented by the service itself
+      // Some specific services might not expose a get function, in this case we cannot check for authorisation
+      // this has to be implemented by the service itself
     } else if (typeof hook.service.get === 'function') {
       // In this case (single get/update/patch/remove) we need to fetch the item first
       // Take care we might have additional query parameters to be "catched" by before hooks,
