@@ -51,6 +51,9 @@ catalogs:
     '@feathersjs/socketio':
       specifier: ~5.0.44
       version: 5.0.44
+    '@kalisio/common-core':
+      specifier: ~0.2.0
+      version: 0.2.0
     '@kalisio/feathers-automerge':
       specifier: ~0.3.8
       version: 0.3.8
@@ -73,7 +76,7 @@ catalogs:
       specifier: ~1.7.5
       version: 1.7.6
     '@turf/bbox':
-      specifier: ~7.3.4
+      specifier: ~7.3.5
       version: 7.3.5
     '@turf/intersect':
       specifier: ~7.3.5
@@ -138,6 +141,9 @@ catalogs:
     debug:
       specifier: ~4.4.3
       version: 4.4.3
+    ejs:
+      specifier: ~5.0.1
+      version: 5.0.2
     email-templates:
       specifier: ~13.0.1
       version: 13.0.1
@@ -211,8 +217,8 @@ catalogs:
       specifier: ~1.9.2
       version: 1.9.2
     lru-cache:
-      specifier: ~10.2.2
-      version: 10.2.2
+      specifier: ~11.3.5
+      version: 11.3.5
     mathjs:
       specifier: ~15.1.1
       version: 15.1.1
@@ -415,7 +421,7 @@ importers:
         specifier: 'catalog:'
         version: 5.0.44
       '@kalisio/common-core':
-        specifier: ^0.2.0
+        specifier: 'catalog:'
         version: 0.2.0(mathjs@15.1.1)(moment@2.30.1)(sift@17.1.3)
       '@kalisio/feathers-import-export':
         specifier: 'catalog:'
@@ -427,7 +433,7 @@ importers:
         specifier: 'catalog:'
         version: 1.0.2
       '@kalisio/kdk-core-common':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../kdk-core-common
       compression:
         specifier: 'catalog:'
@@ -438,9 +444,12 @@ importers:
       debug:
         specifier: 'catalog:'
         version: 4.4.3
+      ejs:
+        specifier: 'catalog:'
+        version: 5.0.2
       email-templates:
         specifier: 'catalog:'
-        version: 13.0.1(mustache@4.2.0)(pug@3.0.4)(underscore@1.13.8)
+        version: 13.0.1(ejs@5.0.2)(mustache@4.2.0)(pug@3.0.4)(underscore@1.13.8)
       express-rate-limit:
         specifier: 'catalog:'
         version: 5.5.1
@@ -473,7 +482,7 @@ importers:
         version: 4.18.1
       lru-cache:
         specifier: 'catalog:'
-        version: 10.2.2
+        version: 11.3.5
       moment:
         specifier: 'catalog:'
         version: 2.30.1
@@ -3850,6 +3859,11 @@ packages:
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
+  ejs@5.0.2:
+    resolution: {integrity: sha512-IpbUaI/CAW86l3f+T8zN0iggSc0LmMZLcIW5eRVStLVNCoTXkE0YlncbbH50fp8Cl6zHIky0sW2uUbhBqGw0Jw==}
+    engines: {node: '>=0.12.18'}
+    hasBin: true
+
   elkjs@0.9.3:
     resolution: {integrity: sha512-f/ZeWvW/BCXbhGEf1Ujp29EASo/lk1FDnETgNKwJrsVvGZhUWCZyg3xLJjAsxfOmt8KjswHmI5EwCQcPMpOYhQ==}
 
@@ -5289,10 +5303,6 @@ packages:
   loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
-
-  lru-cache@10.2.2:
-    resolution: {integrity: sha512-9hp3Vp2/hFQUiIwKo8XCeFVnrg8Pk3TYNPIR7tJADKi5YfcF7vEaK7avFHTlSy3kOKYaJQaalfEo6YuXdceBOQ==}
-    engines: {node: 14 || >=16.14}
 
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
@@ -8843,8 +8853,9 @@ snapshots:
     dependencies:
       vary: 1.1.2
 
-  '@ladjs/consolidate@1.0.4(lodash@4.18.1)(mustache@4.2.0)(pug@3.0.4)(underscore@1.13.8)':
+  '@ladjs/consolidate@1.0.4(ejs@5.0.2)(lodash@4.18.1)(mustache@4.2.0)(pug@3.0.4)(underscore@1.13.8)':
     optionalDependencies:
+      ejs: 5.0.2
       lodash: 4.18.1
       mustache: 4.2.0
       pug: 3.0.4
@@ -11104,6 +11115,8 @@ snapshots:
 
   ee-first@1.1.1: {}
 
+  ejs@5.0.2: {}
+
   elkjs@0.9.3: {}
 
   elliptic@6.6.1:
@@ -11117,9 +11130,9 @@ snapshots:
       minimalistic-crypto-utils: 1.0.1
     optional: true
 
-  email-templates@13.0.1(mustache@4.2.0)(pug@3.0.4)(underscore@1.13.8):
+  email-templates@13.0.1(ejs@5.0.2)(mustache@4.2.0)(pug@3.0.4)(underscore@1.13.8):
     dependencies:
-      '@ladjs/consolidate': 1.0.4(lodash@4.18.1)(mustache@4.2.0)(pug@3.0.4)(underscore@1.13.8)
+      '@ladjs/consolidate': 1.0.4(ejs@5.0.2)(lodash@4.18.1)(mustache@4.2.0)(pug@3.0.4)(underscore@1.13.8)
       '@ladjs/i18n': 10.0.0
       get-paths: 0.0.7
       html-to-text: 9.0.5
@@ -13046,8 +13059,6 @@ snapshots:
   loose-envify@1.4.0:
     dependencies:
       js-tokens: 4.0.0
-
-  lru-cache@10.2.2: {}
 
   lru-cache@10.4.3: {}
 

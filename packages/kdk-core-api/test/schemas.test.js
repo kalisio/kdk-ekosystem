@@ -1,20 +1,19 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
-import path, { dirname } from 'path'
-import fs from 'fs-extra'
-import { fileURLToPath } from 'url'
+import path from 'node:path'
+import fs from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import { setTimeout as sleep } from 'node:timers/promises'
 import { memory } from '@feathersjs/memory'
 import core, { kdk, hooks, declareService } from '../src/index.js'
 
 const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+const __dirname = path.dirname(__filename)
 
 describe('core:schemas', () => {
-  let app, server, service
-
-  const schemaPath = path.join(__dirname, 'data', 'schema.json')
-  const schema = fs.readJsonSync(schemaPath)
-  const invalidObjects = fs.readJsonSync(path.join(__dirname, 'data', 'invalid-objects.json'))
-  const validObjects = fs.readJsonSync(path.join(__dirname, 'data', 'valid-objects.json'))
+  let app, service
+  const schema = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'schema.json'), 'utf8'))
+  const invalidObjects = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'invalid-objects.json'), 'utf8'))
+  const validObjects = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'valid-objects.json'), 'utf8'))
 
   beforeAll(async () => {
     app = kdk()
@@ -61,15 +60,17 @@ describe('core:schemas', () => {
       // Log any error to help debug tests
       // console.log(e.data)
     }
+    console.log(error)
     expect(error).toBeUndefined()
     const result = await service.find({ query: {}, paginate: false })
+    console.log(result)
     expect(result.length === 2).toBe(true)
   }, 5000)
 
   // Cleanup
   afterAll(async () => {
-    if (server) await server.close()
     await app.db.instance.dropDatabase()
+    await sleep(100)
     await app.db.disconnect()
   })
 })

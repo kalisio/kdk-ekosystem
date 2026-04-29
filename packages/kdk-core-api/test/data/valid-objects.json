@@ -5,7 +5,7 @@
       "type": "manual",
       "id": "PUI-PPI-B9-1",
       "date": "2022-01-07",
-      "time": "16:20:02",
+      "time": "16:20:02Z",
       "value": 61
     },
     "geometry": {
@@ -23,7 +23,7 @@
       "type": "automatic",
       "id": "PUI-PPI-B9-2",
       "date": "2022-01-07",
-      "time": "16:20:20",
+      "time": "16:20:20Z",
       "value": 150
     },
     "geometry": {
