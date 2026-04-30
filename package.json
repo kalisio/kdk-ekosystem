@@ -17,6 +17,7 @@
     "clear": "pnpm -r exec rimraf node_modules dist coverage",
     "docs:build": "pnpm --filter docs run build",
     "docs:dev": "pnpm --filter docs run dev",
+    "inspect": "pnpm knip",
     "lint": "pnpm -r lint",
     "lint:kdk-core-api": "pnpm --filter @kalisio/kdk-core-api lint",
     "lint:kdk-core-common": "pnpm --filter @kalisio/kdk-core-common lint",
@@ -57,6 +58,7 @@
     "cross-env": "catalog:",
     "husky": "catalog:",
     "lcov-result-merger": "catalog:",
+    "knip": "catalog:",
     "lint-staged": "catalog:",
     "rimraf": "catalog:",
     "standard": "catalog:",
@@ -71,6 +73,6 @@
   },
   "metaCatalog": {
     "version": "0.9.0",
-    "syncedAt": "2026-04-29T12:31:14.135Z"
+    "syncedAt": "2026-04-30T08:13:11.933Z"
   }
 }
