@@ -1,6 +1,7 @@
 {
   "name": "docs",
   "description": "The Kalisio Development Kit Packages Ecosystem - Documentation",
+  "packageManager": "pnpm@10.1.0",
   "type": "module",
   "private": true,
   "scripts": {
