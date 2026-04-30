@@ -1,0 +1,20 @@
+{
+  "name": "docs",
+  "description": "The Kalisio Development Kit Packages Ecosystem - Documentation",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "vitepress build",
+    "dev": "vitepress dev"
+  },
+  "dependencies": {
+    "keycloak-js": "catalog:",
+    "lodash": "catalog:",
+    "mermaid": "catalog:",
+    "moment": "catalog:",
+    "quasar": "catalog:",
+    "vitepress": "catalog:",
+    "vitepress-plugin-mermaid": "catalog:",
+    "vitepress-theme-kalisio": "catalog:"
+  }
+}

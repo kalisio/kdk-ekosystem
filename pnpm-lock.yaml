@@ -322,19 +322,6 @@ overrides:
 importers:
 
   .:
-    dependencies:
-      keycloak-js:
-        specifier: 'catalog:'
-        version: 23.0.7
-      lodash:
-        specifier: 'catalog:'
-        version: 4.18.1
-      moment:
-        specifier: 'catalog:'
-        version: 2.30.1
-      quasar:
-        specifier: 'catalog:'
-        version: 2.18.7
     devDependencies:
       '@changesets/cli':
         specifier: 'catalog:'
@@ -354,9 +341,6 @@ importers:
       lint-staged:
         specifier: 'catalog:'
         version: 16.4.0
-      mermaid:
-        specifier: 'catalog:'
-        version: 10.8.0
       rimraf:
         specifier: 'catalog:'
         version: 6.1.3
@@ -369,6 +353,27 @@ importers:
       vite-bundle-visualizer:
         specifier: 'catalog:'
         version: 1.2.1(rollup@4.60.0)
+      vitest:
+        specifier: 'catalog:'
+        version: 4.1.4(@types/node@25.5.0)(@vitest/coverage-v8@4.1.4)(happy-dom@20.8.9)(vite@7.3.1(@types/node@25.5.0)(yaml@2.8.3))
+
+  docs:
+    dependencies:
+      keycloak-js:
+        specifier: 'catalog:'
+        version: 23.0.7
+      lodash:
+        specifier: 'catalog:'
+        version: 4.18.1
+      mermaid:
+        specifier: 'catalog:'
+        version: 10.8.0
+      moment:
+        specifier: 'catalog:'
+        version: 2.30.1
+      quasar:
+        specifier: 'catalog:'
+        version: 2.18.7
       vitepress:
         specifier: 'catalog:'
         version: 1.6.4(@algolia/client-search@5.49.2)(@types/node@25.5.0)(jwt-decode@4.0.0)(postcss@8.5.8)(search-insights@2.17.3)(typescript@6.0.2)
@@ -378,9 +383,6 @@ importers:
       vitepress-theme-kalisio:
         specifier: 'catalog:'
         version: https://codeload.github.com/kalisio/vitepress-theme-kalisio/tar.gz/f9a0af8e766a6cf314b2bd29a1f58a13d3b33086(vitepress@1.6.4(@algolia/client-search@5.49.2)(@types/node@25.5.0)(jwt-decode@4.0.0)(postcss@8.5.8)(search-insights@2.17.3)(typescript@6.0.2))
-      vitest:
-        specifier: 'catalog:'
-        version: 4.1.4(@types/node@25.5.0)(@vitest/coverage-v8@4.1.4)(happy-dom@20.8.9)(vite@7.3.1(@types/node@25.5.0)(yaml@2.8.3))
 
   packages/kdk-core-api:
     dependencies:
@@ -562,7 +564,7 @@ importers:
     dependencies:
       '@feathersjs/client':
         specifier: 'catalog:'
-        version: 5.0.44(typescript@6.0.2)
+        version: 5.0.44
       '@kalisio/feathers-automerge':
         specifier: 'catalog:'
         version: 0.3.8
@@ -664,13 +666,13 @@ importers:
         version: 4.8.3
       vue:
         specifier: 'catalog:'
-        version: 3.5.30(typescript@6.0.2)
+        version: 3.5.30
       vue-i18n:
         specifier: 'catalog:'
-        version: 11.3.0(vue@3.5.30(typescript@6.0.2))
+        version: 11.3.0(vue@3.5.30)
       vue-router:
         specifier: 'catalog:'
-        version: 5.0.4(@vue/compiler-sfc@3.5.30)(vue@3.5.30(typescript@6.0.2))
+        version: 5.0.4(@vue/compiler-sfc@3.5.30)(vue@3.5.30)
     devDependencies:
       '@feathersjs/feathers':
         specifier: 'catalog:'
@@ -680,10 +682,10 @@ importers:
         version: 5.0.44
       '@quasar/quasar-app-extension-testing-unit-vitest':
         specifier: 'catalog:'
-        version: 1.2.4(@vue/test-utils@2.4.6)(quasar@2.18.7)(typescript@6.0.2)(vite@7.3.1(@types/node@25.5.0)(yaml@2.8.3))(vitest@4.1.4)(vue@3.5.30(typescript@6.0.2))
+        version: 1.2.4(@vue/test-utils@2.4.6)(quasar@2.18.7)(vite@7.3.1(@types/node@25.5.0)(yaml@2.8.3))(vitest@4.1.4)(vue@3.5.30)
       '@vitejs/plugin-vue':
         specifier: 'catalog:'
-        version: 6.0.5(vite@7.3.1(@types/node@25.5.0)(yaml@2.8.3))(vue@3.5.30(typescript@6.0.2))
+        version: 6.0.5(vite@7.3.1(@types/node@25.5.0)(yaml@2.8.3))(vue@3.5.30)
       '@vitest/coverage-v8':
         specifier: 'catalog:'
         version: 4.1.4(vitest@4.1.4)
@@ -753,7 +755,7 @@ importers:
         version: 4.1.4(vitest@4.1.4)
       '@weacast/core':
         specifier: 'catalog:'
-        version: 2.3.1(typescript@6.0.2)
+        version: 2.3.1
       cross-env:
         specifier: 'catalog:'
         version: 10.1.0
@@ -780,7 +782,7 @@ importers:
         version: link:../kdk-core-common
       '@weacast/core':
         specifier: 'catalog:'
-        version: 2.3.1(typescript@6.0.2)
+        version: 2.3.1
       geotiff:
         specifier: 'catalog:'
         version: 3.0.5
@@ -6936,7 +6938,7 @@ packages:
 
   uuid@3.4.0:
     resolution: {integrity: sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==}
-    deprecated: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
   uuid@8.3.2:
@@ -6945,6 +6947,7 @@ packages:
 
   uuid@9.0.1:
     resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
+    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
   uvu@0.5.6:
@@ -8463,7 +8466,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@feathersjs/authentication-client@5.0.44(typescript@6.0.2)':
+  '@feathersjs/authentication-client@5.0.44':
     dependencies:
       '@feathersjs/authentication': 5.0.44(typescript@6.0.2)
       '@feathersjs/commons': 5.0.44
@@ -8541,9 +8544,9 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@feathersjs/client@5.0.44(typescript@6.0.2)':
+  '@feathersjs/client@5.0.44':
     dependencies:
-      '@feathersjs/authentication-client': 5.0.44(typescript@6.0.2)
+      '@feathersjs/authentication-client': 5.0.44
       '@feathersjs/errors': 5.0.44
       '@feathersjs/feathers': 5.0.44
       '@feathersjs/rest-client': 5.0.44
@@ -8977,15 +8980,15 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@quasar/quasar-app-extension-testing-unit-vitest@1.2.4(@vue/test-utils@2.4.6)(quasar@2.18.7)(typescript@6.0.2)(vite@7.3.1(@types/node@25.5.0)(yaml@2.8.3))(vitest@4.1.4)(vue@3.5.30(typescript@6.0.2))':
+  '@quasar/quasar-app-extension-testing-unit-vitest@1.2.4(@vue/test-utils@2.4.6)(quasar@2.18.7)(vite@7.3.1(@types/node@25.5.0)(yaml@2.8.3))(vitest@4.1.4)(vue@3.5.30)':
     dependencies:
       '@vue/test-utils': 2.4.6
       happy-dom: 15.11.7
       lodash-es: 4.17.23
       quasar: 2.18.7
-      vite-tsconfig-paths: 5.1.4(typescript@6.0.2)(vite@7.3.1(@types/node@25.5.0)(yaml@2.8.3))
+      vite-tsconfig-paths: 5.1.4(vite@7.3.1(@types/node@25.5.0)(yaml@2.8.3))
       vitest: 4.1.4(@types/node@25.5.0)(@vitest/coverage-v8@4.1.4)(happy-dom@20.3.9)(vite@7.3.1(@types/node@25.5.0)(yaml@2.8.3))
-      vue: 3.5.30(typescript@6.0.2)
+      vue: 3.5.30
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -9750,11 +9753,11 @@ snapshots:
       vite: 5.4.21(@types/node@25.5.0)
       vue: 3.5.30(typescript@6.0.2)
 
-  '@vitejs/plugin-vue@6.0.5(vite@7.3.1(@types/node@25.5.0)(yaml@2.8.3))(vue@3.5.30(typescript@6.0.2))':
+  '@vitejs/plugin-vue@6.0.5(vite@7.3.1(@types/node@25.5.0)(yaml@2.8.3))(vue@3.5.30)':
     dependencies:
       '@rolldown/pluginutils': 1.0.0-rc.2
       vite: 7.3.1(@types/node@25.5.0)(yaml@2.8.3)
-      vue: 3.5.30(typescript@6.0.2)
+      vue: 3.5.30
 
   '@vitest/coverage-v8@4.1.4(vitest@4.1.4)':
     dependencies:
@@ -9811,7 +9814,7 @@ snapshots:
       convert-source-map: 2.0.0
       tinyrainbow: 3.1.0
 
-  '@vue-macros/common@3.1.2(vue@3.5.30(typescript@6.0.2))':
+  '@vue-macros/common@3.1.2(vue@3.5.30)':
     dependencies:
       '@vue/compiler-sfc': 3.5.30
       ast-kit: 2.2.0
@@ -9819,7 +9822,7 @@ snapshots:
       magic-string-ast: 1.0.3
       unplugin-utils: 0.3.1
     optionalDependencies:
-      vue: 3.5.30(typescript@6.0.2)
+      vue: 3.5.30
 
   '@vue/compiler-core@3.5.30':
     dependencies:
@@ -9906,6 +9909,12 @@ snapshots:
       '@vue/shared': 3.5.30
       vue: 3.5.30(typescript@6.0.2)
 
+  '@vue/server-renderer@3.5.30(vue@3.5.30)':
+    dependencies:
+      '@vue/compiler-ssr': 3.5.30
+      '@vue/shared': 3.5.30
+      vue: 3.5.30
+
   '@vue/shared@3.5.30': {}
 
   '@vue/test-utils@2.4.6':
@@ -9941,12 +9950,12 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@weacast/core@2.3.1(typescript@6.0.2)':
+  '@weacast/core@2.3.1':
     dependencies:
       '@feathersjs/authentication': 5.0.44(typescript@6.0.2)
       '@feathersjs/authentication-local': 5.0.44(typescript@6.0.2)
       '@feathersjs/authentication-oauth': 5.0.44(typescript@6.0.2)
-      '@feathersjs/client': 5.0.44(typescript@6.0.2)
+      '@feathersjs/client': 5.0.44
       '@feathersjs/configuration': 5.0.44(typescript@6.0.2)
       '@feathersjs/errors': 5.0.44
       '@feathersjs/express': 5.0.44(typescript@6.0.2)
@@ -14815,9 +14824,7 @@ snapshots:
 
   ts-dedent@2.2.0: {}
 
-  tsconfck@3.1.6(typescript@6.0.2):
-    optionalDependencies:
-      typescript: 6.0.2
+  tsconfck@3.1.6: {}
 
   tsconfig-paths@3.15.0:
     dependencies:
@@ -15035,11 +15042,11 @@ snapshots:
       - rollup
       - supports-color
 
-  vite-tsconfig-paths@5.1.4(typescript@6.0.2)(vite@7.3.1(@types/node@25.5.0)(yaml@2.8.3)):
+  vite-tsconfig-paths@5.1.4(vite@7.3.1(@types/node@25.5.0)(yaml@2.8.3)):
     dependencies:
       debug: 4.4.3
       globrex: 0.1.2
-      tsconfck: 3.1.6(typescript@6.0.2)
+      tsconfck: 3.1.6
     optionalDependencies:
       vite: 7.3.1(@types/node@25.5.0)(yaml@2.8.3)
     transitivePeerDependencies:
@@ -15191,18 +15198,18 @@ snapshots:
 
   vue-component-type-helpers@2.2.12: {}
 
-  vue-i18n@11.3.0(vue@3.5.30(typescript@6.0.2)):
+  vue-i18n@11.3.0(vue@3.5.30):
     dependencies:
       '@intlify/core-base': 11.3.0
       '@intlify/devtools-types': 11.3.0
       '@intlify/shared': 11.3.0
       '@vue/devtools-api': 6.6.4
-      vue: 3.5.30(typescript@6.0.2)
+      vue: 3.5.30
 
-  vue-router@5.0.4(@vue/compiler-sfc@3.5.30)(vue@3.5.30(typescript@6.0.2)):
+  vue-router@5.0.4(@vue/compiler-sfc@3.5.30)(vue@3.5.30):
     dependencies:
       '@babel/generator': 7.29.1
-      '@vue-macros/common': 3.1.2(vue@3.5.30(typescript@6.0.2))
+      '@vue-macros/common': 3.1.2(vue@3.5.30)
       '@vue/devtools-api': 8.1.1
       ast-walker-scope: 0.8.3
       chokidar: 5.0.0
@@ -15217,10 +15224,18 @@ snapshots:
       tinyglobby: 0.2.15
       unplugin: 3.0.0
       unplugin-utils: 0.3.1
-      vue: 3.5.30(typescript@6.0.2)
+      vue: 3.5.30
       yaml: 2.8.3
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.30
+
+  vue@3.5.30:
+    dependencies:
+      '@vue/compiler-dom': 3.5.30
+      '@vue/compiler-sfc': 3.5.30
+      '@vue/runtime-dom': 3.5.30
+      '@vue/server-renderer': 3.5.30(vue@3.5.30)
+      '@vue/shared': 3.5.30
 
   vue@3.5.30(typescript@6.0.2):
     dependencies:

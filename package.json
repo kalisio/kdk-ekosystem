@@ -15,8 +15,8 @@
     "changeset:status": "changeset status",
     "changeset:version": "changeset version",
     "clear": "pnpm -r exec rimraf node_modules dist coverage",
-    "docs:build": "vitepress build docs",
-    "docs:dev": "vitepress dev docs",
+    "docs:build": "pnpm --filter docs run build",
+    "docs:dev": "pnpm --filter docs run dev",
     "lint": "pnpm -r lint",
     "lint:kdk-core-api": "pnpm --filter @kalisio/kdk-core-api lint",
     "lint:kdk-core-common": "pnpm --filter @kalisio/kdk-core-common lint",
@@ -50,12 +50,7 @@
     "url": "https://github.com/kalisio/kdk-ekosystem/issues"
   },
   "homepage": "git://github.com/kalisio/kdk-ekosystem#readme",
-  "dependencies": {
-    "keycloak-js": "catalog:",
-    "lodash": "catalog:",
-    "moment": "catalog:",
-    "quasar": "catalog:"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@changesets/cli": "catalog:",
     "@vitest/coverage-v8": "catalog:",
@@ -63,14 +58,10 @@
     "husky": "catalog:",
     "lcov-result-merger": "catalog:",
     "lint-staged": "catalog:",
-    "mermaid": "catalog:",
     "rimraf": "catalog:",
     "standard": "catalog:",
     "vite": "catalog:",
     "vite-bundle-visualizer": "catalog:",
-    "vitepress": "catalog:",
-    "vitepress-plugin-mermaid": "catalog:",
-    "vitepress-theme-kalisio": "catalog:",
     "vitest": "catalog:"
   },
   "pnpm": {
