@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "description": "The Kalisio Development Kit Packages Ecosystem - Documentation",
+  "description": "kdk-ekosystem docs",
   "packageManager": "pnpm@10.1.0",
   "type": "module",
   "private": true,
