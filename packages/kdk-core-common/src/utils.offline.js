@@ -1,6 +1,9 @@
 import _ from 'lodash'
 import makeDebug from 'debug'
+import { url } from '@kalisio/common-core'
 const debug = makeDebug('kdk:core:offline')
+
+export const buildUrl = url.build
 
 export async function makeServiceSnapshot (service, options) {
   let { baseQuery, baseQueries, offlineService, dataPath = 'data' } = options

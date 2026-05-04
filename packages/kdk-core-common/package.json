@@ -46,6 +46,7 @@
   "dependencies": {
     "@casl/ability": "catalog:",
     "@casl/mongoose": "catalog:",
+    "@kalisio/common-core": "catalog:",
     "ajv": "catalog:",
     "ajv-formats": "catalog:",
     "ajv-keywords": "catalog:",

@@ -23,7 +23,7 @@ export default function (app, options) {
 
       const uniqueIndex = _.find(indexes, { name, unique: true })
       if (uniqueIndex) options.Model.dropIndex(name).then(() => createCollationIndex(name, language)).catch(() => {})
-      else createCollationIndex(name, language)
+      else createCollationIndex(name, language).catch(() => {})
     }
   }).catch(error => {
     if (error.codeName === 'NamespaceNotFound') {
@@ -31,9 +31,9 @@ export default function (app, options) {
       for (let i = 0; i < languages.length; i++) {
         const language = languages[i]
         const name = `name-type-${language}`
-        createCollationIndex(name, language)
+        createCollationIndex(name, language).catch(() => {})
       }
     }
   })
-  options.Model.createIndex({ name: 'text', label: 'text' })
+  options.Model.createIndex({ name: 'text', label: 'text' }).catch(() => {})
 }

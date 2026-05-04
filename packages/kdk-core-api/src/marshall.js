@@ -9,6 +9,7 @@ export function marshallComparisonFields (queryObject) {
     if (is.plainObject(value)) {
       marshallComparisonFields(value)
     } else if ((key === '$lt') || (key === '$lte') || (key === '$gt') || (key === '$gte')) {
+      if (value instanceof Date) return
       const number = _.toNumber(value)
       // Update from query string to number if required
       if (!Number.isNaN(number)) {
