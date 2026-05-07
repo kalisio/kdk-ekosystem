@@ -56,6 +56,7 @@
     "lodash": "catalog:",
     "moment": "catalog:",
     "sift": "catalog:",
+    "minimatch": "^10.0.0",
     "superagent": "catalog:"
   },
   "devDependencies": {
