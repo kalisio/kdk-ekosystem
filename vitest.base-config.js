@@ -1,8 +1,4 @@
-import { fileURLToPath } from 'node:url'
-import path from 'node:path'
 import { defineConfig } from 'vitest/config'
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export const baseConfig = defineConfig({
   test: {
@@ -22,14 +18,6 @@ export const baseConfig = defineConfig({
       ],
       reporter: ['text', 'html', 'lcov'],
       reportsDirectory: './coverage/'
-    }
-  },
-  resolve: {
-    alias: {
-      '@kalisio/kdk-core-common': path.resolve(__dirname, 'packages/kdk-core-common/src/index.js'),
-      '@kalisio/kdk-core-api': path.resolve(__dirname, 'packages/kdk-core-api/src/index.js'),
-      '@kalisio/kdk-map-common': path.resolve(__dirname, 'packages/kdk-map-common/src/index.js'),
-      '@kalisio/kdk-map-api': path.resolve(__dirname, 'packages/kdk-map-api/src/index.js')
     }
   }
 })

@@ -22,12 +22,13 @@
     "lint:kdk-core-ui": "pnpm --filter @kalisio/kdk-core-ui lint",
     "lint:kdk-map-api": "pnpm --filter @kalisio/kdk-map-api lint",
     "lint:kdk-map-common": "pnpm --filter @kalisio/kdk-map-common lint",
-    "posttest": "pnpm lcov-result-merger --prepend-source-files 'packages/*/coverage/lcov.info' coverage/lcov.info",
     "prepare": "husky",
     "prerelease": "pnpm build",
-    "pretest": "mkdir -p coverage",
     "release": "changeset publish",
+    "postrelease": "git push --follow-tags",
+    "pretest": "mkdir -p coverage",
     "test": "pnpm -r test",
+    "posttest": "pnpm lcov-result-merger --prepend-source-files 'packages/*/coverage/lcov.info' coverage/lcov.info",
     "test:kdk-core-api": "pnpm --filter @kalisio/kdk-core-api test",
     "test:kdk-core-common": "pnpm --filter @kalisio/kdk-core-common test",
     "test:kdk-core-ui": "pnpm --filter @kalisio/kdk-core-ui test",
@@ -45,7 +46,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kalisio/kdk-ekosystem.git"
+    "git+https": "git://github.com/kalisio/kdk-ekosystem.git"
   },
   "bugs": {
     "url": "https://github.com/kalisio/kdk-ekosystem/issues"
@@ -55,7 +56,6 @@
   "devDependencies": {
     "@changesets/cli": "catalog:",
     "@vitest/coverage-v8": "catalog:",
-    "cross-env": "catalog:",
     "husky": "catalog:",
     "lcov-result-merger": "catalog:",
     "knip": "catalog:",
@@ -63,7 +63,6 @@
     "rimraf": "catalog:",
     "standard": "catalog:",
     "vite": "catalog:",
-    "vite-bundle-visualizer": "catalog:",
     "vitest": "catalog:"
   },
   "pnpm": {
@@ -72,7 +71,7 @@
     }
   },
   "metaCatalog": {
-    "version": "0.9.0",
-    "syncedAt": "2026-04-30T08:13:11.933Z"
+    "version": "0.10.0",
+    "syncedAt": "2026-05-11T21:09:57.787Z"
   }
 }

@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     ".": {
+      "development": "./src/index.js",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
@@ -14,6 +15,14 @@
     "dist",
     "src/schemas"
   ],
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs"
+      }
+    }
+  },
   "standard": {
     "ignore": [
       "dist/**"
@@ -36,7 +45,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kalisio/kdk-ekosystem.git",
+    "url": "git+https://github.com/kalisio/kdk-ekosystem.git",
     "directory": "packages/kdk-core-common"
   },
   "bugs": {
