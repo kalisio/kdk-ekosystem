@@ -2,6 +2,7 @@
   "name": "@kalisio/kdk-core-api",
   "description": "The Kalisio Development Kit Core API Package",
   "version": "0.0.0",
+  "packageManager": "pnpm@10.1.0",
   "type": "module",
   "exports": {
     ".": {

@@ -2,6 +2,7 @@
   "name": "@kalisio/kdk-core-common",
   "description": "The Kalisio Development Kit Core Common Package",
   "version": "0.0.0",
+  "packageManager": "pnpm@10.1.0",
   "type": "module",
   "exports": {
     ".": {

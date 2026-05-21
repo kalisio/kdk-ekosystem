@@ -2,6 +2,7 @@
   "name": "@kalisio/kdk-map-api",
   "description": "The Kalisio Development Kit Map API Package",
   "version": "0.0.0",
+  "packageManager": "pnpm@10.1.0",
   "type": "module",
   "exports": {
     ".": {
