@@ -42,6 +42,7 @@ done
 begin_group "Setting up workspace ..."
 
 WORKSPACE_REF="${WORKSPACE_TAG:-${WORKSPACE_BRANCH:-}}"
+echo "HELLO" $WORKSPACE_REF $WORKSPACE_KIND
 
 if [ "$CI" != true ]; then
     shift $((OPTIND-1))
@@ -50,20 +51,11 @@ if [ "$CI" != true ]; then
     # Clone project in the workspace
     git_shallow_clone "$KALISIO_GITHUB_URL/kalisio/kdk.git" "$WORKSPACE_DIR/kdk" "$WORKSPACE_REF"
 
-    # unset KALISIO_DEVELOPMENT_DIR because we want kli to clone everyhting in $WORKSPACE_DIR
+    # unset KALISIO_DEVELOPMENT_DIR because we want kli to clone everything in $WORKSPACE_DIR
     unset KALISIO_DEVELOPMENT_DIR
 fi
 
 setup_lib_workspace "$WORKSPACE_DIR" "$KALISIO_GITHUB_URL/kalisio/development.git"
-
-echo $WORKSPACE_REF
-
-# Use kli on master branch
-if [ "$WORKSPACE_REF" = "master" ]; then
-    export DEBUG="kli"
-    run_kli "$WORKSPACE_DIR" "$WORKSPACE_NODE" "$WORKSPACE_DIR/development/workspaces/libs/kdk-ekosystem/dev/kdk-ekosystem.js"
-    ls -al "$WORKSPACE_DIR/kdk-ekosystem/packages/kdk-core-api/node_modules/@kalisio"
-fi
 
 # Only use kli when requested + on master branch
 # otherwise package.json version will be used
