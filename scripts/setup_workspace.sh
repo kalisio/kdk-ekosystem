@@ -64,7 +64,7 @@ if [ "$WORKSPACE_KIND" != "nokli" ]; then
         run_kli "$WORKSPACE_DIR" "$WORKSPACE_NODE" "$WORKSPACE_DIR/development/workspaces/libs/kdk-ekosystem/dev/kdk-ekosystem.js" "$WORKSPACE_KIND"
         ls -al "$WORKSPACE_DIR/kdk-ekosystem/packages/kdk-core-api/node_modules/@kalisio"
         ls "$WORKSPACE_DIR/kdk-ekosystem/packages/kdk-core-api/node_modules/@kalisio/feathers-s3"
-        ls "$WORKSPACE_DIR/kdk-ekosystem/packages/kdk-core-api/node_modules/@kalisio/feathers-s3/src"
+        cat "$WORKSPACE_DIR/kdk-ekosystem/packages/kdk-core-api/node_modules/@kalisio/feathers-s3/package.json"
     else
         cd "$WORKSPACE_DIR/kdk-ekosystem" && nvm exec "$WORKSPACE_NODE" pnpm install && cd ~-
     fi
