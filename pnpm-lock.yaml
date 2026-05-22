@@ -329,6 +329,9 @@ importers:
       '@vitest/coverage-v8':
         specifier: 'catalog:'
         version: 4.1.4(vitest@4.1.4)
+      cross-env:
+        specifier: 'catalog:'
+        version: 10.1.0
       husky:
         specifier: 'catalog:'
         version: 9.1.7

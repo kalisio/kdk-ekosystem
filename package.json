@@ -56,6 +56,7 @@
   "devDependencies": {
     "@changesets/cli": "catalog:",
     "@vitest/coverage-v8": "catalog:",
+    "cross-env": "catalog:",
     "husky": "catalog:",
     "lcov-result-merger": "catalog:",
     "knip": "catalog:",
