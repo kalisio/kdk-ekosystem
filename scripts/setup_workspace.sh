@@ -37,6 +37,8 @@ fi
 
 setup_lib_workspace "$WORKSPACE_DIR" "$KALISIO_GITHUB_URL/kalisio/development.git"
 
+echo $WORKSPACE_REF
+
 # Use kli on master branch
 if [ "$WORKSPACE_REF" = "master" ]; then
     export DEBUG="kli"
