@@ -14,7 +14,7 @@ WORKSPACE_DIR="$(dirname "$ROOT_DIR")"
 
 WORKSPACE_NODE=20
 WORKSPACE_KIND=klifull
-WORKSPACE_BRANCH=
+WORKSPACE_BRANCH=master
 WORKSPACE_TAG=
 OPT_LIST="n:k:"
 if [ "$CI" != true ]; then
@@ -43,12 +43,14 @@ begin_group "Setting up workspace ..."
 
 WORKSPACE_REF="${WORKSPACE_TAG:-${WORKSPACE_BRANCH:-}}"
 
+echo $WORKSPACE_REF $WORKSPACE_KIND
+
 if [ "$CI" != true ]; then
     shift $((OPTIND-1))
     WORKSPACE_DIR="$1"
 
     # Clone project in the workspace
-    git_shallow_clone "$KALISIO_GITHUB_URL/kalisio/kdk.git" "$WORKSPACE_DIR/kdk" "$WORKSPACE_REF"
+    git_shallow_clone "$KALISIO_GITHUB_URL/kalisio/kdk-ekosystem.git" "$WORKSPACE_DIR/kdk-ekosystem" "$WORKSPACE_REF"
 
     # unset KALISIO_DEVELOPMENT_DIR because we want kli to clone everything in $WORKSPACE_DIR
     unset KALISIO_DEVELOPMENT_DIR
@@ -62,9 +64,7 @@ if [ "$WORKSPACE_KIND" != "nokli" ]; then
     # On master branch we use kli, on other branches / tags we just install
     if [ "$WORKSPACE_REF" = "master" ]; then
         run_kli "$WORKSPACE_DIR" "$WORKSPACE_NODE" "$WORKSPACE_DIR/development/workspaces/libs/kdk-ekosystem/dev/kdk-ekosystem.js" "$WORKSPACE_KIND"
-        ls -al "$WORKSPACE_DIR/kdk-ekosystem/packages/kdk-core-api/node_modules/@kalisio"
-        ls "$WORKSPACE_DIR/kdk-ekosystem/packages/kdk-core-api/node_modules/@kalisio/feathers-s3"
-        cat "$WORKSPACE_DIR/kdk-ekosystem/packages/kdk-core-api/node_modules/@kalisio/feathers-s3/package.json"
+        pnpm --version
     else
         cd "$WORKSPACE_DIR/kdk-ekosystem" && nvm exec "$WORKSPACE_NODE" pnpm install && cd ~-
     fi

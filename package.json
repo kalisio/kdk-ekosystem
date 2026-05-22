@@ -52,24 +52,18 @@
     "url": "https://github.com/kalisio/kdk-ekosystem/issues"
   },
   "homepage": "git://github.com/kalisio/kdk-ekosystem#readme",
-  "dependencies": {},
   "devDependencies": {
     "@changesets/cli": "catalog:",
     "@vitest/coverage-v8": "catalog:",
     "cross-env": "catalog:",
     "husky": "catalog:",
-    "lcov-result-merger": "catalog:",
     "knip": "catalog:",
+    "lcov-result-merger": "catalog:",
     "lint-staged": "catalog:",
     "rimraf": "catalog:",
     "standard": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:"
-  },
-  "pnpm": {
-    "overrides": {
-      "@kalisio/meta-ekosystem": "link:../meta-ekosystem"
-    }
   },
   "metaCatalog": {
     "version": "0.10.0",
