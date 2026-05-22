@@ -14,14 +14,6 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "exports": {
-      ".": {
-        "import": "./dist/index.mjs",
-        "require": "./dist/index.cjs"
-      }
-    }
-  },
   "standard": {
     "ignore": [
       "dist/**"
@@ -37,7 +29,8 @@
     "kalisio"
   ],
   "author": {
-    "name": "KALISIO <contact@kalisio.com>",
+    "name": "Kalisio",
+    "email": "contact@kalisio.com",
     "url": "https://github.com/kalisio"
   },
   "contributors": [],
@@ -100,10 +93,20 @@
   "devDependencies": {
     "@feathersjs/memory": "catalog:",
     "@kalisio/feathers-webpush": "catalog:",
-    "@vitest/coverage-v8": "catalog:",
     "config": "catalog:",
     "googleapis": "^21.3.0",
-    "superagent": "catalog:",
-    "vitest": "catalog:"
+    "superagent": "catalog:"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs"
+      }
+    }
   }
 }

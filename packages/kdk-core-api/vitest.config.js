@@ -11,8 +11,5 @@ export default mergeConfig(baseConfig, defineConfig({
     name: 'core-api',
     environment: 'node',
     maxWorkers: 1
-  },
-  resolve: {
-    conditions: ['development', 'import', 'module', 'browser', 'default']
   }
 }))

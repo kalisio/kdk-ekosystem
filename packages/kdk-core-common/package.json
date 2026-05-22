@@ -16,14 +16,6 @@
     "dist",
     "src/schemas"
   ],
-  "publishConfig": {
-    "exports": {
-      ".": {
-        "import": "./dist/index.mjs",
-        "require": "./dist/index.cjs"
-      }
-    }
-  },
   "standard": {
     "ignore": [
       "dist/**"
@@ -39,7 +31,8 @@
     "kalisio"
   ],
   "author": {
-    "name": "KALISIO <contact@kalisio.com>",
+    "name": "Kalisio",
+    "email": "contact@kalisio.com",
     "url": "https://github.com/kalisio"
   },
   "contributors": [],
@@ -66,5 +59,17 @@
   "devDependencies": {
     "@vitest/coverage-v8": "catalog:",
     "vitest": "catalog:"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs"
+      }
+    }
   }
 }
