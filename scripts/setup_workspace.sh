@@ -64,7 +64,6 @@ if [ "$WORKSPACE_KIND" != "nokli" ]; then
     # On master branch we use kli, on other branches / tags we just install
     if [ "$WORKSPACE_REF" = "master" ]; then
         run_kli "$WORKSPACE_DIR" "$WORKSPACE_NODE" "$WORKSPACE_DIR/development/workspaces/libs/kdk-ekosystem/dev/kdk-ekosystem.js" "$WORKSPACE_KIND"
-        pnpm --version
     else
         cd "$WORKSPACE_DIR/kdk-ekosystem" && nvm exec "$WORKSPACE_NODE" pnpm install && cd ~-
     fi
