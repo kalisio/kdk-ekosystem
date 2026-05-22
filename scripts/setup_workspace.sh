@@ -39,7 +39,9 @@ setup_lib_workspace "$WORKSPACE_DIR" "$KALISIO_GITHUB_URL/kalisio/development.gi
 
 # Use kli on master branch
 if [ "$WORKSPACE_REF" = "master" ]; then
+    export DEBUG="kli"
     run_kli "$WORKSPACE_DIR" "$WORKSPACE_NODE" "$WORKSPACE_DIR/development/workspaces/libs/kdk-ekosystem/dev/kdk-ekosystem.js"
+    ls -al "$WORKSPACE_DIR/kdk-ekosystem/packages/kdk-core-api/node_modules/@kalisio"
 fi
 
 end_group "Setting up workspace ..."
