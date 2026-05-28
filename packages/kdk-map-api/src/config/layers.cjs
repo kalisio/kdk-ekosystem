@@ -2,7 +2,7 @@ const minimatch = require('minimatch')
 const makeDebug = require('debug')
 const debug = makeDebug('kdk:map:config:layers')
 
-module.exports = function (layerFiles, context) {
+const loadLayers = function (layerFiles, context) {
   // Request layer definition files
   debug('Processing the following layer definition files to build catalog from', layerFiles)
 
@@ -56,3 +56,4 @@ module.exports = function (layerFiles, context) {
     return allowed && !skipped
   })
 }
+module.exports = { loadLayers }

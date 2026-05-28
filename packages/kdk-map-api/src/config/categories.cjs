@@ -1,7 +1,7 @@
 const makeDebug = require('debug')
 const debug = makeDebug('kdk:map:config:categories')
 
-module.exports = function (categoryFiles, context) {
+const loadCategories = function (categoryFiles, context) {
   // Request categories definition files
   debug('Processing the following category definition files to build catalog from', categoryFiles)
 
@@ -43,3 +43,5 @@ module.exports = function (categoryFiles, context) {
     return !isFiltered
   })
 }
+
+module.exports = { loadCategories }

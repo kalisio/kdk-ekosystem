@@ -1,17 +1,13 @@
 import makeDebug from 'debug'
 import services from './services/index.js'
 import * as hooks from './hooks/index.js'
-import kdkMapApiLayersLoader from './config/layers.cjs'
-import kdkMapApiCategoriesLoader from './config/categories.cjs'
-import kdkMapApiSublegendsLoader from './config/sublegends.cjs'
+import config from './config/index.cjs'
 
 export * from './services/index.js'
 export { hooks }
-export { kdkMapApiLayersLoader }
-export { kdkMapApiCategoriesLoader }
-export { kdkMapApiSublegendsLoader }
 export * from './marshall.js'
 export * from '@kalisio/kdk-map-common'
+export { config }
 
 const debug = makeDebug('kdk:map')
 

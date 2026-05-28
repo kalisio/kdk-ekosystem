@@ -1,7 +1,7 @@
 const makeDebug = require('debug')
 const debug = makeDebug('kdk:map:config:sublegends')
 
-module.exports = function (sublegendFiles, context) {
+const loadSublegends = function (sublegendFiles, context) {
   // Request sublegends definition files
   debug('Processing the following legend definition files to build catalog from', sublegendFiles)
 
@@ -40,3 +40,5 @@ module.exports = function (sublegendFiles, context) {
     return !isFiltered
   })
 }
+
+module.exports = { loadSublegends }
