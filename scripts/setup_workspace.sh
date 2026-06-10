@@ -43,8 +43,6 @@ begin_group "Setting up workspace ..."
 
 WORKSPACE_REF="${WORKSPACE_TAG:-${WORKSPACE_BRANCH:-}}"
 
-echo $WORKSPACE_REF $WORKSPACE_KIND
-
 if [ "$CI" != true ]; then
     shift $((OPTIND-1))
     WORKSPACE_DIR="$1"
