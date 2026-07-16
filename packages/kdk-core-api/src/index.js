@@ -11,11 +11,10 @@ export * from './application.js'
 export * from './marshall.js'
 export * from '@kalisio/kdk-core-common'
 
-const debug = makeDebug('kdk:core')
+const debug = makeDebug('kdk:core:api')
 
-export default async function init (app) {
+export async function initialize (app) {
   debug('Initializing KDK core')
-
   Schema.initialize(app.get('schema'))
   await app.configure(services)
 }
