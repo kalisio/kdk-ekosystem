@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import authentication from '@feathersjs/authentication'
 import request from 'superagent'
-import core, { kdk } from '../src/index.js'
+import core, { createApplication } from '../src/index.js'
 
 const { authenticate } = authentication.hooks
 
@@ -10,7 +10,7 @@ describe('core:authentication', () => {
     userService, userObject, authenticationService
 
   beforeAll(async () => {
-    app = kdk()
+    app = createApplication()
     port = 3100 + Math.floor(Math.random() * 100)
     baseUrl = `http://localhost:${port}${app.get('apiPath')}`
     await app.db.connect()

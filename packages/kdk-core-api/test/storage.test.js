@@ -4,7 +4,7 @@ import fs from 'node:fs'
 import { fileURLToPath } from 'url'
 import request from 'superagent'
 import { Blob } from 'buffer'
-import core, { kdk, hooks } from '../src/index.js'
+import core, { createApplication, hooks } from '../src/index.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -21,7 +21,7 @@ describe('core:storage', () => {
   const blob = new Blob([fileContent], { type: fileType })
 
   beforeAll(async () => {
-    app = kdk()
+    app = createApplication()
     // Register log hook
     app.hooks({ error: { all: hooks.log } })
     port = 3100 + Math.floor(Math.random() * 100)

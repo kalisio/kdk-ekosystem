@@ -3,14 +3,14 @@ import _ from 'lodash'
 import { authenticate } from '@feathersjs/authentication'
 import { iff, disallow, isProvider, keep, discard } from 'feathers-hooks-common'
 import request from 'superagent'
-import core, { kdk, hooks } from '../src/index.js'
+import core, { createApplication, hooks } from '../src/index.js'
 
 describe('core:users', () => {
   let app, server, port, baseUrl, userIdAccessToken, emailAccessToken, phoneAccessToken, statelessAccessToken, adminAccessToken,
     userService, userObject, anotherUserObject, authenticationService
 
   beforeAll(async () => {
-    app = kdk()
+    app = createApplication()
     port = 3100 + Math.floor(Math.random() * 100)
     baseUrl = `http://localhost:${port}${app.get('apiPath')}`
     await app.db.connect()

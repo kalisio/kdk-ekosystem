@@ -3,7 +3,7 @@ import _ from 'lodash'
 import path from 'path'
 import fs from 'fs-extra'
 import { fileURLToPath } from 'url'
-import core, { kdk, hooks, permissions } from '@kalisio/kdk-core-api'
+import core, { createApplication, hooks, permissions } from '@kalisio/kdk-core-api'
 import map, {
   permissions as mapPermissions, createCatalogService, createProjectsService
 } from '../kdk-map-api/src/index.js'
@@ -22,7 +22,7 @@ describe('map:catalog', () => {
     // Then rules for maps
     permissions.defineAbilities.registerHook(mapPermissions.defineUserAbilities)
 
-    app = kdk()
+    app = createApplication()
     // Register authorisation/log hook
     app.hooks({
       before: { all: [hooks.authorise] },

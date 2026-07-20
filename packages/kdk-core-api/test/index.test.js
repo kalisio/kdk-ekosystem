@@ -5,7 +5,7 @@ import assert from 'assert'
 import fs from 'fs-extra'
 import request from 'superagent'
 import fuzzySearch from 'feathers-mongodb-fuzzy-search'
-import core, { kdk, hooks, permissions, createMessagesService } from '../src/index.js'
+import core, { createApplication, hooks, permissions, createMessagesService } from '../src/index.js'
 import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -20,7 +20,7 @@ describe('core:services', () => {
     // Register default rules for all users
     permissions.defineAbilities.registerHook(permissions.defineUserAbilities)
 
-    app = kdk()
+    app = createApplication()
     // Register hooks
     app.hooks({
       before: { all: hooks.authorise },

@@ -1,11 +1,11 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
-import core, { kdk, hooks } from '../src/index.js'
+import core, { createApplication, hooks } from '../src/index.js'
 
 describe('core:import-export', () => {
   let app, server, port, usersService, storageService, importExportService
 
   beforeAll(async () => {
-    app = kdk()
+    app = createApplication()
     // Register log hook
     app.hooks({ error: { all: hooks.log } })
     port = 3100 + Math.floor(Math.random() * 100)

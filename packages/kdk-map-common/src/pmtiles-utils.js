@@ -72,7 +72,7 @@ export function applyLayerFilters (filterFn, paintRules) {
       rule.filter = (zoom, feature) => {
         const kdkFilter = rule.kdkFilter(zoom, feature)
         const filter = filterFn({ zoom, feature, properties: feature.props })
-        // Final filter = kdk style filter + updated filter
+        // Final filter = createApplication style filter + updated filter
         return kdkFilter && filter
       }
     } else {

@@ -4,7 +4,7 @@ import fs from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { setTimeout as sleep } from 'node:timers/promises'
 import { memory } from '@feathersjs/memory'
-import core, { kdk, hooks, declareService } from '../src/index.js'
+import core, { createApplication, hooks, declareService } from '../src/index.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -16,7 +16,7 @@ describe('core:schemas', () => {
   const validObjects = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'valid-objects.json'), 'utf8'))
 
   beforeAll(async () => {
-    app = kdk()
+    app = createApplication()
     // Register log hook
     app.hooks({ error: { all: hooks.log } })
     await app.db.connect()

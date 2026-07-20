@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import _ from 'lodash'
 import config from 'config'
 import { addSubscription, removeSubscription } from '@kalisio/feathers-webpush/client'
-import core, { kdk, hooks } from '../src/index.js'
+import core, { createApplication, hooks } from '../src/index.js'
 import { permissions } from '@kalisio/kdk-core-common'
 import { createMailerStub } from './utils.js'
 
@@ -44,7 +44,7 @@ describe('core:push', () => {
       auth: { user: config.mailer.auth.user },
       templateDir: config.mailer.templateDir
     })
-    app = kdk({
+    app = createApplication({
       mailer: mailerStub
     })
     // Register authorization/log hook

@@ -1,12 +1,12 @@
 import { expect, describe, it, beforeAll, afterAll } from 'vitest'
-import core, { kdk, hooks as coreHooks } from '@kalisio/kdk-core-api'
+import core, { createApplication, hooks as coreHooks } from '@kalisio/kdk-core-api'
 import map from '../kdk-map-api/src/index.js'
 
 describe('map:styles', () => {
   let app, server, port, usersService, stylesService, tagsService
 
   beforeAll(async () => {
-    app = kdk()
+    app = createApplication()
     // Register log hook
     app.hooks({ error: { all: coreHooks.log } })
     port = 3100 + Math.floor(Math.random() * 100)

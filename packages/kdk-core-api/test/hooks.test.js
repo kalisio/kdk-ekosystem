@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { memory } from '@feathersjs/memory'
 import assert from 'node:assert'
 import fuzzySearch from 'feathers-mongodb-fuzzy-search'
-import { kdk, hooks } from '../src/index.js'
+import { createApplication, hooks } from '../src/index.js'
 import { ObjectId } from 'mongodb'
 
 describe('core:hooks', () => {
@@ -330,7 +330,7 @@ describe('core:hooks', () => {
   })
 
   it('generate JWT', async () => {
-    const app = kdk()
+    const app = createApplication()
     const config = app.get('authentication')
     const hook = {
       type: 'before',
@@ -345,7 +345,7 @@ describe('core:hooks', () => {
   })
 
   it('generate custom JWT', async () => {
-    const app = kdk()
+    const app = createApplication()
     const config = app.get('authentication')
     const hook = {
       type: 'before',
