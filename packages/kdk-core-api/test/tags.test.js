@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
-import core, { createApplication, hooks } from '../src/index.js'
+import { initialize, createApplication, hooks } from '../src/index.js'
 
 describe('core:tags', () => {
   let app, server, port, usersService, tagsService
@@ -13,7 +13,7 @@ describe('core:tags', () => {
   })
 
   it('registers the services', async () => {
-    await app.configure(core)
+    await app.configure(initialize)
     usersService = app.getService('users')
     expect(usersService).toBeDefined()
     tagsService = app.getService('tags')

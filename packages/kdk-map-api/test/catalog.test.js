@@ -3,7 +3,7 @@ import _ from 'lodash'
 import path from 'path'
 import fs from 'fs-extra'
 import { fileURLToPath } from 'url'
-import core, { createApplication, hooks, permissions } from '@kalisio/kdk-core-api'
+import { initialize, createApplication, hooks, permissions } from '@kalisio/kdk-core-api'
 import map, {
   permissions as mapPermissions, createCatalogService, createProjectsService
 } from '../kdk-map-api/src/index.js'
@@ -34,7 +34,7 @@ describe('map:catalog', () => {
   }, 30000)
 
   it('registers the services', async () => {
-    await app.configure(core)
+    await app.configure(initialize)
     userService = app.getService('users')
     expect(userService).toBeDefined()
     await app.configure(map)

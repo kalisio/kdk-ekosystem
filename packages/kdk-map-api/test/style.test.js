@@ -1,5 +1,5 @@
 import { expect, describe, it, beforeAll, afterAll } from 'vitest'
-import core, { createApplication, hooks as coreHooks } from '@kalisio/kdk-core-api'
+import { initialize, createApplication, hooks as coreHooks } from '@kalisio/kdk-core-api'
 import map from '../kdk-map-api/src/index.js'
 
 describe('map:styles', () => {
@@ -14,7 +14,7 @@ describe('map:styles', () => {
   })
 
   it('registers the services', async () => {
-    await app.configure(core)
+    await app.configure(initialize)
     usersService = app.getService('users')
     expect(usersService).toBeDefined()
     tagsService = app.getService('tags')

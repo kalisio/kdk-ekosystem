@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
-import core, { createApplication, hooks } from '../src/index.js'
+import { initialize, createApplication, hooks } from '../src/index.js'
 
 describe('core:import-export', () => {
   let app, server, port, usersService, storageService, importExportService
@@ -14,7 +14,7 @@ describe('core:import-export', () => {
   })
 
   it('registers the services', async () => {
-    await app.configure(core)
+    await app.configure(initialize)
     // Ensure the users service exist
     usersService = app.getService('users')
     expect(usersService).toBeDefined()

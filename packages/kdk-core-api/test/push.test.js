@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import _ from 'lodash'
 import config from 'config'
 import { addSubscription, removeSubscription } from '@kalisio/feathers-webpush/client'
-import core, { createApplication, hooks } from '../src/index.js'
+import { initialize, createApplication, hooks } from '../src/index.js'
 import { permissions } from '@kalisio/kdk-core-common'
 import { createMailerStub } from './utils.js'
 
@@ -58,11 +58,11 @@ describe('core:push', () => {
   })
 
   it('is ES module compatible', () => {
-    expect(typeof core).toBe('function')
+    expect(typeof initialize).toBe('function')
   })
 
   it('registers the services', async () => {
-    await app.configure(core)
+    await app.configure(initialize)
     usersService = app.getService('users')
     expect(usersService).toBeDefined()
     usersService.hooks({

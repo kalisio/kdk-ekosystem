@@ -3,7 +3,7 @@ import { iff, when } from 'feathers-hooks-common'
 import request from 'superagent'
 import config from 'config'
 import { addSubscription } from '@kalisio/feathers-webpush/client'
-import core, { createApplication, hooks } from '../src/index.js'
+import { initialize, createApplication, hooks } from '../src/index.js'
 import { permissions } from '@kalisio/kdk-core-common'
 // We now rely on mailer stub which is faster
 // Integration testing with real email account shouuld be restricted to apps
@@ -54,11 +54,11 @@ describe('core:account', () => {
   })
 
   it('is ES module compatible', () => {
-    expect(typeof core).toBe('function')
+    expect(typeof initialize).toBe('function')
   })
 
   it('registers the services', async () => {
-    await app.configure(core)
+    await app.configure(initialize)
     userService = app.getService('users')
     expect(userService).toBeDefined()
     userService.hooks({

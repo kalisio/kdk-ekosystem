@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import authentication from '@feathersjs/authentication'
 import request from 'superagent'
-import core, { createApplication } from '../src/index.js'
+import { initialize, createApplication } from '../src/index.js'
 
 const { authenticate } = authentication.hooks
 
@@ -18,7 +18,7 @@ describe('core:authentication', () => {
   })
 
   it('registers the services', async () => {
-    await app.configure(core)
+    await app.configure(initialize)
     authenticationService = app.getService('authentication')
     expect(authenticationService).toBeDefined()
     userService = app.getService('users')

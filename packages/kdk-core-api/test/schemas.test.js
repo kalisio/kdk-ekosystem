@@ -4,7 +4,7 @@ import fs from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { setTimeout as sleep } from 'node:timers/promises'
 import { memory } from '@feathersjs/memory'
-import core, { createApplication, hooks, declareService } from '../src/index.js'
+import { initialize, createApplication, hooks, declareService } from '../src/index.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -24,7 +24,7 @@ describe('core:schemas', () => {
   })
 
   it('registers the services', async () => {
-    await app.configure(core)
+    await app.configure(initialize)
     // Create default service to store data
     service = declareService('service', app, memory({ multi: true, operators: ['$exists'] }))
     service.hooks({

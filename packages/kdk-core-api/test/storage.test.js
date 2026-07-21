@@ -4,7 +4,7 @@ import fs from 'node:fs'
 import { fileURLToPath } from 'url'
 import request from 'superagent'
 import { Blob } from 'buffer'
-import core, { createApplication, hooks } from '../src/index.js'
+import { initialize, createApplication, hooks } from '../src/index.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -31,7 +31,7 @@ describe('core:storage', () => {
   })
 
   it('registers the storage service', async () => {
-    await app.configure(core)
+    await app.configure(initialize)
     userService = app.getService('users')
     expect(userService).toBeDefined()
     storageService = app.getService('storage')

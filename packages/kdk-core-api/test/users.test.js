@@ -3,7 +3,7 @@ import _ from 'lodash'
 import { authenticate } from '@feathersjs/authentication'
 import { iff, disallow, isProvider, keep, discard } from 'feathers-hooks-common'
 import request from 'superagent'
-import core, { createApplication, hooks } from '../src/index.js'
+import { initialize, createApplication, hooks } from '../src/index.js'
 
 describe('core:users', () => {
   let app, server, port, baseUrl, userIdAccessToken, emailAccessToken, phoneAccessToken, statelessAccessToken, adminAccessToken,
@@ -18,7 +18,7 @@ describe('core:users', () => {
   })
 
   it('registers the services', async () => {
-    await app.configure(core)
+    await app.configure(initialize)
     authenticationService = app.getService('authentication')
     expect(authenticationService).toBeDefined()
     userService = app.getService('users')

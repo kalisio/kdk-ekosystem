@@ -5,7 +5,7 @@ import assert from 'assert'
 import fs from 'fs-extra'
 import request from 'superagent'
 import fuzzySearch from 'feathers-mongodb-fuzzy-search'
-import core, { createApplication, hooks, permissions, createMessagesService } from '../src/index.js'
+import { initialize, createApplication, hooks, permissions, createMessagesService } from '../src/index.js'
 import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -33,11 +33,11 @@ describe('core:services', () => {
   })
 
   it('is ES module compatible', () => {
-    expect(typeof core).toBe('function')
+    expect(typeof initialize).toBe('function')
   })
 
   it('registers the services', async () => {
-    await app.configure(core)
+    await app.configure(initialize)
 
     usersService = app.getService('users')
     expect(usersService).toBeDefined()
