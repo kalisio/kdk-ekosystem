@@ -45,7 +45,7 @@ export function declareService (name, app, service, serviceOptions = {}) {
   }
 
   let feathersPath = app.get('apiPath') + '/' + servicePath
-  if (feathersPath.startsWith('/')) feathersPath = feathersPath.substr(1)
+  if (feathersPath.startsWith('/')) feathersPath = feathersPath.slice(1)
 
   try {
     const feathersService = app.service(feathersPath)
@@ -53,13 +53,14 @@ export function declareService (name, app, service, serviceOptions = {}) {
     return feathersService
   } catch (error) {
     // Initialize our service by providing any middleware as well
+    debug(`Service failed ${error.message}`)
     let args = [feathersPath]
     if (_.has(serviceOptions, 'middlewares.before')) args = args.concat(_.get(serviceOptions, 'middlewares.before'))
     args.push(service)
     const options = _.pick(serviceOptions, ['methods', 'events'])
     if (!is.empty(options)) args = args.concat(options)
     if (_.has(serviceOptions, 'middlewares.after')) args = args.concat(_.get(serviceOptions, 'middlewares.after'))
-    app.use.apply(app, args)
+    app.use(...args)
     // Get the Feathers service, ie base service + Feathers' internals
     service = app.service(feathersPath)
     debug('Service declared on path ' + feathersPath)
@@ -180,7 +181,7 @@ async function createService (name, app, options = {}) {
   const FeathersServiceClass = (app.db.adapter === 'mongodb' ? feathersServiceModule.MongoDBService : feathersServiceModule.default)
 
   const paginate = app.get('paginate')
-  const serviceOptions = Object.assign({
+  const serviceOptions = {
     name,
     paginate,
     multi: true,
@@ -189,8 +190,9 @@ async function createService (name, app, options = {}) {
       '$text', '$search', '$caseSensitive', '$language', '$diacriticSensitive',
       '$aggregate', '$near', '$nearSphere', '$geoIntersects', '$geoWithin',
       '$maxDistance', '$minDistance', '$geometry', '$box', '$polygon', '$center', '$centerSphere'
-    ]
-  }, options)
+    ],
+    ...options
+  }
   if (serviceOptions.disabled) return undefined
   // For DB services a model has to be provided
   const fileName = serviceOptions.modelName || name
@@ -273,7 +275,7 @@ async function removeService (service, app) {
   // so that we don't want to crash if the service does not exist or has already been unregistered
   if (!service) return
   let feathersPath = app.get('apiPath') + '/' + service.path
-  if (feathersPath.startsWith('/')) feathersPath = feathersPath.substr(1)
+  if (feathersPath.startsWith('/')) feathersPath = feathersPath.slice(1)
 
   app.unuse(feathersPath)
   debug(service.name + ' service unregistration completed')
@@ -334,10 +336,11 @@ export function createWebhook (path, app, options = {}) {
       }
       try {
         debug(`Performing ${payload.service} service ${payload.operation} operation through webhook ${webhookPath} with args:`, args)
-        const result = await service[payload.operation].apply(service, args)
+        const result = await service[payload.operation](...args)
         // Send back result
         res.json(result)
       } catch (error) {
+        debug(`Service operation failed in webhook ${webhookPath}:`, error)
         throw new BadRequest('Service operation could not be performed')
       }
     } catch (error) {
@@ -352,17 +355,18 @@ export function createWebhook (path, app, options = {}) {
 
 function setupLogger (app) {
   debug('Setup application loggers')
-  const logsConfig = Object.assign({ // Default logger erased by provided one if any
+  const logsConfig = { // Default logger erased by provided one if any
     Console: {
       format: winston.format.combine(winston.format.colorize(), winston.format.simple())
-    }
-  }, _.omit(app.get('logs'), ['level', 'format']))
+    },
+    ..._.omit(app.get('logs'), ['level', 'format'])
+  }
   // Remove winston defaults
   try {
     winston.clear()
   } catch (error) {
     // Logger might be down, use console
-    console.error('Could not remove default logger transport(s)', error)
+    console.info('Could not remove default logger transport(s)', error)
   }
   // We have one entry per log type
   const logsTypes = Object.getOwnPropertyNames(logsConfig)
@@ -375,12 +379,14 @@ function setupLogger (app) {
       transports.push(new winston.transports[logType](logOptions))
     } catch (error) {
       // Logger might be down, use console
-      console.error(`Could not setup logger ${logType}`, error)
+      console.info(`Could not setup logger ${logType}`, error)
     }
   })
-  app.logger = winston.createLogger(Object.assign({
-    level: (process.env.NODE_ENV === 'development' ? 'debug' : 'info'), transports
-  }, _.pick(logsConfig, ['level', 'format'])))
+  app.logger = winston.createLogger({
+    level: (process.env.NODE_ENV === 'development' ? 'debug' : 'info'),
+    transports,
+    ..._.pick(logsConfig, ['level', 'format'])
+  })
 }
 
 function setupSockets (app) {
@@ -434,7 +440,7 @@ function setupSockets (app) {
         next()
       })
       */
-      if (apiLimiter && apiLimiter.websocket) {
+      if (apiLimiter?.websocket) {
         const { tokensPerInterval, interval } = apiLimiter.websocket
         // Function used to filter whitelisted services, defaults to none
         const services = _.get(apiLimiter.websocket, 'services', (service) => false)
@@ -559,7 +565,7 @@ export function createApplication (config = {}) {
     return this
   }
   const apiLimiter = app.get('apiLimiter')
-  if (apiLimiter && apiLimiter.http) {
+  if (apiLimiter?.http) {
     // Function used to filter whitelisted services, defaults to none
     const services = _.get(apiLimiter.http, 'services', (service) => false)
     const handler = (req, res, next) => {
@@ -579,10 +585,10 @@ export function createApplication (config = {}) {
           { translation: { key: 'RATE_LIMITING' } })
         res.status(error.code)
         res.set('Content-Type', 'application/json')
-        res.json(Object.assign({}, error.toJSON()))
+        res.json({ ...error.toJSON() })
       }
     }
-    app.use(app.get('apiPath') || '/', new HttpLimiter(Object.assign({ handler }, apiLimiter.http)))
+    app.use(app.get('apiPath') || '/', new HttpLimiter({ handler, ...apiLimiter.http }))
   }
 
   // Enable CORS, security, compression, and body parsing
@@ -591,12 +597,12 @@ export function createApplication (config = {}) {
   app.use(compress(app.get('compression')))
   const bodyParserConfig = app.get('bodyParser')
   app.use(express.json(_.get(bodyParserConfig, 'json')))
-  app.use(express.urlencoded(Object.assign({ extended: true }, _.get(bodyParserConfig, 'urlencoded'))))
+  app.use(express.urlencoded({ extended: true, ..._.get(bodyParserConfig, 'urlencoded') }))
 
   // Set up plugins and providers
   app.configure(rest())
   const socketioConfig = app.get('socketio') || {}
-  app.configure(socketio(Object.assign({ path: (app.get('apiPath') || '/') + 'ws' }, socketioConfig), setupSockets(app)))
+  app.configure(socketio({ path: (app.get('apiPath') || '/') + 'ws', ...socketioConfig }, setupSockets(app)))
   app.configure(auth)
 
   // Initialize DB
