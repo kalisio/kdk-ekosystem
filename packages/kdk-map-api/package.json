@@ -57,10 +57,11 @@
     "feathers-mongodb-fuzzy-search": "catalog:",
     "fs-extra": "catalog:",
     "lodash": "catalog:",
+    "minimatch": "^10.0.0",
     "moment": "catalog:",
     "sift": "catalog:",
-    "minimatch": "^10.0.0",
-    "superagent": "catalog:"
+    "superagent": "catalog:",
+    "typescript": "catalog:"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "catalog:",

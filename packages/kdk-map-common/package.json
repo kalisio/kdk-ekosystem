@@ -51,6 +51,7 @@
     "lodash": "catalog:",
     "moment": "catalog:",
     "pmtiles": "catalog:",
+    "typescript": "catalog:",
     "xml2js": "catalog:"
   },
   "engines": {

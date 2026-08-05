@@ -84,6 +84,7 @@
     "showdown": "catalog:",
     "sift": "catalog:",
     "socket.io-client": "catalog:",
+    "typescript": "catalog:",
     "vue": "catalog:",
     "vue-i18n": "catalog:",
     "vue-router": "catalog:"
