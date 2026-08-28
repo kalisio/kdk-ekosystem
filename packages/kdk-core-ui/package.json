@@ -2,7 +2,7 @@
   "name": "@kalisio/kdk-core-ui",
   "description": "The Kalisio Development Kit Core UI Package",
   "version": "0.0.0",
-  "packageManager": "pnpm@10.1.0",
+  "packageManager": "pnpm@10.34.5",
   "type": "module",
   "exports": {
     ".": {
