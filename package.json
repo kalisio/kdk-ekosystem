@@ -23,7 +23,7 @@
     "lint:kdk-core-ui": "pnpm --filter @kalisio/kdk-core-ui lint",
     "lint:kdk-map-api": "pnpm --filter @kalisio/kdk-map-api lint",
     "lint:kdk-map-common": "pnpm --filter @kalisio/kdk-map-common lint",
-    "prepare": "husky",
+    "prepare": "node scripts/prepare.mjs",
     "prerelease": "pnpm build",
     "release": "changeset publish",
     "postrelease": "git push --follow-tags",
