@@ -1,6 +1,6 @@
 import makeDebug from 'debug'
 import _ from 'lodash'
-import { is } from '@kalisio/common-core'
+import { is } from '@kalisio/common-core/predicates'
 import qs from 'qs'
 import 'winston-daily-rotate-file'
 // import { RateLimiter } from 'limiter'

@@ -1,6 +1,6 @@
 import moment from 'moment'
 import _ from 'lodash'
-import { is } from '@kalisio/common-core'
+import { is } from '@kalisio/common-core/predicates'
 
 // Helper function to convert comparison operator values to numbers or dates
 export function marshallComparisonFields (queryObject) {

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { is } from '@kalisio/common-core'
+import { is } from '@kalisio/common-core/predicates'
 import makeDebug from 'debug'
 import generateRandomPassword from 'password-generator'
 import { getItems, replaceItems } from 'feathers-hooks-common'

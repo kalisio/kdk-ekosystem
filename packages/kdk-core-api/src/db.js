@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { is } from '@kalisio/common-core'
+import { is } from '@kalisio/common-core/predicates'
 import moment from 'moment'
 import makeDebug from 'debug'
 import { MongoClient, ObjectId } from 'mongodb'

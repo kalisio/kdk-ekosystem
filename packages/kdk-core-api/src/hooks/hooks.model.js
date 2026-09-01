@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { is } from '@kalisio/common-core'
+import { is } from '@kalisio/common-core/predicates'
 import sift from 'sift'
 import moment from 'moment'
 import errors from '@feathersjs/errors'

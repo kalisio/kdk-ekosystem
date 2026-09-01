@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import errors from '@feathersjs/errors'
 import makeDebug from 'debug'
+import { string } from '@kalisio/common-core/utilities'
 import { marshallComparisonFields, marshallTime, marshallBooleanFields, marshallNumberFields, marshallDateFields } from '../marshall.js'
 import { isValidObjectID, isObjectID } from '../db.js'
-import { string } from '@kalisio/common-core'
 
 const { Forbidden } = errors
 const debug = makeDebug('kdk:core:query:hooks')
