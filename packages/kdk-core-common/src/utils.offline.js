@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import makeDebug from 'debug'
-import { url } from '@kalisio/common-core'
+import { url } from '@kalisio/common-core/utilities'
 const debug = makeDebug('kdk:core:offline')
 
 export const buildUrl = url.build
