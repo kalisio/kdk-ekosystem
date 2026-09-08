@@ -9,7 +9,7 @@ export * from './marshall.js'
 export * from '@kalisio/kdk-map-common'
 export { config }
 
-const debug = makeDebug('kdk:map')
+const debug = makeDebug('kdk:map:api')
 
 export default async function init () {
   const app = this
