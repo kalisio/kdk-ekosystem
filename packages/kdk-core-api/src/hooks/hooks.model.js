@@ -49,7 +49,7 @@ export function serialize (rules, options = {}) {
     // Apply the rules for each item
     items.forEach(item => {
       rules.forEach(rule => {
-        let source = _.get(item, rule.source)
+        let source = _.get(item, rule.source, rule.default)
         if (!is.nil(source)) {
           if (rule.filter) source = source.filter(sift(rule.filter))
           _.set(item, rule.target, source)
