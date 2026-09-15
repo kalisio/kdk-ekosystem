@@ -73,14 +73,18 @@ export class MeteoModelGridSource extends DynamicGridSource {
   makeBuildContext (updateCtx) {
     const ctx = Object.assign({}, updateCtx)
 
-    ctx.candidate = this.selectCandidate(updateCtx.time, updateCtx.model.name)
+    // properties already present in the context (eg. provided via the client-only template
+    // context) are never recomputed/overwritten here
+    if (!ctx.candidate) ctx.candidate = this.selectCandidate(updateCtx.time, updateCtx.model.name)
     if (ctx.candidate) {
       // update context
-      ctx.runTime = getNearestRunTime(updateCtx.time, updateCtx.model.runInterval)
-      // take runOffset into account
-      ctx.runTime.subtract(ctx.runOffset * updateCtx.model.runInterval, 'seconds')
-      ctx.forecastTime = getNearestForecastTime(updateCtx.time, updateCtx.model.interval)
-      ctx.forecastOffset = moment.duration(ctx.forecastTime.diff(ctx.runTime))
+      if (!ctx.runTime) {
+        ctx.runTime = getNearestRunTime(updateCtx.time, updateCtx.model.runInterval)
+        // take runOffset into account
+        ctx.runTime.subtract(ctx.runOffset * updateCtx.model.runInterval, 'seconds')
+      }
+      if (!ctx.forecastTime) ctx.forecastTime = getNearestForecastTime(updateCtx.time, updateCtx.model.interval)
+      if (!ctx.forecastOffset) ctx.forecastOffset = moment.duration(ctx.forecastTime.diff(ctx.runTime))
 
       // switch to utc mode, all display methods will display in UTC
       ctx.time.utc()
@@ -106,6 +110,9 @@ export class MeteoModelGridSource extends DynamicGridSource {
     if (ctx.candidate) {
       config = this.deriveConfig(ctx, ctx.candidate.staticProps, ctx.candidate.dynamicProps)
       if (config) {
+        // Make the model's native spatial resolution available to the underlying grid source,
+        // eg. so it can adapt how much it resamples data to the actual zoom level
+        if (ctx.model.resolution) config.resolution = ctx.model.resolution
         source = makeGridSource(ctx.candidate.key, this.options)
       }
     }
@@ -138,18 +145,13 @@ export class MeteoModelGridSource extends DynamicGridSource {
   }
 
   dataChanged () {
-    // check if we need to try to fetch data from a previous run
-    // in case the nearest run doesn't exists or fails to provide
-    // required data
-
-    if (this.source && !this.source.usable) {
-      // if we have a selected source but it's not usable
-      if (this.updateCtx.runOffset === 0) {
-        // queue updaty with an offseted run
-        this.updateCtx.runOffset = 1
-        this.queueUpdate()
-        return
-      }
+    // Check if we need to fetch data from a previous run in case the nearest run fails to provide required data.
+    // How many runs are worth retrying (if any) is up to the underlying grid source itself.
+    if (this.source && !this.source.usable && this.updateCtx.runOffset < this.source.maxRunOffset) {
+      // queue update with an offseted run
+      this.updateCtx.runOffset += 1
+      this.queueUpdate()
+      return
     }
 
     super.dataChanged()

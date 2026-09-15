@@ -1,4 +1,10 @@
+import _ from 'lodash'
 import { unitConverters, GridSource, toHalf } from './grid.js'
+
+// Bounds for the dynamically computed mesh_tile_size, these are default values that can be overriden by config
+const MIN_MESH_TILE_SIZE = 4
+const DEFAULT_MAX_MESH_TILE_SIZE = 64
+const DEFAULT_MESH_TILE_SIZE = 16
 
 // grid: {
 //   bounds : { min, max }
@@ -25,7 +31,15 @@ function genCoordsBuffer (grid) {
     ++idx
   }
 
-  return { coords, minLat: grid.minLat, maxLat: grid.maxLat, minLon: grid.minLon, maxLon: grid.maxLon, deltaLat, deltaLon }
+  return {
+    coords,
+    minLat: grid.minLat,
+    maxLat: grid.maxLat,
+    minLon: grid.minLon >= 180.0 ? grid.minLon - 360.0 : grid.minLon,
+    maxLon: grid.maxLon >= 180.0 ? grid.maxLon - 360.0 : grid.maxLon,
+    deltaLat,
+    deltaLon
+  }
 }
 
 function genValuesBuffer (grid) {
@@ -58,6 +72,9 @@ export class KazarrGridSource extends GridSource {
     super(options)
 
     this.usable = false
+    // Unlike weacast there's no 'run time' concept in kazarr, this is usuallt managed in the dataset URL,
+    // so that usually requesting with a different run time makes no sense.
+    this.maxRunOffset = 0
   }
 
   getBBox () {
@@ -81,12 +98,15 @@ export class KazarrGridSource extends GridSource {
 
     const question = this.config.url.indexOf('?')
     const datasetUrl = question === -1
-      ? `${this.config.url}/datasets/${this.config.dataset}`
-      : `${this.config.url.substring(0, question)}/datasets/${this.config.dataset}${this.config.url.substring(question)}`
+      ? `${this.config.url}/datasets/${this.config.dataset}/metadata`
+      : `${this.config.url.substring(0, question)}/datasets/${this.config.dataset}/metadata${this.config.url.substring(question)}`
 
     try {
-      const resp = await fetch(datasetUrl)
-      const json = await resp.json()
+      const response = await fetch(datasetUrl)
+      if (response.status !== 200) {
+        throw new Error(`Impossible to fetch ${datasetUrl}: ` + response.status)
+      }
+      const json = await response.json()
       if (json.bounding_box) {
         this.minMaxLat = [json.bounding_box.lat.min, json.bounding_box.lat.max]
         this.minMaxLon = [json.bounding_box.lon.min, json.bounding_box.lon.max]
@@ -95,34 +115,79 @@ export class KazarrGridSource extends GridSource {
       console.error(`Failed requesting ${this.config.dataset} metadata from ${this.config.url}`)
     }
 
-    this.usable = this.minMaxLat !== null && this.minMaxLat !== null
+    // this.minMaxLat/minMaxLon stay null when the fetch above failed or returned no bounding_box
+    // (eg. no data at all for the requested time), in which case this.usable below stays false -
+    // note we still fall through to this.dataChanged() in that case (see below), we must not return
+    // early here, otherwise listeners (eg. TiledMeshLayer) would never be notified and would keep
+    // displaying whatever data they had before indefinitely
+    if (this.minMaxLat && this.minMaxLon) {
+      // Internal tile management requires longitude in [-180, 180]
+      const wrapLongitude = (this.minMaxLon[1] >= 359)
+      this.minMaxLon = [wrapLongitude ? -180 : this.minMaxLon[0], wrapLongitude ? 180 : this.minMaxLon[1]]
+      this.wrapLon = wrapLongitude
+    }
+
+    this.usable = this.minMaxLat !== null && this.minMaxLon !== null
 
     this.dataChanged()
+  }
+
+  // Computes how many mesh points to request for a tile covering [tileExtentLat, tileExtentLon] degrees,
+  // given the display resolution at the current zoom level (degrees/pixel).
+  // We only need as many points as whichever is coarser between the data and the screen actually requires.
+  computeMeshTileSize (tileExtentLat, tileExtentLon, resolution) {
+    const dataResolution = this.config.resolution
+    if (!dataResolution) return _.get(this.config, 'defaultMeshTileSize', DEFAULT_MESH_TILE_SIZE)
+
+    const maxMeshTileSize = _.get(this.config, 'maxMeshTileSize', DEFAULT_MAX_MESH_TILE_SIZE)
+    const sizeLat = tileExtentLat / Math.max(resolution[0], dataResolution[0])
+    const sizeLon = tileExtentLon / Math.max(resolution[1], dataResolution[1])
+    return Math.min(maxMeshTileSize, Math.max(MIN_MESH_TILE_SIZE, Math.round(Math.max(sizeLat, sizeLon))))
   }
 
   async fetch (abort, bbox, resolution) {
     if (!this.usable) { return null }
 
-    // const sourceKey = this.sourceKey
+    // compute which tile(s) we're going to hit
+    const minLon = this.wrapLon ? (bbox[1] < 0 ? bbox[1] + 360.0 : bbox[1]) : bbox[1]
+    const maxLon = this.wrapLon ? (bbox[3] <= 0 ? bbox[3] + 360.0 : bbox[3]) : bbox[3]
 
     const reqMinLat = bbox[0]
-    const reqMinLon = bbox[1]
+    const reqMinLon = minLon
     const reqMaxLat = bbox[2]
-    const reqMaxLon = bbox[3]
-
-    let queryParams = `variable=${this.config.variable}&lon_min=${reqMinLon}&lon_max=${reqMaxLon}&lat_min=${reqMinLat}&lat_max=${reqMaxLat}`
-    queryParams += '&format=mesh&mesh_tile_size=16&mesh_interpolate=true'
-    if (this.config.additional) {
-      for (const [key, value] of Object.entries(this.config.additional)) { queryParams += `&${key}=${value}` }
-    }
+    const reqMaxLon = maxLon
+    const resampling = this.config?.noResampling
+      ? {}
+      // Resample about one mesh point per native data cell covered by the tile at the current zoom level,
+      // so we neither use a finer mesh than the data actually supports nor a coarser one than the screen can show.
+      : { mesh_tile_size: this.computeMeshTileSize(reqMaxLat - reqMinLat, reqMaxLon - reqMinLon, resolution), interp_spatial_method: 'linear' }
+    const parameters = Object.assign({
+      variable: this.config.variable,
+      lon_min: reqMinLon,
+      lon_max: reqMaxLon,
+      lat_min: reqMinLat,
+      lat_max: reqMaxLat,
+      format: 'mesh'
+    }, resampling, this.config.additional)
+    let queryParams = ''
+    for (const [key, value] of Object.entries(parameters)) { queryParams += _.isEmpty(queryParams) ? `${key}=${value}` : `&${key}=${value}` }
 
     const question = this.config.url.indexOf('?')
     const tileUrl = question === -1
       ? `${this.config.url}/datasets/${this.config.dataset}/extract?${queryParams}`
       : `${this.config.url.substring(0, question)}/datasets/${this.config.dataset}/extract?${queryParams}&${this.config.url.substring(question + 1)}`
 
-    const resp = await fetch(tileUrl)
+    const resp = await fetch(tileUrl, { signal: abort })
     const json = await resp.json()
+
+    // Update data value bounds as they are only known once data has been fetched on requested tile, not upfront for the whole dataset.
+    if (json.bounds) {
+      const minVal = this.converter ? this.converter(json.bounds.min) : json.bounds.min
+      const maxVal = this.converter ? this.converter(json.bounds.max) : json.bounds.max
+      this.minMaxVal = this.minMaxVal
+        ? [Math.min(this.minMaxVal[0], minVal), Math.max(this.minMaxVal[1], maxVal)]
+        : [minVal, maxVal]
+    }
 
     let dataMinLon = json.vertices[0]
     let dataMaxLon = json.vertices[0]
@@ -137,7 +202,8 @@ export class KazarrGridSource extends GridSource {
     }
 
     const grid = {
-      hasData: () => { return true },
+      sourceKey: this.sourceKey,
+      hasData: () => { return Array.isArray(json.values) && json.values.length > 0 },
       // HACK: can't import pixi here, return constant value for now
       // cf. https://github.com/pixijs/pixijs/blob/v7.4.3/packages/constants/src/index.ts#L282
       drawMode: () => { return 4 /* DRAW_MODES.TRIANGLES */ },
@@ -149,6 +215,28 @@ export class KazarrGridSource extends GridSource {
       maxLat: dataMaxLat,
       minLon: dataMinLon,
       maxLon: dataMaxLon
+    }
+
+    /* support for TiledWindLayer */
+    /* determine grid parameter */
+    {
+      // collect and sort lon, lat coordinates
+      const lonCoords = grid.data.vertices.filter((value, index) => (index % 3) === 0).sort((a, b) => a < b ? -1 : a > b ? 1 : 0)
+      const latCoords = grid.data.vertices.filter((value, index) => (index % 3) === 1).sort((a, b) => a < b ? -1 : a > b ? 1 : 0)
+      // compute differences
+      const lonDiffs = lonCoords.slice(1).map((value, i) => value - lonCoords[i])
+      const latDiffs = latCoords.slice(1).map((value, i) => value - latCoords[i])
+
+      const deltaLon = Math.max(...lonDiffs)
+      const deltaLat = Math.max(...latDiffs)
+
+      const numLons = 1 + Math.round((grid.maxLon - grid.minLon) / deltaLon)
+      const numLats = 1 + Math.round((grid.maxLat - grid.minLat) / deltaLat)
+
+      grid.getBestFit = (bbox) => { return [0, 0, numLats - 1, numLons - 1] }
+      grid.getLat = (index) => { return grid.data.vertices[((numLats - (index + 1)) * 3) + 1] }
+      grid.getLon = (index) => { return grid.data.vertices[((index * numLats) * 3)] }
+      grid.getValue = (ilat, ilon) => { return grid.data.values[(numLats - (ilat + 1)) + (ilon * numLats)] }
     }
 
     grid.genCoordsBuffer = () => genCoordsBuffer(grid)
