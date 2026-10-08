@@ -9,10 +9,12 @@
       "development": "./src/index.js",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
-    }
+    },
+    "./config": "./src/config/index.cjs"
   },
   "files": [
-    "dist"
+    "dist",
+    "src/config"
   ],
   "standard": {
     "ignore": [
@@ -82,7 +84,8 @@
       ".": {
         "import": "./dist/index.mjs",
         "require": "./dist/index.cjs"
-      }
+      },
+      "./config": "./src/config/index.cjs"
     }
   }
 }
