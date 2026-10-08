@@ -5,6 +5,11 @@ import * as errors from './errors.js'
 import * as permissions from './permissions.js'
 import * as dap from './opendap-utils.js'
 import * as grid from './grid.js'
+import * as wms from './wms-utils.js'
+import * as wfs from './wfs-utils.js'
+import * as wmts from './wmts-utils.js'
+import * as tms from './tms-utils.js'
+import * as pmtiles from './pmtiles-utils.js'
 import { gridSourceFactories, unitConverters } from './grid.js'
 import { OpenDapGridSource } from './opendap-grid-source.js'
 import { WcsGridSource } from './wcs-grid-source.js'
@@ -18,6 +23,11 @@ export { errors }
 export { permissions }
 export { dap }
 export { grid }
+export { wms }
+export { wfs }
+export { wmts }
+export { tms }
+export { pmtiles }
 
 // register factories for known grid sources
 gridSourceFactories[OpenDapGridSource.getKey()] = function (options) { return new OpenDapGridSource(options) }
