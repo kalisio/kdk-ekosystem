@@ -17,14 +17,10 @@ slack_report() {
 ## Parse options
 ##
 
-NODE_VER=20
 PUBLISH=false
 CI_STEP_NAME="Build docs"
-while getopts "n:pr:" OPT; do
+while getopts "pr:" OPT; do
     case $OPT in
-        n) # defines node version
-            NODE_VER=$OPTARG
-            ;;
         p) # publish doc
             PUBLISH=true
             ;;
@@ -41,5 +37,4 @@ done
 ## Build docs
 ##
 
-use_node "$NODE_VER"
 build_docs "$ROOT_DIR" "kalisio/kdk-ekosystem" "$PUBLISH"
