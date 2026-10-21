@@ -191,7 +191,12 @@ async function createService (name, app, options = {}) {
       '$aggregate', '$near', '$nearSphere', '$geoIntersects', '$geoWithin',
       '$maxDistance', '$minDistance', '$geometry', '$box', '$polygon', '$center', '$centerSphere'
     ],
-    ...options
+    ...options,
+    filters: {
+      $text: true,
+      $nor: true,
+      ...(Array.isArray(options.filters) ? Object.fromEntries(options.filters.map(filter => [filter, true])) : options.filters)
+    }
   }
   if (serviceOptions.disabled) return undefined
   // For DB services a model has to be provided
