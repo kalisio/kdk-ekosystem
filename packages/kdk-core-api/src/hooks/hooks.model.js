@@ -224,7 +224,7 @@ export async function distinct (hook) {
   const params = hook.params
   const query = params.query
   if (!query || !query.$distinct) return hook
-  const collection = hook.service.Model
+  const collection = await hook.service.Model
   hook.result = await collection.distinct(query.$distinct, _.omit(query, ['$distinct']))
   return hook
 }
@@ -241,7 +241,7 @@ export function checkUnique (options = {}) {
     const id = _.get(hook, `data.${field}`)
     // If not updating ID skip
     if (id) {
-      const query = { [options.field]: id }
+      const query = { [field]: id }
       // Apply processing if required
       if (typeof options.query === 'function') options.query(query, hook)
       const result = await service.find({ query })

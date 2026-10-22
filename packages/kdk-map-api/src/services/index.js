@@ -1,10 +1,11 @@
-import _ from 'lodash'
-import path from 'path'
+import path from 'node:path'
+import zlib from 'node:zlib'
+import { fileURLToPath } from 'node:url'
+import { pipeline } from 'node:stream/promises'
 import fs from 'fs-extra'
-import zlib from 'zlib'
+import _ from 'lodash'
 import request from 'superagent'
 import makeDebug from 'debug'
-import { fileURLToPath } from 'url'
 import * as permissions from '@kalisio/kdk-core-common'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -81,7 +82,6 @@ export function removeCatalogService (options = {}) {
 
 export async function createProjectsService (options = {}) {
   const app = this
-
   debug('Creating projects service with options', options)
   const service = await app.createService('projects', Object.assign({
     servicesPath,
@@ -90,6 +90,7 @@ export async function createProjectsService (options = {}) {
     filters: ['$groupBy', '$group', '$aggregate', '$geoNear', '$near', '$maxDistance', '$search', '$distinct']
   }, options))
   service.Model = service.options.Model
+  return service
 }
 
 export function removeProjectsService (options = {}) {
@@ -208,20 +209,21 @@ export async function createDefaultCatalogLayers (options = {}) {
         }
       } else if (path.extname(defaultLayer.fileName) === '.gz') {
         const extractedFileName = path.join(path.dirname(defaultLayer.fileName), path.basename(defaultLayer.fileName, '.gz'))
-        fs.createReadStream(defaultLayer.fileName)
-          .pipe(zlib.createGunzip())
-          .pipe(fs.createWriteStream(extractedFileName))
-          .on('close', async () => {
-            let geojson = fs.readJsonSync(extractedFileName)
-            // We allow GeoJson collection or features array
-            geojson = Array.isArray(geojson) ? geojson : geojson.features
-            try {
-              await createFeaturesForLayer.call(app, geojson, defaultLayer, options)
-            } catch (error) {
-              console.error(error)
-            }
-          })
-          .on('error', (error) => { console.log(error) })
+        await pipeline(
+          fs.createReadStream(defaultLayer.fileName),
+          zlib.createGunzip(),
+          fs.createWriteStream(extractedFileName)
+        )
+        let geojson = fs.readJsonSync(extractedFileName)
+        // We allow GeoJson collection or features array
+        geojson = Array.isArray(geojson) ? geojson : geojson.features
+        try {
+          await createFeaturesForLayer.call(app, geojson, defaultLayer, options)
+        } catch (error) {
+          console.error(error)
+        } finally {
+          await fs.remove(extractedFileName)
+        }
       } else {
         const geojson = fs.readJsonSync(defaultLayer.fileName)
         try {

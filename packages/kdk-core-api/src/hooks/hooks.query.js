@@ -71,7 +71,7 @@ export async function aggregationQuery (hook) {
     if (hook.params.provider) {
       throw new Forbidden('You are not allowed to perform aggregation')
     }
-    const collection = service.Model
+    const collection = await service.Model
     // Set result to avoid service DB call
     hook.result = await collection.aggregate(query.$aggregation.pipeline, query.$aggregation.options).toArray()
   }

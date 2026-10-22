@@ -235,10 +235,10 @@ export class MongoDatabase extends Database {
   }
 
   collection (name, dbName) {
-    if (!this._collections.has(name)) {
-      // Get collection from secondary or primary DB
-      this._collections.set(name, this.db(dbName).collection(name))
+    const key = `${dbName || ''}:${name}`
+    if (!this._collections.has(key)) {
+      this._collections.set(key, this.db(dbName).collection(name))
     }
-    return this._collections.get(name)
+    return this._collections.get(key)
   }
 }
