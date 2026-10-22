@@ -224,7 +224,7 @@ export async function distinct (hook) {
   const params = hook.params
   const query = params.query
   if (!query || !query.$distinct) return hook
-  const collection = await hook.service.Model
+  const collection = await (hook.service.getModel ? hook.service.getModel() : hook.service.Model)
   hook.result = await collection.distinct(query.$distinct, _.omit(query, ['$distinct']))
   return hook
 }
