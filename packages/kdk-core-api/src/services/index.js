@@ -155,7 +155,15 @@ export default async function () {
       methods: ['create', 'get', 'find', 'update', 'patch', 'remove', 'logout'],
       events: ['logout']
     })
-    usersService.Model = await usersService.getModel()
+    // FIXME: Feather.js does not longer expose the Model key. Restore it to make the tests pass but do we really need ?
+    // Make it also non enumerable to avoid possible issues
+    Object.defineProperty(usersService, 'Model', {
+      value: await usersService.getModel(),
+      enumerable: false,
+      configurable: true,
+      writable: true
+    })
+    // usersService.Model = await usersService.getModel()
     debug('\'users\' service created')
     await app.createService('account', {
       servicesPath,
