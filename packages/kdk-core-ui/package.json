@@ -1,6 +1,6 @@
 {
   "name": "@kalisio/kdk-core-ui",
-  "description": "The Kalisio Development Kit Core UI Package",
+  "description": "Kalisio Development Kit Core UI Package",
   "version": "0.0.0",
   "packageManager": "pnpm@10.34.5",
   "type": "module",
@@ -51,10 +51,10 @@
   "homepage": "https://github.com/kalisio/kdk-ekosystem/tree/main/packages/core-ui",
   "dependencies": {
     "@feathersjs/client": "catalog:",
-    "@kalisio/kdk-core-common": "workspace:^",
     "@kalisio/feathers-automerge": "catalog:",
     "@kalisio/feathers-localforage": "catalog:",
     "@kalisio/feathers-s3": "catalog:",
+    "@kalisio/kdk-core-common": "workspace:^",
     "@thumbmarkjs/thumbmarkjs": "catalog:",
     "ajv": "catalog:",
     "ajv-formats": "catalog:",
@@ -101,7 +101,7 @@
     "vitest": "catalog:"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "publishConfig": {
     "access": "public",

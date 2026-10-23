@@ -1,6 +1,6 @@
-import _ from 'lodash'
+// import _ from 'lodash'
 import logger from 'loglevel'
-import config from 'config'
+/* import config from 'config'
 import { Store } from './store.js'
 import { Theme } from './theme.js'
 import { Context } from './context.js'
@@ -27,7 +27,7 @@ import * as composables from './composables/index.js'
 import * as mixins from './mixins/index.js'
 import * as hooks from './hooks/index.js'
 import * as readers from './readers/index.js'
-import { Schema } from '@kalisio/core-common'
+import { Schema } from './'
 
 // FIXME: we don't build vue component anymore, they are processed by webpack in the application
 // export * from './components'
@@ -106,5 +106,11 @@ export default async function initialize () {
 
   // Store the initialization state
   Store.set('kdk.core.initialized', true)
+  logger.debug('[KDK] Core module initialized')
+} */
+
+export default async function initialize () {
+  logger.debug('[KDK] Initializing Core module...')
+
   logger.debug('[KDK] Core module initialized')
 }
