@@ -1,6 +1,6 @@
 # core-ui
 
-_The Kalisio Development Kit Core UI Package_
+_Kalisio Development Kit Core UI Package_
 
 ---
 
@@ -12,6 +12,6 @@ Refer to the [documentation](https://github.com/kalisio/kdk-ekosystem)
 
 Licensed under the [MIT license](LICENSE).
 
-Copyright (c) 2026 [Kalisio](https://kalisio.com)
+Copyright (c) 2026-present [Kalisio](https://kalisio.com)
 
 [![Kalisio](https://kalisio.github.io/kalisioscope/kalisio/kalisio-logo-black-256x84.png)](https://kalisio.com)
