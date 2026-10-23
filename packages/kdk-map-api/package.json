@@ -5,24 +5,12 @@
   "packageManager": "pnpm@10.34.5",
   "type": "module",
   "exports": {
-    ".": {
-      "development": "./src/index.js",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
-    "./config": "./src/config/index.cjs"
+    ".": "./src/index.js"
   },
   "files": [
-    "dist",
-    "src/config"
+    "src"
   ],
-  "standard": {
-    "ignore": [
-      "dist/**"
-    ]
-  },
   "scripts": {
-    "build": "vite build",
     "lint": "standard --fix",
     "test": "cross-env NODE_CONFIG_DIR=./test/config/ vitest run --coverage"
   },
@@ -79,13 +67,6 @@
     "node": ">=20"
   },
   "publishConfig": {
-    "access": "public",
-    "exports": {
-      ".": {
-        "import": "./dist/index.mjs",
-        "require": "./dist/index.cjs"
-      },
-      "./config": "./src/config/index.cjs"
-    }
+    "access": "public"
   }
 }
