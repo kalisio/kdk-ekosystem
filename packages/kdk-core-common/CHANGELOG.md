@@ -2,12 +2,4 @@
 
 ## 0.2.0
 
-### Patch Changes
-
-- [v0.2.0]()
-
-## 0.1.0
-
-### Minor Changes
-
-- [v0.1.0]()
+## [0.1.0](https://github.com/orgs/kalisio/projects/43/views/4?sliceBy%5Bvalue%5D=v0.1.0)

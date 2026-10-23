@@ -1,27 +1,6 @@
 # @kalisio/kdk-map-api
 
-## 0.2.0
+## [0.2.0](https://github.com/orgs/kalisio/projects/43/views/10?sliceBy%5Bvalue%5D=v0.2.0)
 
-### Minor Changes
+## [0.1.0](https://github.com/orgs/kalisio/projects/43/views/10?sliceBy%5Bvalue%5D=v0.1.0)
 
-- [v0.2.0]()
-
-### Patch Changes
-
-- Updated dependencies
-  - @kalisio/kdk-core-api@0.2.0
-  - @kalisio/kdk-core-common@0.2.0
-  - @kalisio/kdk-map-common@0.2.0
-
-## 0.1.0
-
-### Minor Changes
-
-- [v0.1.0]()
-
-### Patch Changes
-
-- Updated dependencies
-  - @kalisio/kdk-core-api@0.1.0
-  - @kalisio/kdk-core-common@0.1.0
-  - @kalisio/kdk-map-common@0.1.0
