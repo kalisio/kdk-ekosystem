@@ -5,10 +5,12 @@
   "packageManager": "pnpm@10.34.5",
   "type": "module",
   "exports": {
-    ".": "./src/index.js"
+    ".": "./src/index.js",
+    "./config": "./config/index.cjs"
   },
   "files": [
-    "src"
+    "src",
+    "config"
   ],
   "scripts": {
     "lint": "standard --fix",

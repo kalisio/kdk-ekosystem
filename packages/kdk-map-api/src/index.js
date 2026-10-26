@@ -1,7 +1,7 @@
 import makeDebug from 'debug'
 import services from './services/index.js'
 import * as hooks from './hooks/index.js'
-import config from './config/index.cjs'
+import config from '../config/index.cjs'
 
 export * from './services/index.js'
 export { hooks }
