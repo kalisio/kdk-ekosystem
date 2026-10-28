@@ -10,7 +10,18 @@ const sm = new SphericalMercator()
 // worker, to cut structured-clone cost per postMessage on large COG files. geotiff v3's Pool
 // already does this kind of optimization internally and exposes a wider API (eg. bindParameters)
 // that a thin wrapper can't safely proxy, so we just use a standard pool here.
-const geotiffPool = new GeoTIFF.Pool(typeof navigator !== 'undefined' ? navigator.hardwareConcurrency || 2 : undefined)
+let geotiffPool
+
+function getGeoTiffPool () {
+  if (!geotiffPool) {
+    const size = typeof window !== 'undefined'
+      ? window.navigator.hardwareConcurrency || 2
+      : 0
+    console.log('GeoTIFF pool size:', size)
+    geotiffPool = new GeoTIFF.Pool(size)
+  }
+  return geotiffPool
+}
 
 // pack r,g,b in an uint32
 function packRgb (r, g, b) {
@@ -170,8 +181,8 @@ export class GeoTiffGridSource extends GridSource {
     // readRasters will fetch [left, right[ and [bottom, top[ hence the + 1
     const window = [left, bottom, right + 1, top + 1]
     const bands = this.rgb
-      ? await usedImage.readRGB({ window, pool: geotiffPool, signal: abort })
-      : await usedImage.readRasters({ window, fillValue: this.nodata, pool: geotiffPool, signal: abort })
+      ? await usedImage.readRGB({ window, pool: getGeoTiffPool(), signal: abort })
+      : await usedImage.readRasters({ window, fillValue: this.nodata, pool: getGeoTiffPool(), signal: abort })
     const data = this.rgb ? mergeRgb(bands) : bands[0]
 
     if (rx < 0) [left, right] = [right, left]
