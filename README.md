@@ -1,5 +1,6 @@
 # kdk-ekosystem
 
+[![CI](https://github.com/kalisio/kdk-ekosystem/actions/workflows/main.yaml/badge.svg)](https://github.com/kalisio/kdk-ekosystem/actions/workflows/main.yaml)
 [![Quality Gate Status](https://sonar.portal.kalisio.com/api/project_badges/measure?project=kalisio-kdk-ekosystem&metric=alert_status&token=sqb_0cbe48b96ade4dbac373f3938f5f87aed1227389)](https://sonar.portal.kalisio.com/dashboard?id=kalisio-kdk-ekosystem)
 [![Maintainability Rating](https://sonar.portal.kalisio.com/api/project_badges/measure?project=kalisio-kdk-ekosystem&metric=software_quality_maintainability_rating&token=sqb_0cbe48b96ade4dbac373f3938f5f87aed1227389)](https://sonar.portal.kalisio.com/dashboard?id=kalisio-kdk-ekosystem)
 [![Security Rating](https://sonar.portal.kalisio.com/api/project_badges/measure?project=kalisio-kdk-ekosystem&metric=software_quality_security_rating&token=sqb_0cbe48b96ade4dbac373f3938f5f87aed1227389)](https://sonar.portal.kalisio.com/dashboard?id=kalisio-kdk-ekosystem)
