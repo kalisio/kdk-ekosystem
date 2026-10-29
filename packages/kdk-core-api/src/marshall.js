@@ -6,7 +6,7 @@ import { is } from '@kalisio/common-core/predicates'
 export function marshallComparisonFields (queryObject) {
   _.forOwn(queryObject, (value, key) => {
     // Process current attributes or  recurse
-    if (is.plainObject(value)) {
+    if (is.plainObject(value) || is.array(value)) {
       marshallComparisonFields(value)
     } else if ((key === '$lt') || (key === '$lte') || (key === '$gt') || (key === '$gte')) {
       if (value instanceof Date) return
@@ -29,7 +29,7 @@ export function marshallComparisonFields (queryObject) {
 export function marshallNumberFields (queryObject) {
   _.forOwn(queryObject, (value, key) => {
     // Process current attributes or  recurse
-    if (is.plainObject(value)) {
+    if (is.plainObject(value) || is.array(value)) {
       marshallNumberFields(value)
     } else {
       const number = _.toNumber(value)
@@ -44,7 +44,7 @@ export function marshallNumberFields (queryObject) {
 export function marshallBooleanFields (queryObject) {
   _.forOwn(queryObject, (value, key) => {
     // Process current attributes or  recurse
-    if (is.plainObject(value)) {
+    if (is.plainObject(value) || is.array(value)) {
       marshallBooleanFields(value)
     } else if (is.string(value)) {
       // Update from query string to boolean if required
@@ -60,7 +60,7 @@ export function marshallBooleanFields (queryObject) {
 export function marshallDateFields (queryObject) {
   _.forOwn(queryObject, (value, key) => {
     // Process current attributes or  recurse
-    if (is.plainObject(value)) {
+    if (is.plainObject(value) || is.array(value)) {
       marshallDateFields(value)
     } else if (is.string(value)) {
       // We use moment to validate the date
