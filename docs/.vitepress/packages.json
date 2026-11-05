@@ -1,5 +1,6 @@
 [
   "core-api",
   "core-common",
-  "core-ui"
+  "core-ui",
+  "kdk-map-ui"
 ]
